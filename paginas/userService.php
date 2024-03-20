@@ -1,12 +1,9 @@
 <?php
 
 
-use Config\DbContext;
-use Interfaces\IUser;
-use Models\Constants;
-use Models\Users\UserModel;
+use basedados\DbContext;
 
-require_once __DIR__ . '/iUser.php';
+require_once __DIR__ . '/IUser.php';
 require_once __DIR__ . '/../basedados/basedados.php';
 require_once __DIR__ . '/constants.php';
 
@@ -21,7 +18,7 @@ class userService implements IUser
         $this->connection = $this->db->getConnection();
     }
 
-    public function login($email, $password): ?UserModel
+    public function login($email, $password)
     {
 //        $password = md5($password);
         $query = "SELECT Id, Email, UserName, PasswordHash FROM Users WHERE Email=? AND PasswordHash=?";
@@ -41,7 +38,7 @@ class userService implements IUser
         // TODO: Implement logOut() method.
     }
 
-    public function changePassword($password, $confirmPassword): bool
+    public function changePassword($password, $confirmPassword)
     {
         if ($password != $confirmPassword) return false;
 
@@ -54,7 +51,7 @@ class userService implements IUser
      *
      * @return userModel[] Array of userModel objects.
      */
-    public function getAllUserStaff(): array
+    public function getAllUserStaff()
     {
         $users = [];
         $query = "SELECT * FROM Users WHERE IsStaff";
@@ -76,7 +73,7 @@ class userService implements IUser
      *
      * @return userModel userModel objects.
      */
-    public function getUserById($userId): ?UserModel
+    public function getUserById($userId)
     {
         $query = "SELECT * FROM Users WHERE Id = ?";
 
@@ -94,7 +91,7 @@ class userService implements IUser
      * @param $email
      * @return userModel|null
      */
-    public function getUserByEmail($email): ?UserModel
+    public function getUserByEmail($email)
     {
         $query = "SELECT * FROM Users WHERE Email = ?";
         $statement = $this->connection->prepare($query);
@@ -138,27 +135,6 @@ class userService implements IUser
 
         if ($userId == null || $userId == 0) return "Nao foi possivel criar o gerente";
 
-        $result = $this->sendConfirmationEmailToManager($name, $email);
-
-        if ($result===false) return "Gestor criado mas houve um problema no envio de email para definição da password";
-
         return $userId;
-    }
-
-    private function sendConfirmationEmailToManager($name,$email)
-    {
-        $subject = "Confirmação de cadastro";
-        $description = "Acabaste de ser adicionado como gerente na empresa Est Empregos, para acessar a plataforma clica no link abaixo:";
-        $redirectUrl = "http://localhost/web/est_empregos/App/Backend/Handlers/Test/adminTest.php";
-        $linkMessage = "clica aqui para configurar a palavra pass";
-        $mailInstance = new mailService();
-
-        $result = $mailInstance->sendEmail($name,$email,$subject,$description,$redirectUrl, $linkMessage);
-
-        if ($result===true) {
-            return "Email enviado com sucesso";
-        } else {
-            return $result;
-        }
     }
 }
