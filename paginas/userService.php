@@ -6,11 +6,9 @@ use Interfaces\IUser;
 use Models\Constants;
 use Models\Users\UserModel;
 
-require_once __DIR__ . '/../Interfaces/iUser.php';
-require_once __DIR__ . '/../Config/DbContext.php';
-require_once __DIR__ . '/../Models/Users/UserManagerModel.php';
-require_once __DIR__ . '/../Models/constants.php';
-require_once __DIR__ . '/../Services/mailService.php';
+require_once __DIR__ . '/iUser.php';
+require_once __DIR__ . '/../basedados/basedados.php';
+require_once __DIR__ . '/constants.php';
 
 class userService implements IUser
 {
