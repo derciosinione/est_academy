@@ -11,7 +11,7 @@ include 'UserService.php';
 
 if (!isset($_POST['email'], $_POST['password'])) {
     $_SESSION['warning_message'] = "Provide email and password";
-    header("Location: /login.html");
+    header("Location: /loginTest.html");
     exit();
 }
 
@@ -23,7 +23,7 @@ $myLogin = $userService->login($email, $password);
 
 if ($myLogin == null) {
     $_SESSION['warning_message'] = "Invalid Credential";
-    header("Location: /login.html");
+    header("Location: /loginTest.html");
     exit();
 }
 
