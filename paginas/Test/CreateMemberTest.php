@@ -14,7 +14,7 @@ include "displayMessageIfExists.php" ?>
 
 <?php
 
-require_once __DIR__ . "/../../Models/Users/userModel.php";
+require_once __DIR__ . "/../../Models/Users/UserModel.php";
 /** @var userModel $loggedUser */
 
 if(isset($_SESSION['loggedUser'])){
@@ -24,7 +24,7 @@ if(isset($_SESSION['loggedUser'])){
 }
 ?>
 
-<form action="createMemberHandler.php" method="POST">
+<form action="../CreateMemberHandler.php" method="POST">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required><br><br>
 

@@ -5,7 +5,7 @@ use basedados\DbContext;
 
 require_once __DIR__ . '/IUser.php';
 require_once __DIR__ . '/../basedados/basedados.php';
-require_once __DIR__ . '/constants.php';
+require_once __DIR__ . '/Constants.php';
 
 class userService implements IUser
 {

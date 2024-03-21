@@ -7,7 +7,7 @@ $_SESSION['warning_message'] = null;
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 
-include 'userService.php';
+include 'UserService.php';
 
 if (!isset($_POST['email'], $_POST['password'])) {
     $_SESSION['warning_message'] = "Provide email and password";

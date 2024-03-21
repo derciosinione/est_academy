@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once '../Services/userService.php';
+require_once '../Services/UserService.php';
 
 $_SESSION['success_message'] = null;
 $_SESSION['warning_message'] = null;
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($response <= 0) {
         $_SESSION['warning_message'] = $response;
-        header("Location: ../Test/createMemberTest.php");
+        header("Location: ../Test/CreateMemberTest.php");
         exit();
     }
 
