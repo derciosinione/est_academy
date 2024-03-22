@@ -1,6 +1,5 @@
 <?php
 
-
 use basedados\DbContext;
 
 require_once __DIR__ . '/IUser.php';
