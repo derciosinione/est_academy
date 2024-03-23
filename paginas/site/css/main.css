@@ -11,6 +11,16 @@ body {
     font-family: 'Nunito Sans', sans-serif;
 }
 
+p {
+    color: #313638;
+}
+
+.overflow-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .blackOpacity {
     color: #aaa;
 }
@@ -24,6 +34,10 @@ body {
 
 .bold {
     font-weight: bold;
+}
+
+.green-color {
+    background-color: #2CC304;
 }
 
 .board {
@@ -105,6 +119,7 @@ main {
 .main-header-right {
     display: flex;
     gap: 13px;
+    align-items: center;
 }
 
 .avatar {

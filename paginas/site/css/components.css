@@ -8,6 +8,7 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 8px;
     color: #565656;
+    user-select: none;
 }
 
 input[type="text"]:focus {
