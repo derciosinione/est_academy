@@ -27,7 +27,7 @@ input[type="text"]:hover {
 
 input[type="submit"], input[type="button"], button {
     outline: none;
-    width: 147px;
+    width: auto;
     padding: 10px;
     font-size: 14px;
     border: none;

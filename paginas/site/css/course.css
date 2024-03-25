@@ -1,0 +1,25 @@
+@import url('main.css');
+@import url('components.css');
+@import url('main-body.css');
+
+.course-card {
+    width: 217px;
+    height: 208px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+.course-avatar {
+    width: 83px;
+    height: 83px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 28px auto 0;
+    border: 3px solid white;
+    /*position: relative;*/
+    /*z-index: 1;*/
+}
+
