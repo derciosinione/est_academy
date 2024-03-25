@@ -1,26 +1,110 @@
+p {
+    color: #313638;
+}
+
+.overflow-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.blackOpacity {
+    color: #aaa;
+}
+
+.blackText {
+    color: #565656;
+}
+
+.smallText {
+    font-size: 14px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.green-color {
+    background-color: #2CC304;
+}
+
+.blackBlue-color {
+    background-color: #1C344F;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.fz18 {
+    font-size: 18px;
+}
+
+.fz27 {
+    font-size: 27px;
+}
+
+.fz36 {
+    font-size: 36px;
+}
+
+
+
 /* STYLE INPUT TEXT */
 
-input[type="text"] {
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
     outline: none;
     width: 300px;
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
     color: #565656;
     user-select: none;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-input[type="text"]::placeholder {
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder,
+input[type="date"]::placeholder {
     color: #aaa;
 }
 
-input[type="text"]:hover {
+input[type="date"] {
+    color: #aaa;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover, input[type="date"]:hover
+{
+    cursor: pointer;
     border-color: #999;
 }
 
@@ -32,7 +116,7 @@ input[type="submit"], input[type="button"], button {
     font-size: 14px;
     border: none;
     border-radius: 8px;
-    color: white;
+    color: #ffffff;
     background-color: #4379EE;
 }
 
@@ -47,4 +131,29 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
 
 .btn-icon i {
     font-size: 17px;
+}
+
+.password-div {
+    background: white;
+    display: flex;
+    align-items: center;
+    outline: none;
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #565656;
+    user-select: none;
+}
+
+.password-div input {
+    border: none;
+    border-radius: unset;
+    background: transparent;
+}
+
+.password-div input:focus{
+    box-shadow: none;
 }

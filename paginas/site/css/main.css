@@ -11,56 +11,6 @@ body {
     font-family: 'Nunito Sans', sans-serif;
 }
 
-p {
-    color: #313638;
-}
-
-.overflow-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.blackOpacity {
-    color: #aaa;
-}
-
-.blackText {
-    color: #565656;
-}
-
-.smallText {
-    font-size: 14px;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.green-color {
-    background-color: #2CC304;
-}
-
-.blackBlue-color {
-    background-color: #1C344F;
-}
-
-.mb5 {
-    margin-bottom: 5px;
-}
-
-.mb10 {
-    margin-bottom: 10px;
-}
-
-.mb15 {
-    margin-bottom: 15px;
-}
-
-.mb20 {
-    margin-bottom: 20px;
-}
-
 .board {
     display: flex;
 }
