@@ -1,5 +1,5 @@
-@import url('main.css');
 @import url('components.css');
+@import url('main.css');
 @import url('main-body.css');
 
 .course-card {
@@ -11,7 +11,6 @@
     cursor: pointer;
 }
 
-
 .course-avatar {
     width: 83px;
     height: 83px;
@@ -19,7 +18,62 @@
     overflow: hidden;
     margin: 28px auto 0;
     border: 3px solid white;
-    /*position: relative;*/
-    /*z-index: 1;*/
+}
+
+.modal{
+    position: relative;
+    display: none;
+}
+
+.modal-background {
+    background-color: black;
+    min-height: 100vh;
+    min-width: 100vw;
+    opacity: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 998;
+}
+
+.modal-content {
+    width: 550px;
+    min-height: 100vh;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+}
+
+.modal-content form {
+    max-width: 360px;
+    align-items: center;
+    margin: 30% auto 0;
+}
+
+.modal-content form h1 {
+    font-size: 24px;
+    text-align: center;
+    color: #1C344F;
+}
+
+.add-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.add-inputs input {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.add-inputs input[type="text"] {
+    height: 48px;
+    background-color: #F5F6FA;
+    border: 1px solid #D5D5D5;
 }
 

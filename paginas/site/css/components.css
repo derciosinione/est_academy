@@ -30,11 +30,15 @@ a {
 }
 
 .green-color {
-    background-color: #2CC304;
+    background-color: #2CC304 !important;
 }
 
 .blackBlue-color {
-    background-color: #1C344F;
+    background-color: #1C344F !important;
+}
+
+.red-color {
+    background-color: #F5365C !important;
 }
 
 .mb5 {
@@ -51,6 +55,22 @@ a {
 
 .mb20 {
     margin-bottom: 20px;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt15 {
+    margin-top: 15px;
+}
+
+.mt20 {
+    margin-top: 20px;
 }
 
 .fz18 {
@@ -78,17 +98,17 @@ input[type="date"] {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 6px;
     color: #565656;
     user-select: none;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="date"]:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
+/*input[type="text"]:focus,*/
+/*input[type="email"]:focus,*/
+/*input[type="date"]:focus {*/
+/*    border-color: #007bff;*/
+/*    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);*/
+/*}*/
 
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
@@ -115,7 +135,7 @@ input[type="submit"], input[type="button"], button {
     padding: 10px;
     font-size: 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     color: #ffffff;
     background-color: #4379EE;
 }

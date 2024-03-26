@@ -4,12 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/course.css">
 
     <title>Document</title>
 </head>
 <body>
+
+<div class="modal" id="modalAddCourse">
+    <div onclick="toggleModalAddCourse()" class="modal-background">
+    </div>
+
+    <div class="modal-content">
+        <form>
+            <h1>Adicionar Curso</h1>
+
+            <div class="add-inputs">
+
+                <label class="blackOpacity">
+<!--                    Nome-->
+                    <input type="text" placeholder="Nome do Curso">
+                </label>
+
+                <label class="blackOpacity">
+<!--                    Categoria-->
+                    <input type="text" placeholder="Categoria">
+                </label>
+
+                <div>
+                    <input type="button" class="mb10" value="ADICIONAR">
+                    <input onclick="hideModalAddCourse()" type="button" class="red-color" value="CANCELAR">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
 
 <div class="board">
     <!-- SIDE BAR -->
@@ -140,7 +171,7 @@
                 <h2>Cursos</h2>
 
                 <div>
-                    <button><i class="fas fa-plus"></i> ADICIONAR</button>
+                    <button onclick="toggleModalAddCourse()"><i class="fas fa-plus"></i> ADICIONAR</button>
                     <button onclick="toggleMoreOption()" class="more-option-btn">MAIS OPÇÕES</button>
                     <div class="more-option" id="more-option">
                         <p>Mais opções</p>
@@ -151,10 +182,6 @@
             </div>
 
             <div class="cards-container">
-
-<!--                <div class="course-card">-->
-<!--                    course-->
-<!--                </div>-->
 
                 <div class="course-card">
 
@@ -261,5 +288,27 @@
 
     </main>
 </div>
+
+<script>
+    let modalAddCourse = document.getElementById("modalAddCourse");
+
+    function toggleModalAddCourse() {
+        if (modalAddCourseIsVisible()) hideModalAddCourse();
+        else showModalAddCourse();
+    }
+
+    function modalAddCourseIsVisible(){
+        return modalAddCourse.style.display === "block";
+    }
+
+    function hideModalAddCourse(){
+        modalAddCourse.style.display = "none";
+    }
+
+    function showModalAddCourse(){
+        modalAddCourse.style.display = "block";
+    }
+
+</script>
 </body>
 </html>
