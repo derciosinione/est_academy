@@ -3,7 +3,7 @@
 @import url('main-body.css');
 
 
-.student-card {
+.user-card {
     background-color: white;
     width: 250px;
     height: 280px;
@@ -13,7 +13,7 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.student-card:hover {
+.user-card:hover {
     transform: scale(1.05);
 }
 
@@ -28,7 +28,7 @@
     }
 }
 
-.student-avatar {
+.user-avatar {
     width: 83px;
     height: 83px;
     border-radius: 100%;

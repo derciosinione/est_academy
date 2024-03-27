@@ -73,6 +73,23 @@ a {
     margin-top: 20px;
 }
 
+
+.pb5 {
+    padding-bottom: 5px;
+}
+
+.pb10 {
+    padding-bottom: 10px;
+}
+
+.pb15 {
+    padding-bottom: 15px;
+}
+
+.pb20 {
+    padding-bottom: 20px;
+}
+
 .fz18 {
     font-size: 18px;
 }
@@ -83,6 +100,10 @@ a {
 
 .fz36 {
     font-size: 36px;
+}
+
+.auto-height {
+    height: auto !important;
 }
 
 
@@ -176,4 +197,12 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
 
 .password-div input:focus{
     box-shadow: none;
+}
+
+.transition-scale {
+    transition: transform 0.3s ease-in-out;
+}
+
+.transition-scale:hover {
+    transform: scale(1.05);
 }
