@@ -17,7 +17,7 @@ include "displayMessageIfExists.php" ?>
 require_once __DIR__ . "/../../Models/Users/UserModel.php";
 /** @var userModel $loggedUser */
 
-if(isset($_SESSION['loggedUser'])){
+if (isset($_SESSION['loggedUser'])) {
     $loggedUser = unserialize($_SESSION['loggedUser']);
     echo "<h3>Email: $loggedUser->email</h3>";
     echo "<hr>";

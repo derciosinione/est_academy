@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $userService = new userService();
 
-    $response = $userService->createManager($name,$email,$nif,$birthDay,$phoneNumber);
+    $response = $userService->createManager($name, $email, $nif, $birthDay, $phoneNumber);
 
     if ($response <= 0) {
         $_SESSION['warning_message'] = $response;

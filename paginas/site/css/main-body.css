@@ -10,7 +10,7 @@
     min-width: 250px;
     /*height: 220px;*/
     height: auto;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     z-index: 2;
     margin-top: 10px;
@@ -26,7 +26,7 @@
     gap: 10px;
 }
 
-.more-option label, input[type="checkbox"]{
+.more-option label, input[type="checkbox"] {
     color: #1C344F;
     cursor: pointer;
 }

@@ -10,7 +10,8 @@ class ProfileModel
     private $createdAt;
     private $updatedAt;
 
-    public function __construct($name, $isActive, $isStaff, $isDeleted, $createdAt, $updatedAt) {
+    public function __construct($name, $isActive, $isStaff, $isDeleted, $createdAt, $updatedAt)
+    {
         $this->name = $name;
         $this->isActive = $isActive;
         $this->isStaff = $isStaff;
@@ -19,55 +20,68 @@ class ProfileModel
         $this->updatedAt = $updatedAt;
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function getIsActive() {
+    public function getIsActive()
+    {
         return $this->isActive;
     }
 
-    public function setIsActive($isActive) {
+    public function setIsActive($isActive)
+    {
         $this->isActive = $isActive;
     }
 
-    public function getIsStaff() {
+    public function getIsStaff()
+    {
         return $this->isStaff;
     }
 
-    public function setIsStaff($isStaff) {
+    public function setIsStaff($isStaff)
+    {
         $this->isStaff = $isStaff;
     }
 
-    public function getIsDeleted() {
+    public function getIsDeleted()
+    {
         return $this->isDeleted;
     }
 
-    public function setIsDeleted($isDeleted) {
+    public function setIsDeleted($isDeleted)
+    {
         $this->isDeleted = $isDeleted;
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->createdAt;
     }
 
-    public function setCreatedAt($createdAt) {
+    public function setCreatedAt($createdAt)
+    {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt() {
+    public function getUpdatedAt()
+    {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt($updatedAt) {
+    public function setUpdatedAt($updatedAt)
+    {
         $this->updatedAt = $updatedAt;
     }
 }

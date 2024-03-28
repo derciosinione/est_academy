@@ -10,7 +10,8 @@ class CategoryModel
     private $updatedAt;
     private $creatorId;
 
-    public function __construct($name, $isActive, $isDeleted, $createdAt, $updatedAt, $creatorId) {
+    public function __construct($name, $isActive, $isDeleted, $createdAt, $updatedAt, $creatorId)
+    {
         $this->name = $name;
         $this->isActive = $isActive;
         $this->isDeleted = $isDeleted;

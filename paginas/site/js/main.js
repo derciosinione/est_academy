@@ -5,14 +5,14 @@ function toggleMoreOption() {
     else showMoreOption();
 }
 
-function moreOptionIsVisible(){
+function moreOptionIsVisible() {
     return moreOption.style.display === "block";
 }
 
-function hideMoreOption(){
+function hideMoreOption() {
     moreOption.style.display = "none";
 }
 
-function showMoreOption(){
+function showMoreOption() {
     moreOption.style.display = "block";
 }

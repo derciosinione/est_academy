@@ -9,13 +9,13 @@ class userModel
     public $phoneNumber;
     public $avatarUrl;
     public $birthDay;
-    private $passwordHash;
     public $profileId;
     public $isStaff;
     public $isActive;
     public $isDeleted;
     public $createdAt;
     public $updatedAt;
+    private $passwordHash;
 
     /**
      * @param $id

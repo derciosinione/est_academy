@@ -127,7 +127,6 @@ a {
 }
 
 
-
 /* STYLE INPUT TEXT */
 
 input[type="text"],
@@ -163,8 +162,7 @@ input[type="date"] {
 }
 
 input[type="text"]:hover,
-input[type="email"]:hover, input[type="date"]:hover
-{
+input[type="email"]:hover, input[type="date"]:hover {
     cursor: pointer;
     border-color: #999;
 }
@@ -215,7 +213,7 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
     background: transparent;
 }
 
-.password-div input:focus{
+.password-div input:focus {
     box-shadow: none;
 }
 

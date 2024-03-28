@@ -12,7 +12,8 @@ class CourseModel
     private $createdAt;
     private $updatedAt;
 
-    public function __construct($name, $maxStudent, $categoryId, $creatorId, $isActive, $isDeleted, $createdAt, $updatedAt) {
+    public function __construct($name, $maxStudent, $categoryId, $creatorId, $isActive, $isDeleted, $createdAt, $updatedAt)
+    {
         $this->name = $name;
         $this->maxStudent = $maxStudent;
         $this->categoryId = $categoryId;

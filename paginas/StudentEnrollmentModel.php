@@ -10,7 +10,8 @@ class StudentEnrollmentModel
     private $createdAt;
     private $updatedAt;
 
-    public function __construct($studentId, $courseId, $enrollmentStatusId, $isDeleted, $createdAt, $updatedAt) {
+    public function __construct($studentId, $courseId, $enrollmentStatusId, $isDeleted, $createdAt, $updatedAt)
+    {
         $this->studentId = $studentId;
         $this->courseId = $courseId;
         $this->enrollmentStatusId = $enrollmentStatusId;

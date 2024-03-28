@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="css/course.css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="css/course.css" rel="stylesheet">
 
     <title>Document</title>
 </head>
 <body>
 
 <div class="modal" id="modalAddCourse">
-    <div onclick="toggleModalAddCourse()" class="modal-background">
+    <div class="modal-background" onclick="toggleModalAddCourse()">
     </div>
 
     <div class="modal-content">
@@ -21,25 +21,24 @@
             <div class="add-inputs">
 
                 <label class="blackOpacity">
-<!--                    Nome-->
-                    <input type="text" placeholder="Nome do Curso">
+                    <!--                    Nome-->
+                    <input placeholder="Nome do Curso" type="text">
                 </label>
 
                 <label class="blackOpacity">
-<!--                    Categoria-->
-                    <input type="text" placeholder="Categoria">
+                    <!--                    Categoria-->
+                    <input placeholder="Categoria" type="text">
                 </label>
 
                 <div>
-                    <input type="button" class="mb10" value="ADICIONAR">
-                    <input onclick="hideModalAddCourse()" type="button" class="red-color" value="CANCELAR">
+                    <input class="mb10" type="button" value="ADICIONAR">
+                    <input class="red-color" onclick="hideModalAddCourse()" type="button" value="CANCELAR">
                 </div>
             </div>
 
         </form>
     </div>
 </div>
-
 
 
 <div class="board">
@@ -133,8 +132,8 @@
 
             <div class="sidebar-my-profile">
                 <div class="avatar">
-                    <img src="https://media.istockphoto.com/id/1416029563/pt/foto/metaverse-digital-cyber-world-technology-man-with-virtual-reality-vr-goggle-playing-ar.jpg?s=1024x1024&w=is&k=20&c=jXd5my_A3kSX2pJmtZXvcbC8KVI_vbxGgMZxCxUK6UA="
-                         alt="">
+                    <img alt=""
+                         src="https://media.istockphoto.com/id/1416029563/pt/foto/metaverse-digital-cyber-world-technology-man-with-virtual-reality-vr-goggle-playing-ar.jpg?s=1024x1024&w=is&k=20&c=jXd5my_A3kSX2pJmtZXvcbC8KVI_vbxGgMZxCxUK6UA=">
                 </div>
 
                 <div class="user-information">
@@ -158,8 +157,8 @@
 
             <div class="main-header-right">
                 <div class="search-container">
-                    <input type="text" placeholder="Search...">
-                    <button type="submit" class="btn-icon"><i class="fas fa-search"></i></button>
+                    <input placeholder="Search..." type="text">
+                    <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </div>
         </div>
@@ -172,7 +171,7 @@
 
                 <div>
                     <button onclick="toggleModalAddCourse()"><i class="fas fa-plus"></i> ADICIONAR</button>
-                    <button onclick="toggleMoreOption()" class="more-option-btn">MAIS OPÇÕES</button>
+                    <button class="more-option-btn" onclick="toggleMoreOption()">MAIS OPÇÕES</button>
                     <div class="more-option" id="more-option">
                         <p>Mais opções</p>
                         <hr>
@@ -186,7 +185,7 @@
                 <div class="course-card transition-scale">
 
                     <div class="course-avatar">
-                        <img class="img-cover" src="img/studentavatar.jpg" alt="">
+                        <img alt="" class="img-cover" src="img/studentavatar.jpg">
                     </div>
 
                     <div class="content-title">
@@ -200,7 +199,7 @@
                 <div class="course-card transition-scale">
 
                     <div class="course-avatar">
-                        <img class="img-cover" src="img/studentavatar.jpg" alt="">
+                        <img alt="" class="img-cover" src="img/studentavatar.jpg">
                     </div>
 
                     <div class="content-title">
@@ -214,7 +213,7 @@
                 <div class="course-card transition-scale">
 
                     <div class="course-avatar">
-                        <img class="img-cover" src="img/coursebg.png" alt="">
+                        <img alt="" class="img-cover" src="img/coursebg.png">
                     </div>
 
                     <div class="content-title">
@@ -228,7 +227,7 @@
                 <div class="course-card transition-scale">
 
                     <div class="course-avatar">
-                        <img class="img-cover" src="img/coursebg.png" alt="">
+                        <img alt="" class="img-cover" src="img/coursebg.png">
                     </div>
 
                     <div class="content-title">
@@ -242,7 +241,7 @@
                 <div class="course-card transition-scale">
 
                     <div class="course-avatar">
-                        <img class="img-cover" src="img/coursebg.png" alt="">
+                        <img alt="" class="img-cover" src="img/coursebg.png">
                     </div>
 
                     <div class="content-title">
@@ -256,7 +255,7 @@
                 <div class="course-card transition-scale">
 
                     <div class="course-avatar">
-                        <img class="img-cover" src="img/coursebg.png" alt="">
+                        <img alt="" class="img-cover" src="img/coursebg.png">
                     </div>
 
                     <div class="content-title">
@@ -270,7 +269,7 @@
                 <div class="course-card transition-scale">
 
                     <div class="course-avatar">
-                        <img class="img-cover" src="img/coursebg.png" alt="">
+                        <img alt="" class="img-cover" src="img/coursebg.png">
                     </div>
 
                     <div class="content-title">
@@ -296,15 +295,15 @@
         else showModalAddCourse();
     }
 
-    function modalAddCourseIsVisible(){
+    function modalAddCourseIsVisible() {
         return modalAddCourse.style.display === "block";
     }
 
-    function hideModalAddCourse(){
+    function hideModalAddCourse() {
         modalAddCourse.style.display = "none";
     }
 
-    function showModalAddCourse(){
+    function showModalAddCourse() {
         modalAddCourse.style.display = "block";
     }
 
