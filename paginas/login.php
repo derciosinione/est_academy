@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,7 +15,6 @@
 </head>
 <body>
 
-
 <div class="login-container">
     <div class="content">
         <nav>
@@ -21,14 +22,15 @@
             <span>Don’t have an account? <a href="signup.html">Sign up!</a></span>
         </nav>
 
-        <section>
+        <?php include "displayMessageIfExists.php" ?>
 
+        <section>
             <form action="LoginHandler.php" method="post">
                 <h1>Welcome Back</h1>
                 <p class="fz18">Login into your account</p>
 
                 <div class="inputs">
-                    <input id="email" name="email" placeholder="Email" type="text">
+                    <input type="email" placeholder="Email" id="email" name="email">
 
                     <div class="password-div">
                         <input id="password" name="password" placeholder="Password" type="password">
@@ -39,7 +41,6 @@
                     <input type="submit" value="Login">
                 </div>
             </form>
-
         </section>
     </div>
 

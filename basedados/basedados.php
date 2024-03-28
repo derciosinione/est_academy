@@ -11,7 +11,7 @@ class DbContext
     const SERVER = 'localhost';
     const USERNAME = 'root';
     const PASSWORD = '';
-    const DATABASE = 'est_jobs';
+    const DATABASE = 'est_academy';
     const PORT = 3306;
 
     /** @var mysqli $connection */
@@ -23,7 +23,12 @@ class DbContext
 
     public function getConnection()
     {
-        $this->connection = new mysqli(self::SERVER, self::USERNAME, self::PASSWORD, self::DATABASE, self::PORT);
+        $this->connection = new mysqli(
+            self::SERVER,
+            self::USERNAME,
+            self::PASSWORD,
+            self::DATABASE,
+            self::PORT);
 
         if ($this->connection->connect_error) {
             die("Connection failed: " . $this->connection->connect_error);

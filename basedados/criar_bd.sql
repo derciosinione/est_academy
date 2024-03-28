@@ -263,3 +263,6 @@ VALUES
 (16, 6, 1, FALSE, NOW(), NOW()), -- Lucas Pereira inscrito em "Grandes Civilizações Antigas"
 (17, 6, 1, FALSE, NOW(), NOW()), -- Amanda Silva inscrita em "Grandes Civilizações Antigas"
 (18, 6, 1, FALSE, NOW(), NOW()); -- Roberto Santos inscrito em "Grandes Civilizações Antigas"
+
+UPDATE Users SET PasswordHash='123456' WHERE Id!=0;
+

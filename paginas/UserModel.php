@@ -1,6 +1,6 @@
 <?php
 
-class userModel
+class UserModel
 {
     public $id;
     public $name;
@@ -10,6 +10,7 @@ class userModel
     public $avatarUrl;
     public $birthDay;
     public $profileId;
+    public $profileName;
     public $isStaff;
     public $isActive;
     public $isDeleted;

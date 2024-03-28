@@ -5,6 +5,7 @@ use basedados\DbContext;
 require_once __DIR__ . '/IUser.php';
 require_once __DIR__ . '/../basedados/basedados.php';
 require_once __DIR__ . '/Constants.php';
+require_once __DIR__ . '/UserModel.php';
 
 class userService implements IUser
 {
@@ -20,7 +21,21 @@ class userService implements IUser
     public function login($email, $password)
     {
 //        $password = md5($password);
-        $query = "SELECT Id, Email, UserName, PasswordHash FROM Users WHERE Email=? AND PasswordHash=?";
+//        $query = "SELECT Id, Email, Name, PasswordHash FROM Users WHERE Email=? AND PasswordHash=?";
+
+        $query = /** @lang sql */
+            "SELECT
+                u.Id,
+                u.Name,
+                u.Email,
+                u.ProfileId,
+                p.Name 'Profile'
+            FROM Users u
+            JOIN Profiles p ON u.ProfileId = p.Id
+            WHERE 1=1
+            AND u.IsActive
+            AND u.Email=? 
+            AND u.PasswordHash=?";
 
         $statement = $this->connection->prepare($query);
         $statement->bind_param("ss", $email, $password);
@@ -29,7 +44,10 @@ class userService implements IUser
 
         if ($row == null) return null;
 
-        return new UserModel($row["Id"], null, $row["Email"]);
+        $user = new UserModel($row["Id"], $row["Name"], $row["Email"]);
+        $user->profileName = $row["Profile"];
+
+        return $user;
     }
 
     public function logOut()

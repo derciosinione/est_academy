@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 if (isset($_SESSION["success_message"])) {
     echo "<div>{$_SESSION['success_message']}</div>";
     unset($_SESSION['success_message']);
