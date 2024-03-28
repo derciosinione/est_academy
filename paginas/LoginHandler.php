@@ -14,7 +14,6 @@ if (empty($_POST['email']) || empty($_POST['password'])) {
     exit();
 }
 
-$userService = new userService();
 $email = $_POST['email'];
 $password = $_POST['password'];
 
@@ -23,6 +22,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     header("Location: login.php");
     exit();
 }
+
+$userService = new userService();
 
 $myLogin = $userService->login($email, $password);
 

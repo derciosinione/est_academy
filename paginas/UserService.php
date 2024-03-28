@@ -29,7 +29,8 @@ class userService implements UserInterface
                 u.Name,
                 u.Email,
                 u.ProfileId,
-                p.Name 'Profile'
+                p.Name 'Profile',
+                u.AvatarUrl
             FROM Users u
             JOIN Profiles p ON u.ProfileId = p.Id
             WHERE 1=1
@@ -46,6 +47,7 @@ class userService implements UserInterface
 
         $user = new UserModel($row["Id"], $row["Name"], $row["Email"]);
         $user->profileName = $row["Profile"];
+        $user->avatarUrl = $row["AvatarUrl"];
 
         return $user;
     }

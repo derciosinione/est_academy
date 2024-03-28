@@ -1,4 +1,4 @@
-<?php include 'ValidateLoggedUser.php'; ?>
+<?php include_once 'RedirectLoggedUser.php' ?>
 
 <!doctype html>
 <html lang="en">

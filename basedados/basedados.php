@@ -7,7 +7,6 @@ use mysqli_stmt;
 
 class DbContext
 {
-
     const SERVER = 'localhost';
     const USERNAME = 'root';
     const PASSWORD = '';
@@ -17,9 +16,9 @@ class DbContext
     /** @var mysqli $connection */
     private $connection;
 
-    public function __construct()
-    {
-    }
+//    public function __construct()
+//    {
+//    }
 
     public function getConnection()
     {

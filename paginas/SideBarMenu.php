@@ -1,9 +1,15 @@
 <?php
 global $currentFileName;
-include 'ValidateLoggedUser.php';
+include 'RedirectNonLoggedUser.php';
+require_once "UserModel.php";
 
 /** @var string $currentFileName */
 $activeSettingsPages = array("settings", "account-profile");
+
+if(isset($_SESSION['loggedUser'])){
+    /** @var userModel $loggedUser */
+    $loggedUser = unserialize($_SESSION['loggedUser']);
+}
 ?>
 
 
@@ -89,7 +95,7 @@ $activeSettingsPages = array("settings", "account-profile");
         <ul>
             <div class="active-sidebar-menu-line"></div>
             <li>
-                <a href="index.html">
+                <a href="LogoutHandler.php">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>
@@ -99,12 +105,12 @@ $activeSettingsPages = array("settings", "account-profile");
         <div class="sidebar-my-profile">
             <div class="avatar">
                 <img alt=""
-                     src="https://media.istockphoto.com/id/1416029563/pt/foto/metaverse-digital-cyber-world-technology-man-with-virtual-reality-vr-goggle-playing-ar.jpg?s=1024x1024&w=is&k=20&c=jXd5my_A3kSX2pJmtZXvcbC8KVI_vbxGgMZxCxUK6UA=">
+                     src="<?php echo $loggedUser->avatarUrl; ?>">
             </div>
 
             <div class="user-information">
-                <p class="blackOpacity smallText">Admin</p>
-                <p class="bold blackText">Dércio Derone</p>
+                <p class="blackOpacity smallText"><?php echo $loggedUser->profileName ?></p>
+                <p class="bold blackText"><?php echo $loggedUser->name ?></p>
                 <a href="account-profile.php" class="white-text-color"><button>Ver Perfil</button></a>
             </div>
         </div>
