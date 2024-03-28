@@ -2,12 +2,12 @@
 
 use basedados\DbContext;
 
-require_once __DIR__ . '/IUser.php';
+require_once __DIR__ . '/UserInterface.php';
 require_once __DIR__ . '/../basedados/basedados.php';
 require_once __DIR__ . '/Constants.php';
 require_once __DIR__ . '/UserModel.php';
 
-class userService implements IUser
+class userService implements UserInterface
 {
     private $db;
     private $connection;

@@ -1,3 +1,5 @@
+<?php include 'ValidateLoggedUser.php'; ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,7 +30,7 @@
 
         <section>
 
-            <form action="dashboard.html" method="post">
+            <form action="dashboard.php" method="post">
                 <h1 class="fz27">Get Started With My Academy </h1>
                 <p class="fz18 blackOpacity">Getting started is easy</p>
 

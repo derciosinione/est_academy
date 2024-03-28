@@ -4,8 +4,7 @@ session_start();
 $_SESSION['success_message'] = null;
 $_SESSION['warning_message'] = null;
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+include 'ShowErrorDetails.php';
 
 include 'UserService.php';
 
@@ -33,8 +32,15 @@ if ($myLogin == null) {
     exit();
 }
 
-$_SESSION['success_message'] = "You are logged in";
-
 $_SESSION['loggedUser'] = serialize($myLogin);
-header("Location: dashboard.html");
+
+if(isset($_SESSION['redirect_url'])){
+    $redirect_url = $_SESSION['redirect_url'];
+    unset($_SESSION['redirect_url']);
+
+    header("Location: $redirect_url");
+    exit();
+}
+
+header("Location: dashboard.php");
 exit();

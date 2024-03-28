@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php include 'ValidateLoggedUser.php'; ?>
 
 <!doctype html>
 <html lang="en">
@@ -19,7 +19,7 @@
     <div class="content">
         <nav>
             <a href="index.html"><span class="my-logo">My<span>Academy</span></span></a>
-            <span>Don’t have an account? <a href="signup.html">Sign up!</a></span>
+            <span>Don’t have an account? <a href="signup.php">Sign up!</a></span>
         </nav>
 
         <?php include "displayMessageIfExists.php" ?>

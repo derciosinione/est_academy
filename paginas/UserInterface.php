@@ -1,7 +1,7 @@
 <?php
 
 
-interface iUser
+interface UserInterface
 {
     public function login($email, $password);
 

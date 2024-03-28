@@ -4,115 +4,15 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="css/components.css" rel="stylesheet">
-    <link href="css/user.css" rel="stylesheet">
+    <link href="components.css" rel="stylesheet">
+    <link href="user.css" rel="stylesheet">
     <title>Docentes</title>
 </head>
 <body>
 
 <div class="board">
     <!-- SIDE BAR -->
-    <aside>
-        <!-- SIDE BAR HEADER -->
-        <div class="sidebar-header">
-            <a href="../index.html"><span>My<span>Academy</span></span></a>
-        </div>
-
-        <!-- SIDE BAR MENU -->
-        <div class="sidebar-menu">
-            <ul>
-                <div class="active-sidebar-menu-line"></div>
-                <li>
-                    <a href="../dashboard.html">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul>
-                <div class="active-sidebar-menu-line"></div>
-                <li>
-                    <a href="registrations.html">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Inscrições</span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul>
-                <div class="active-sidebar-menu-line"></div>
-                <li>
-                    <a href="courses.html">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Cursos</span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul>
-                <div class="active-sidebar-menu-line"></div>
-                <li>
-                    <a href="students.html">
-                        <i class="fas fa-user-graduate"></i>
-                        <span>Alunos</span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="active-sidebar-menu">
-                <div class="active-sidebar-menu-line"></div>
-                <li>
-                    <a href="instructors.html">
-                        <i class="fas fa-user-tie"></i>
-                        <span>Docentes</span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul>
-                <div class="active-sidebar-menu-line"></div>
-                <li>
-                    <a href="admin.html">
-                        <i class="fas fa-user-shield"></i>
-                        <span>Admin</span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul>
-                <div class="active-sidebar-menu-line"></div>
-                <li><a href="settings.html">
-                    <i class="fas fa-cogs"></i>
-                    <span>Settings</span>
-                </a>
-                </li>
-            </ul>
-
-            <ul>
-                <div class="active-sidebar-menu-line"></div>
-                <li>
-                    <a href="../index.html">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
-                </li>
-            </ul>
-
-            <div class="sidebar-my-profile">
-                <div class="avatar">
-                    <img alt=""
-                         src="https://media.istockphoto.com/id/1416029563/pt/foto/metaverse-digital-cyber-world-technology-man-with-virtual-reality-vr-goggle-playing-ar.jpg?s=1024x1024&w=is&k=20&c=jXd5my_A3kSX2pJmtZXvcbC8KVI_vbxGgMZxCxUK6UA=">
-                </div>
-
-                <div class="user-information">
-                    <p class="blackOpacity smallText">Admin</p>
-                    <p class="bold blackText">Dércio Derone</p>
-                    <button><a>Ver Perfil</a></button>
-                </div>
-            </div>
-        </div>
-    </aside>
+    <?php include_once 'SideBarMenu.php' ?>
 
     <!-- MAIN ELEMENT  -->
     <main id="main">
@@ -471,6 +371,6 @@
     </main>
 </div>
 
-<script src="js/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
