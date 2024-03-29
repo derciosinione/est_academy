@@ -31,10 +31,8 @@
                     <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
                 </div>
 
-                <div class="avatar">
-                    <img alt=""
-                         src="https://media.istockphoto.com/id/1416029563/pt/foto/metaverse-digital-cyber-world-technology-man-with-virtual-reality-vr-goggle-playing-ar.jpg?s=1024x1024&w=is&k=20&c=jXd5my_A3kSX2pJmtZXvcbC8KVI_vbxGgMZxCxUK6UA=">
-                </div>
+                <!-- Circular avatar -->
+                <?php include_once 'circularAvatar.php' ?>
 
             </div>
         </div>

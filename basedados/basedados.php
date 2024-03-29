@@ -16,9 +16,9 @@ class DbContext
     /** @var mysqli $connection */
     private $connection;
 
-//    public function __construct()
-//    {
-//    }
+    public function __construct()
+    {
+    }
 
     public function getConnection()
     {

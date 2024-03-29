@@ -17,7 +17,7 @@ if(isset($_SESSION['loggedUser'])){
 <aside>
     <!-- SIDE BAR HEADER -->
     <div class="sidebar-header">
-        <a href="index.html"><span>My<span>Academy</span></span></a>
+        <a href="index.php"><span>My<span>Academy</span></span></a>
     </div>
 
 
@@ -111,7 +111,7 @@ if(isset($_SESSION['loggedUser'])){
             <div class="user-information">
                 <p class="blackOpacity smallText"><?php echo $loggedUser->profileName ?></p>
                 <p class="bold blackText"><?php echo $loggedUser->name ?></p>
-                <a href="account-profile.php" class="white-text-color"><button>Ver Perfil</button></a>
+                <a href="account-profile.php"><button>Ver Perfil</button></a>
             </div>
         </div>
     </div>

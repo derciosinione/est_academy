@@ -29,6 +29,10 @@
                     <input placeholder="Search..." type="text">
                     <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
                 </div>
+
+                <!-- Circular avatar -->
+                <?php include_once 'circularAvatar.php' ?>
+
             </div>
         </div>
 

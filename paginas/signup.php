@@ -24,7 +24,7 @@
 
     <div class="content">
         <nav>
-            <a href="index.html"><span class="my-logo">My<span>Academy</span></span></a>
+            <a href="index.php"><span class="my-logo">My<span>Academy</span></span></a>
             <span>have an account? <a href="login.php">Sign in!</a></span>
         </nav>
 

@@ -1,4 +1,4 @@
-<?php include_once 'RedirectLoggedUser.php' ?>
+<?php include_once 'RedirectLoggedUser.php'; ?>
 
 <!doctype html>
 <html lang="en">
@@ -18,7 +18,7 @@
 <div class="login-container">
     <div class="content">
         <nav>
-            <a href="index.html"><span class="my-logo">My<span>Academy</span></span></a>
+            <a href="index.php"><span class="my-logo">My<span>Academy</span></span></a>
             <span>Don’t have an account? <a href="signup.php">Sign up!</a></span>
         </nav>
 
