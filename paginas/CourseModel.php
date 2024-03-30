@@ -100,7 +100,6 @@ class CourseModel
     }
 
 
-
     /**
      * @param UserModel $creator
      */

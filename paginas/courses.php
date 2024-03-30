@@ -4,40 +4,15 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.core.css">
     <link href="course.css" rel="stylesheet">
 
     <title>Courses</title>
 </head>
 <body>
 
-<div class="modal" id="modalAddCourse">
-    <div class="modal-background" onclick="toggleModalAddCourse()">
-    </div>
-
-    <div class="modal-content">
-        <form>
-            <h1>Adicionar Curso</h1>
-
-            <div class="add-inputs">
-
-                <label class="blackOpacity">
-                    <input placeholder="Nome do Curso" type="text">
-                </label>
-
-                <label class="blackOpacity">
-                    <input placeholder="Categoria" type="text">
-                </label>
-
-                <div>
-                    <input class="mb10" type="button" value="ADICIONAR">
-                    <input class="red-color" onclick="hideModalAddCourse()" type="button" value="CANCELAR">
-                </div>
-            </div>
-
-        </form>
-    </div>
-</div>
-
+<?php include_once 'course-modal-add.html' ?>
 
 <div class="board">
     <!-- SIDE BAR -->
@@ -59,7 +34,7 @@
                     <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
                 </div>
 
-                <!-- Circular avatar -->
+                <!-- CIRCULAR AVATAR -->
                 <?php include_once 'circularAvatar.php' ?>
 
             </div>
@@ -68,9 +43,11 @@
         <!-- MAIN BODY -->
         <div class="main-body">
 
+            <!-- MAIN DESCRIPTION -->
             <div class="main-description">
                 <h2>Cursos</h2>
 
+                <!-- OPTIONS -->
                 <div>
                     <button onclick="toggleModalAddCourse()"><i class="fas fa-plus"></i> ADICIONAR</button>
                     <button class="more-option-btn" onclick="toggleMoreOption()">MAIS OPÇÕES</button>
@@ -82,29 +59,24 @@
                 </div>
             </div>
 
+            <!-- COURSES ITEMS -->
             <div class="cards-container">
 
                 <?php
 
-                    require_once 'ShowErrorDetails.php';
-                    require_once 'CourseService.php';
+                require_once 'ShowErrorDetails.php';
+                require_once 'CourseService.php';
 
-                    $courseService = new CourseService();
+                $courseService = new CourseService();
 
-                 /** @var CourseModel[] $courses */
+                /** @var CourseModel[] $courses */
                 $courses = $courseService->getAll();
 
-                    foreach ($courses as $course) {
-//                        echo "ID: " . $course->getId()
-//                            . " - Name: " . $course->imageUrl
-//                            . " - Docente: " . $course->getCreator()->name
-//                            . " Category:". $course->getCategory()->name
-//                            . "<br>";
+                foreach ($courses as $course) {
+                    $teacher = $course->getCreator()->name;
+                    $category = $course->getCategory()->name;
 
-                        $teacher = $course->getCreator()->name;
-                        $category = $course->getCategory()->name;
-
-                        $card = <<<HTML
+                    echo <<<HTML
                             <div class="course-card transition-scale">
                                 <div class="course-avatar">
                                     <img alt="" class="img-cover" src="$course->imageUrl">
@@ -117,10 +89,7 @@
                                 </div>
                             </div>
 HTML;
-
-                        echo $card;
-
-                    }
+                }
                 ?>
 
             </div>
@@ -130,26 +99,6 @@ HTML;
     </main>
 </div>
 
-<script>
-    let modalAddCourse = document.getElementById("modalAddCourse");
-
-    function toggleModalAddCourse() {
-        if (modalAddCourseIsVisible()) hideModalAddCourse();
-        else showModalAddCourse();
-    }
-
-    function modalAddCourseIsVisible() {
-        return modalAddCourse.style.display === "block";
-    }
-
-    function hideModalAddCourse() {
-        modalAddCourse.style.display = "none";
-    }
-
-    function showModalAddCourse() {
-        modalAddCourse.style.display = "block";
-    }
-
-</script>
+<script src="course.js"></script>
 </body>
 </html>

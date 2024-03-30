@@ -57,9 +57,6 @@ class DbContext
         return $response;
     }
 
-//    /**
-//     * @return array|false|null
-//     */
     public function executeSqlQuery($query)
     {
         $this->getConnection();
@@ -71,8 +68,6 @@ class DbContext
         }
 
         if ($result->num_rows < 0) return null;
-
-//        $response = $result->fetch_assoc();
 
         $this->closeConnection();
 

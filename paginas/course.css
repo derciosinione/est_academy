@@ -22,7 +22,7 @@
 
 .modal {
     position: relative;
-    display: none;
+    /*display: none;*/
 }
 
 .modal-background {
@@ -48,7 +48,7 @@
 }
 
 .modal-content form {
-    max-width: 360px;
+    max-width: 400px;
     align-items: center;
     margin: 30% auto 0;
 }
@@ -66,14 +66,20 @@
     margin-top: 30px;
 }
 
-.add-inputs input {
+.add-inputs input, select {
     margin-top: 10px;
     width: 100%;
 }
 
-.add-inputs input[type="text"] {
+.add-inputs input[type="text"], input, .custom-select, #descriptionEditor {
     height: 48px;
-    background-color: #F5F6FA;
+    background-color: #fafbfd;
     border: 1px solid #D5D5D5;
 }
 
+#descriptionEditor {
+    min-height: 200px;
+    font-size: 15px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

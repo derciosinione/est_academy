@@ -47,7 +47,7 @@ class CourseService implements CourseInterface
      */
     public function getAll()
     {
-        $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy() . $this->db->getQueryLimit(12);
+        $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy() . $this->db->getQueryLimit(8);
 
         $result = $this->db->executeSqlQuery($query);
 
