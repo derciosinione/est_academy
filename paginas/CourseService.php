@@ -21,7 +21,7 @@ class CourseService implements CourseInterface
 
     public function getDefaultSqlQuery()
     {
-        return "
+        return /** @lang text */ "
             SELECT 
                    c.Id,
                    c.Name,
