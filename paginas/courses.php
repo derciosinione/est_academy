@@ -84,103 +84,44 @@
 
             <div class="cards-container">
 
-                <div class="course-card transition-scale">
+                <?php
 
-                    <div class="course-avatar">
-                        <img alt="" class="img-cover" src="img/studentavatar.jpg">
-                    </div>
+                    require_once 'ShowErrorDetails.php';
+                    require_once 'CourseService.php';
 
-                    <div class="content-title">
-                        <p class="bold mb5">Programação Web</p>
-                        <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> Dércio Derone</p>
-                        <span class="span-label blackBlue-color">Informática</span>
-                    </div>
+                    $courseService = new CourseService();
 
-                </div>
+                 /** @var CourseModel[] $courses */
+                $courses = $courseService->getAll();
 
-                <div class="course-card transition-scale">
+                    foreach ($courses as $course) {
+//                        echo "ID: " . $course->getId()
+//                            . " - Name: " . $course->imageUrl
+//                            . " - Docente: " . $course->getCreator()->name
+//                            . " Category:". $course->getCategory()->name
+//                            . "<br>";
 
-                    <div class="course-avatar">
-                        <img alt="" class="img-cover" src="img/studentavatar.jpg">
-                    </div>
+                        $teacher = $course->getCreator()->name;
+                        $category = $course->getCategory()->name;
 
-                    <div class="content-title">
-                        <p class="bold mb5">Programação Web</p>
-                        <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> Dércio Derone</p>
-                        <span class="span-label blackBlue-color">Robotica</span>
-                    </div>
+                        $card = <<<HTML
+                            <div class="course-card transition-scale">
+                                <div class="course-avatar">
+                                    <img alt="" class="img-cover" src="$course->imageUrl">
+                                </div>
+            
+                                <div class="content-title">
+                                    <p class="bold mb5">$course->name</p>
+                                    <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> $teacher </p>
+                                    <span class="span-label blackBlue-color">$category</span>
+                                </div>
+                            </div>
+HTML;
 
-                </div>
+                        echo $card;
 
-                <div class="course-card transition-scale">
-
-                    <div class="course-avatar">
-                        <img alt="" class="img-cover" src="img/coursebg.png">
-                    </div>
-
-                    <div class="content-title">
-                        <p class="bold mb5">Programação Web</p>
-                        <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> Dércio Derone</p>
-                        <span class="span-label blackBlue-color">Informática</span>
-                    </div>
-
-                </div>
-
-                <div class="course-card transition-scale">
-
-                    <div class="course-avatar">
-                        <img alt="" class="img-cover" src="img/coursebg.png">
-                    </div>
-
-                    <div class="content-title">
-                        <p class="bold mb5">Programação Web</p>
-                        <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> Dércio Derone</p>
-                        <span class="span-label blackBlue-color">Informática</span>
-                    </div>
-
-                </div>
-
-                <div class="course-card transition-scale">
-
-                    <div class="course-avatar">
-                        <img alt="" class="img-cover" src="img/coursebg.png">
-                    </div>
-
-                    <div class="content-title">
-                        <p class="bold mb5">Programação Web</p>
-                        <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> Dércio Derone</p>
-                        <span class="span-label blackBlue-color">Informática</span>
-                    </div>
-
-                </div>
-
-                <div class="course-card transition-scale">
-
-                    <div class="course-avatar">
-                        <img alt="" class="img-cover" src="img/coursebg.png">
-                    </div>
-
-                    <div class="content-title">
-                        <p class="bold mb5">Programação Web</p>
-                        <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> Dércio Derone</p>
-                        <span class="span-label blackBlue-color">Informática</span>
-                    </div>
-
-                </div>
-
-                <div class="course-card transition-scale">
-
-                    <div class="course-avatar">
-                        <img alt="" class="img-cover" src="img/coursebg.png">
-                    </div>
-
-                    <div class="content-title">
-                        <p class="bold mb5">Programação Web</p>
-                        <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> Dércio Derone</p>
-                        <span class="span-label blackBlue-color">Informática</span>
-                    </div>
-
-                </div>
+                    }
+                ?>
 
             </div>
 

@@ -48,9 +48,12 @@ CREATE TABLE IF NOT EXISTS Categories(
 CREATE TABLE IF NOT EXISTS Courses(
     Id INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(50),
+    Price DECIMAL(11,2) DEFAULT 0,
     MaxStudent INT DEFAULT 30,
+    Description TEXT,
     CategoryId INT,
     CreatorId INT,
+    ImageUrl TEXT DEFAULT 'coursebg.png',
     IsActive BOOL DEFAULT FALSE,
     IsDeleted BOOL DEFAULT FALSE,
     CreatedAt DATETIME DEFAULT NOW(),

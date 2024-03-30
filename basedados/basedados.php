@@ -57,9 +57,9 @@ class DbContext
         return $response;
     }
 
-    /**
-     * @return array|false|null
-     */
+//    /**
+//     * @return array|false|null
+//     */
     public function executeSqlQuery($query)
     {
         $this->getConnection();
@@ -72,11 +72,11 @@ class DbContext
 
         if ($result->num_rows < 0) return null;
 
-        $response = $result->fetch_assoc();
+//        $response = $result->fetch_assoc();
 
         $this->closeConnection();
 
-        return $response;
+        return $result;
     }
 
     /**
@@ -105,6 +105,16 @@ class DbContext
         $this->closeConnection();
 
         return $lastInsertedId;
+    }
+
+    public function getOrderBy()
+    {
+        return " ORDER BY CreatedAt DESC ";
+    }
+
+    public function getQueryLimit ($limit)
+    {
+        return " LIMIT $limit";
     }
 
     public function closeConnection()

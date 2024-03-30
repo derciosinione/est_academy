@@ -4,7 +4,6 @@ class UserModel
 {
     public $id;
     public $name;
-    public $userName;
     public $email;
     public $phoneNumber;
     public $avatarUrl;
@@ -50,6 +49,71 @@ class UserModel
     public function setPasswordHash($passwordHash)
     {
         $this->passwordHash = md5($passwordHash);
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    public function setAvatarUrl($avatarUrl)
+    {
+        $this->avatarUrl = $avatarUrl;
+    }
+
+    public function setBirthDay($birthDay)
+    {
+        $this->birthDay = $birthDay;
+    }
+
+    public function setProfileId($profileId)
+    {
+        $this->profileId = $profileId;
+    }
+
+    public function setProfileName($profileName)
+    {
+        $this->profileName = $profileName;
+    }
+
+    public function setIsStaff($isStaff)
+    {
+        $this->isStaff = $isStaff;
+    }
+
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    public function setIsDeleted($isDeleted)
+    {
+        $this->isDeleted = $isDeleted;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 
 }
