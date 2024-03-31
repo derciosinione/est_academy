@@ -24,7 +24,7 @@ if (isset($_SESSION['loggedUser'])) {
 }
 ?>
 
-<form action="../CreateMemberHandler.php" method="POST">
+<form action="CreateMemberHandler.php" method="POST">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required><br><br>
 

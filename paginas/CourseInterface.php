@@ -7,7 +7,7 @@ interface CourseInterface
 
     public function getAllByCategory($categoryId);
 
-    public function create($name, $categoryId, $price, $maxStudent, $description, $creatorId);
+    public function create($creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl);
 
-    public function update($name, $categoryId, $price, $maxStudent, $description, $creatorId);
+    public function update($creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl);
 }

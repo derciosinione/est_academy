@@ -7,6 +7,7 @@ require_once __DIR__ . '/UserInterface.php';
 require_once __DIR__ . '/CategoryModel.php';
 require_once __DIR__ . '/UserModel.php';
 require_once __DIR__ . '/CourseModel.php';
+require_once __DIR__ . '/GenericResponse.php';
 require_once __DIR__ . '/../basedados/basedados.php';
 
 
@@ -100,12 +101,41 @@ class CourseService implements CourseInterface
         return $this->courseInstance($row);
     }
 
-    public function create($name, $categoryId, $price, $maxStudent, $description, $creatorId)
+    /**
+     * @param $creatorId
+     * @param $name
+     * @param $categoryId
+     * @param $price
+     * @param $description
+     * @param $maxStudent
+     * @param $imageUrl
+     * @return GenericResponse
+     */
+    public function create($creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl): GenericResponse
     {
-        // TODO: Implement create() method.
+        $query = sprintf("INSERT INTO Courses (
+                     Name,
+                     CategoryId, 
+                     Price,
+                     Description, 
+                     CreatorId, 
+                     ImageUrl,
+                     IsActive 
+                     ) VALUES
+            ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+            $name, $categoryId, $price, $description, $creatorId,
+            $imageUrl, true);
+
+        $courseId = $this->db->executeInsertQuery($query);
+
+        if ($courseId == null || $courseId == 0) {
+            return new GenericResponse(0, false, "Não foi possivel criar o curso, tente novamente!");
+        }
+
+        return new GenericResponse($courseId, true);
     }
 
-    public function update($name, $categoryId, $price, $maxStudent, $description, $creatorId)
+    public function update($creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl)
     {
         // TODO: Implement update() method.
     }

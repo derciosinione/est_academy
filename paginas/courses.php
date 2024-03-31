@@ -1,4 +1,11 @@
-<?php session_start() ?>
+<?php
+include_once 'Utils.php';
+app_session_start();
+
+include 'ShowErrorDetails.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,16 +15,15 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.core.css">
     <link href="course.css" rel="stylesheet">
-
     <title>Courses</title>
 </head>
 <body>
 
-<?php include_once 'course-modal-add.php' ?>
+<?php include 'course-modal-add.php' ?>
 
 <div class="board">
     <!-- SIDE BAR -->
-    <?php include_once 'SideBarMenu.php' ?>
+    <?php include 'SideBarMenu.php' ?>
 
     <!-- MAIN ELEMENT  -->
     <main>
@@ -60,6 +66,9 @@
                 </div>
             </div>
 
+            <!-- DISPLAY SERVER MESSAGES -->
+            <?php include 'displayMessageIfExists.php' ?>
+
             <!-- COURSES ITEMS -->
             <div class="cards-container">
 
@@ -101,5 +110,6 @@ HTML;
 </div>
 
 <script src="course.js"></script>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
-session_start();
+include_once 'Utils.php';
+app_session_start();
 
 global $currentFileName;
 

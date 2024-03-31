@@ -1,16 +1,29 @@
 <?php
 
-session_start();
-
 include 'ShowErrorDetails.php';
+require_once 'CourseService.php';
+include_once 'Utils.php';
+include_once 'Constants.php';
 
-$_SESSION['success_message'] = null;
-$_SESSION['warning_message'] = null;
+//$_SESSION['success_message'] = null;
+//$_SESSION['warning_message'] = null;
 
+$user = getLoggedUser();
+
+unset($_SESSION['form_data']);
+unset($_SESSION['error_message']);
+
+//TODO: Buscar o perfil Aluno na base de dados e fazer a comparação
+if ($user->profileId===Constants::$student){
+    $errors[] = "Esta funcionalidade só é permitido para Administradores e Docentes.";
+    $_SESSION['error_message'] = $errors;
+
+    header("Location: courses.php?open-modal=add");
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    echo "Erro no envio do formulário.";
-    exit();
+    $errors[] = "Erro no envio do formulário.";
 }
 
 $name = htmlspecialchars($_POST['name']);
@@ -42,53 +55,45 @@ if (count($errors) > 0) {
         'description' => $description
     ];
 
-    print_r($errors);
-//    exit();
     header("Location: courses.php?open-modal=add");
     exit();
 }
 
 
-echo "Name: $name <br> Category: $category <br> Price: $price <br> $description";
+$courseService = new CourseService();
 
-echo "Every thing is Ok";
+$creatorId = $user->id;
+$imageUrl = 'coursebg.png';
+$maxStudent = 30;
 
-//include 'UserService.php';
-//
-//if (empty($_POST['email']) || empty($_POST['password'])) {
-//    $_SESSION['warning_message'] = "Email and password are required";
-//    header("Location: login.php");
-//    exit();
-//}
-//
-//$email = $_POST['email'];
-//$password = $_POST['password'];
-//
-//if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//    $_SESSION['warning_message'] = "Invalid email format";
-//    header("Location: login.php");
-//    exit();
-//}
-//
-//$userService = new userService();
-//
-//$myLogin = $userService->login($email, $password);
-//
-//if ($myLogin == null) {
-//    $_SESSION['warning_message'] = "Invalid Credential";
-//    header("Location: login.php");
-//    exit();
-//}
-//
-//$_SESSION['loggedUser'] = serialize($myLogin);
-//
-//if(isset($_SESSION['redirect_url'])){
-//    $redirect_url = $_SESSION['redirect_url'];
-//    unset($_SESSION['redirect_url']);
-//
-//    header("Location: $redirect_url");
-//    exit();
-//}
-//
-//header("Location: dashboard.php");
-//exit();
+$response = $courseService->create(
+    $creatorId,
+    $name,
+    $category,
+    $price,
+    $description,
+    $maxStudent,
+    $imageUrl
+);
+
+if (!$response->success){
+
+    $_SESSION['error_message'][] = $response->errorMessage;
+
+    $_SESSION['form_data'] = [
+        'name' => $name,
+        'category' => $category,
+        'price' => $price,
+        'description' => $description
+    ];
+
+    header("Location: courses.php?open-modal=add");
+    exit();
+}
+
+$_SESSION['success_message'][] = "Curso $name cadastrado com sucesso";
+
+header("Location: courses.php?id=$response->result&success=true");
+exit();
+
+

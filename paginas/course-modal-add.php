@@ -5,7 +5,7 @@
 
     <div class="modal-content">
         <form action="CourseHandler.php" method="post">
-            <h1>Adicionar Curso</h1>
+            <h1>Cadastrar Curso</h1>
 
             <?php
             $name = $category = $price = $description = '';
@@ -20,7 +20,7 @@
             ?>
 
             <!-- DISPLAY SERVER MESSAGES -->
-            <?php include_once 'displayMessageIfExists.php' ?>
+            <?php if (!isset($_GET['success'])) include 'displayMessageIfExists.php' ?>
 
             <div class="add-inputs">
                 <label class="blackOpacity">
@@ -31,19 +31,19 @@
                 <label for="category" hidden="hidden"></label>
                 <select id="category" class="custom-select" name="category">
                     <option value="0" selected>Escolha a categoria</option>
-                    <option value="8" <?php if ($category == 8) echo 'selected'; ?>>Banco de Dados</option>
-                    <option value="10" <?php if ($category == 10) echo 'selected'; ?>>Ciência de Dados</option>
-                    <option value="11" <?php if ($category == 11) echo 'selected'; ?>>Cloud Computing</option>
-                    <option value="13" <?php if ($category == 13) echo 'selected'; ?>>Desenvolvimento de Aplicativos Móveis</option>
-                    <option value="7" <?php if ($category == 7) echo 'selected'; ?>>Desenvolvimento Web</option>
-                    <option value="1" <?php if ($category == 1) echo 'selected'; ?>>Diversos</option>
-                    <option value="5" <?php if ($category == 5) echo 'selected'; ?>>Gestão</option>
-                    <option value="2" <?php if ($category == 2) echo 'selected'; ?>>História</option>
-                    <option value="6" <?php if ($category == 6) echo 'selected'; ?>>Matemática</option>
-                    <option value="3" <?php if ($category == 3) echo 'selected'; ?>>Programação</option>
-                    <option value="4" <?php if ($category == 4) echo 'selected'; ?>>Robótica</option>
-                    <option value="9" <?php if ($category == 9) echo 'selected'; ?>>Segurança da Informação</option>
-                    <option value="12" <?php if ($category == 12) echo 'selected'; ?>>Sistemas Operacionais</option>
+                    <option value="8" <?php if ($category == 8) echo 'selected' ?>>Banco de Dados</option>
+                    <option value="10" <?php if ($category == 10) echo 'selected' ?>>Ciência de Dados</option>
+                    <option value="11" <?php if ($category == 11) echo 'selected' ?>>Cloud Computing</option>
+                    <option value="13" <?php if ($category == 13) echo 'selected' ?>>Desenvolvimento de Aplicativos Móveis</option>
+                    <option value="7" <?php if ($category == 7) echo 'selected' ?>>Desenvolvimento Web</option>
+                    <option value="1" <?php if ($category == 1) echo 'selected' ?>>Diversos</option>
+                    <option value="5" <?php if ($category == 5) echo 'selected' ?>>Gestão</option>
+                    <option value="2" <?php if ($category == 2) echo 'selected' ?>>História</option>
+                    <option value="6" <?php if ($category == 6) echo 'selected' ?>>Matemática</option>
+                    <option value="3" <?php if ($category == 3) echo 'selected' ?>>Programação</option>
+                    <option value="4" <?php if ($category == 4) echo 'selected' ?>>Robótica</option>
+                    <option value="9" <?php if ($category == 9) echo 'selected' ?>>Segurança da Informação</option>
+                    <option value="12" <?php if ($category == 12) echo 'selected' ?>>Sistemas Operacionais</option>
                 </select>
 
                 <label class="blackOpacity">
@@ -95,8 +95,4 @@
         descriptionContent.value = quill.root.innerHTML;
     }
 
-    function hideMessageBox() {
-        let element = document.getElementById("message-box");
-        element.style.display = "none";
-    }
 </script>

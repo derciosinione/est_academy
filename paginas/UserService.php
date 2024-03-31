@@ -47,6 +47,7 @@ class userService implements UserInterface
 
         $user = new UserModel($row["Id"], $row["Name"], $row["Email"]);
         $user->profileName = $row["Profile"];
+        $user->profileId = $row["ProfileId"];
         $user->avatarUrl = $row["AvatarUrl"];
 
         return $user;
