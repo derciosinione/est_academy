@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
 </head>
 <body>
 
-<?php include_once 'course-modal-add.html' ?>
+<?php include_once 'course-modal-add.php' ?>
 
 <div class="board">
     <!-- SIDE BAR -->

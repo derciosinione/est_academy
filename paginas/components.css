@@ -33,6 +33,10 @@ a {
     background-color: #2CC304 !important;
 }
 
+.blue-color {
+    color: #4379EE;
+}
+
 .white-text-color {
     color: white !important;
 }
@@ -238,13 +242,12 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
 
 /* select-style */
 
-
 .custom-select {
     position: relative;
     display: inline-block;
     min-width: 250px;
     font-size: 16px;
-    color: #1C344F;
+    color: #565656;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 8px 30px 8px 10px;
@@ -296,3 +299,30 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
     background-color: #f5f5f5;
 }
 
+.message-box {
+    background-color: #4379EE;
+    border-radius: 8px;
+    padding: 15px;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: auto;
+    height: auto;
+    overflow: clip;
+}
+
+.message-box .close-message-box {
+    float: right;
+    cursor: pointer;
+}
+
+.message-box section {
+    color: white;
+    overflow: clip;
+    margin-top: 10px;
+
+    p {
+        color: white;
+        line-height: 1.6;
+    }
+}

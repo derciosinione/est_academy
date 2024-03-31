@@ -16,3 +16,8 @@ function hideMoreOption() {
 function showMoreOption() {
     moreOption.style.display = "block";
 }
+
+function hideMessageBox(){
+    let element = document.getElementById("message-box");
+    element.style.display = "none";
+}
