@@ -6,7 +6,6 @@ function toggleModalAddCourse() {
 }
 
 function modalAddCourseIsVisible() {
-    alert("show modal");
     let modalAddCourse = document.getElementById("modalAddCourse");
     console.log(modalAddCourse);
     return modalAddCourse.style.display === "block";
