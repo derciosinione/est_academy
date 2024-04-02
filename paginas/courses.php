@@ -82,23 +82,22 @@ require_once 'CourseService.php';
                     $category = $course->getCategory()->name;
 
                     echo <<<HTML
-                                <a href="course-detail.php?id=$course->id">
-                                    <div class="course-card transition-scale">
-                                        <div class="course-avatar">
-                                            <img alt="" class="img-cover" src="$course->imageUrl">
-                                        </div>
-                    
-                                        <div class="content-title">
-                                            <p class="bold mb5">$course->name</p>
-                                            <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> $teacher </p>
-                                            <span class="span-label blackBlue-color">$category</span>
-                                        </div>
-                                    </div>
-                                 </a>
+                        <div class="course-card transition-scale">
+                            <a href="course-detail.php?id=$course->id">
+                                <div class="course-avatar">
+                                    <img alt="" class="img-cover" src="$course->imageUrl">
+                                </div>
+            
+                                <div class="content-title">
+                                    <p class="bold mb5">$course->name</p>
+                                    <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> $teacher </p>
+                                    <div class="span-label blackBlue-color"><p>$category</p></div>
+                                </div>
+                            </a>
+                        </div>
 HTML;
                 }
                 ?>
-
             </div>
 
         </div>

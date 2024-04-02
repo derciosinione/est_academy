@@ -4,11 +4,12 @@
 
 .course-card {
     width: 217px;
-    height: 208px;
+    min-height: 208px;
     overflow: hidden;
     background-color: white;
     border-radius: 20px;
     cursor: pointer;
+    padding-bottom: 10px;
 }
 
 .course-avatar {

@@ -5,9 +5,6 @@ require_once 'CourseService.php';
 include_once 'Utils.php';
 include_once 'Constants.php';
 
-//$_SESSION['success_message'] = null;
-//$_SESSION['warning_message'] = null;
-
 $user = getLoggedUser();
 
 unset($_SESSION['form_data']);
@@ -60,40 +57,46 @@ if (count($errors) > 0) {
 }
 
 
-$courseService = new CourseService();
 
 $creatorId = $user->id;
 $imageUrl = 'coursebg.png';
 $maxStudent = 30;
 
-$response = $courseService->create(
-    $creatorId,
-    $name,
-    $category,
-    $price,
-    $description,
-    $maxStudent,
-    $imageUrl
-);
 
-if (!$response->success){
 
-    $_SESSION['error_message'][] = $response->errorMessage;
 
-    $_SESSION['form_data'] = [
-        'name' => $name,
-        'category' => $category,
-        'price' => $price,
-        'description' => $description
-    ];
+function createCourse()
+{
+    $courseService = new CourseService();
 
-    header("Location: courses.php?open-modal=add");
+    $response = $courseService->create(
+        $creatorId,
+        $name,
+        $category,
+        $price,
+        $description,
+        $maxStudent,
+        $imageUrl
+    );
+
+    if (!$response->success){
+
+        $_SESSION['error_message'][] = $response->errorMessage;
+
+        $_SESSION['form_data'] = [
+            'name' => $name,
+            'category' => $category,
+            'price' => $price,
+            'description' => $description
+        ];
+
+        header("Location: courses.php?open-modal=add");
+        exit();
+    }
+
+    $_SESSION['success_message'][] = "Curso $name cadastrado com sucesso";
+
+    header("Location: courses.php?id=$response->result&success=true");
     exit();
 }
-
-$_SESSION['success_message'][] = "Curso $name cadastrado com sucesso";
-
-header("Location: courses.php?id=$response->result&success=true");
-exit();
-
 
