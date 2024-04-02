@@ -50,7 +50,7 @@
 .modal-content form {
     max-width: 400px;
     align-items: center;
-    margin: 8% auto 0;
+    margin: 5% auto 0;
 }
 
 .modal-content form h1 {
@@ -82,4 +82,36 @@
     font-size: 15px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+/*COURSE DETAILS*/
+.course-detail {
+    background-color: white;
+    border-radius: 10px;
+    margin: 20px auto 0;
+    width: 55vw;
+    padding: 30px;
+}
+
+.course-detail-inputs section{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    row-gap: 30px;
+
+    select, input {
+        width: 47%;
+    }
+
+}
+
+#descriptionEditorBox {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.course-details-buttons input {
+    width: 250px;
+    height: 42px;
 }

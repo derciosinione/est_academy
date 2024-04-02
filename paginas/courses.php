@@ -1,9 +1,8 @@
 <?php
 include_once 'Utils.php';
 app_session_start();
-
 include 'ShowErrorDetails.php';
-
+require_once 'CourseService.php';
 ?>
 
 <!DOCTYPE html>
@@ -73,10 +72,6 @@ include 'ShowErrorDetails.php';
             <div class="cards-container">
 
                 <?php
-
-                require_once 'ShowErrorDetails.php';
-                require_once 'CourseService.php';
-
                 $courseService = new CourseService();
 
                 /** @var CourseModel[] $courses */
@@ -87,17 +82,19 @@ include 'ShowErrorDetails.php';
                     $category = $course->getCategory()->name;
 
                     echo <<<HTML
-                            <div class="course-card transition-scale">
-                                <div class="course-avatar">
-                                    <img alt="" class="img-cover" src="$course->imageUrl">
-                                </div>
-            
-                                <div class="content-title">
-                                    <p class="bold mb5">$course->name</p>
-                                    <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> $teacher </p>
-                                    <span class="span-label blackBlue-color">$category</span>
-                                </div>
-                            </div>
+                                <a href="course-detail.php?id=$course->id">
+                                    <div class="course-card transition-scale">
+                                        <div class="course-avatar">
+                                            <img alt="" class="img-cover" src="$course->imageUrl">
+                                        </div>
+                    
+                                        <div class="content-title">
+                                            <p class="bold mb5">$course->name</p>
+                                            <p class="blackOpacity smallText mb10"><i class="fas fa-user-tie"></i> $teacher </p>
+                                            <span class="span-label blackBlue-color">$category</span>
+                                        </div>
+                                    </div>
+                                 </a>
 HTML;
                 }
                 ?>

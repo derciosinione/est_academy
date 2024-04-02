@@ -98,6 +98,8 @@ class CourseService implements CourseInterface
 
         $row = $result->fetch_assoc();
 
+        if ($row==null) return null;
+
         return $this->courseInstance($row);
     }
 
