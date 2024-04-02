@@ -9,7 +9,6 @@ $user = getLoggedUser();
 unset($_SESSION['form_data']);
 unset($_SESSION['error_message']);
 
-
 $courseId = htmlspecialchars($_GET['id']);
 $redirectUrl = "Location: course-detail.php?id=$courseId";
 
@@ -83,9 +82,7 @@ $response = $courseService->update(
 );
 
 if (!$response->success){
-
     $_SESSION['error_message'][] = $response->errorMessage;
-
     $_SESSION['form_data'] = [
         'name' => $name,
         'category' => $category,
