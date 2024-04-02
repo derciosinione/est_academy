@@ -1,6 +1,6 @@
 <?php
 include_once 'Utils.php';
-app_session_start();
+
 include 'ShowErrorDetails.php';
 require_once 'CourseService.php';
 
@@ -14,7 +14,6 @@ if (!isset($_GET["id"])) {
 
 $courseId = $_GET["id"];
 
-///** @var CourseModel $courses */
 $course = $courseService->getById($courseId);
 
 if (empty($course)) {

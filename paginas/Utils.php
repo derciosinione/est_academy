@@ -19,3 +19,5 @@ function app_session_start()
         session_start();
     }
 }
+
+app_session_start();
