@@ -9,12 +9,16 @@ $user = getLoggedUser();
 unset($_SESSION['form_data']);
 unset($_SESSION['error_message']);
 
+
+$courseId = htmlspecialchars($_GET['id']);
+$redirectUrl = "Location: course-detail.php?id=$courseId";
+
 //TODO: Buscar o perfil Aluno na base de dados e fazer a comparação
 if ($user->profileId===Constants::$student){
     $errors[] = "Esta funcionalidade só é permitido para Administradores e Docentes.";
     $_SESSION['error_message'] = $errors;
 
-    header("Location: courses.php?open-modal=add");
+    header($redirectUrl);
     exit();
 }
 
@@ -22,10 +26,19 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $errors[] = "Erro no envio do formulário.";
 }
 
+if (!isset($_GET["id"])) {
+    header("Location: 404.php");
+    $_SESSION['404_message'] = "Informe o identificado do curso";
+    exit();
+}
+
+$creatorId = $user->id;
 $name = htmlspecialchars($_POST['name']);
 $category = htmlspecialchars($_POST['category']);
 $price = htmlspecialchars($_POST['price']);
 $description = htmlspecialchars($_POST['description']);
+$maxStudent = htmlspecialchars($_POST['maxStudent']);
+$imageUrl = 'coursebg.png';
 
 $errors = [];
 
@@ -48,21 +61,18 @@ if (count($errors) > 0) {
         'name' => $name,
         'category' => $category,
         'price' => $price,
+        'maxStudent' => $maxStudent,
         'description' => $description
     ];
 
-    header("Location: courses.php?open-modal=add");
+    header($redirectUrl);
     exit();
 }
 
-
-$creatorId = $user->id;
-$imageUrl = 'coursebg.png';
-$maxStudent = 30;
-
 $courseService = new CourseService();
 
-$response = $courseService->create(
+$response = $courseService->update(
+    $courseId,
     $creatorId,
     $name,
     $category,
@@ -80,14 +90,13 @@ if (!$response->success){
         'name' => $name,
         'category' => $category,
         'price' => $price,
+        'maxStudent' => $maxStudent,
         'description' => $description
     ];
-
-    header("Location: courses.php?open-modal=add");
-    exit();
 }
 
-$_SESSION['success_message'][] = "Curso $name cadastrado com sucesso";
+$_SESSION['success_message'][] = "Curso $name atualizado com sucesso";
 
-header("Location: courses.php?id=$response->result&success=true");
+header($redirectUrl);
+
 exit();

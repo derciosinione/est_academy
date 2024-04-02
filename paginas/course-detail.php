@@ -7,8 +7,8 @@ require_once 'CourseService.php';
 $courseService = new CourseService();
 
 if (!isset($_GET["id"])) {
-    header("Location: 404.php");
     $_SESSION['404_message'] = "Informe o identificado do curso";
+    header("Location: 404.php");
     exit();
 }
 
@@ -22,6 +22,21 @@ if (empty($course)) {
     return;
 }
 
+$name = $course->name;
+$categoryId = $course->categoryId;
+$price = $course->price;
+$description = $course->description;
+$maxStudent = $course->maxStudent;
+
+if (isset($_SESSION['form_data'])) {
+    $formData = $_SESSION['form_data'];
+    $name = $formData['name'];
+    $category = $formData['category'];
+    $price = $formData['price'];
+    $maxStudent = $formData['maxStudent'];
+    $description = $formData['description'];
+    unset($_SESSION['form_data']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +55,7 @@ if (empty($course)) {
 
 <div class="board">
     <!-- SIDE BAR -->
-    <?php include 'SideBarMenu.php' ?>
+    <?php include_once 'SideBarMenu.php' ?>
 
     <!-- MAIN ELEMENT  -->
     <main>
@@ -83,66 +98,67 @@ if (empty($course)) {
 
             <!-- COURSE ITEM -->
 
-            <div class="course-detail">
+            <form action="CourseEditHandler.php?id=<?php echo $course->id ?>" method="post">
+                <div class="course-detail">
+                    <div class="course-detail-inputs">
+                        <section>
+                            <input placeholder="Nome do Curso" type="text" name="name"
+                                   value="<?php echo htmlspecialchars($name); ?>">
 
-                <div class="course-detail-inputs">
+                            <select id="category" class="custom-select" name="category">
+                                <option value="0" selected>Escolha a categoria</option>
+                                <option value="8" <?php if ($categoryId == 8) echo 'selected' ?>>Banco de Dados
+                                </option>
+                                <option value="10" <?php if ($categoryId == 10) echo 'selected' ?>>Ciência de
+                                    Dados
+                                </option>
+                                <option value="11" <?php if ($categoryId == 11) echo 'selected' ?>>Cloud Computing
+                                </option>
+                                <option value="13" <?php if ($categoryId == 13) echo 'selected' ?>>Desenvolvimento
+                                    de Aplicativos Móveis
+                                </option>
+                                <option value="7" <?php if ($categoryId == 7) echo 'selected' ?>>Desenvolvimento
+                                    Web
+                                </option>
+                                <option value="1" <?php if ($categoryId == 1) echo 'selected' ?>>Diversos</option>
+                                <option value="5" <?php if ($categoryId == 5) echo 'selected' ?>>Gestão</option>
+                                <option value="2" <?php if ($categoryId == 2) echo 'selected' ?>>História</option>
+                                <option value="6" <?php if ($categoryId == 6) echo 'selected' ?>>Matemática</option>
+                                <option value="3" <?php if ($categoryId == 3) echo 'selected' ?>>Programação
+                                </option>
+                                <option value="4" <?php if ($categoryId == 4) echo 'selected' ?>>Robótica</option>
+                                <option value="9" <?php if ($categoryId == 9) echo 'selected' ?>>Segurança da
+                                    Informação
+                                </option>
+                                <option value="12" <?php if ($categoryId == 12) echo 'selected' ?>>Sistemas
+                                    Operacionais
+                                </option>
+                            </select>
 
-                    <section>
-                        <input placeholder="Nome do Curso" type="text" name="name"
-                               value="<?php echo htmlspecialchars($course->name); ?>">
+                            <input type="number" step="0.5" min="0" name="price" id="price" placeholder="(€) Preço"
+                                   value="<?php if ($price > 0) echo htmlspecialchars($price); ?>">
 
-                        <select id="category" class="custom-select" name="category">
-                            <option value="0" selected>Escolha a categoria</option>
-                            <option value="8" <?php if ($course->categoryId == 8) echo 'selected' ?>>Banco de Dados
-                            </option>
-                            <option value="10" <?php if ($course->categoryId == 10) echo 'selected' ?>>Ciência de
-                                Dados
-                            </option>
-                            <option value="11" <?php if ($course->categoryId == 11) echo 'selected' ?>>Cloud Computing
-                            </option>
-                            <option value="13" <?php if ($course->categoryId == 13) echo 'selected' ?>>Desenvolvimento
-                                de Aplicativos Móveis
-                            </option>
-                            <option value="7" <?php if ($course->categoryId == 7) echo 'selected' ?>>Desenvolvimento
-                                Web
-                            </option>
-                            <option value="1" <?php if ($course->categoryId == 1) echo 'selected' ?>>Diversos</option>
-                            <option value="5" <?php if ($course->categoryId == 5) echo 'selected' ?>>Gestão</option>
-                            <option value="2" <?php if ($course->categoryId == 2) echo 'selected' ?>>História</option>
-                            <option value="6" <?php if ($course->categoryId == 6) echo 'selected' ?>>Matemática</option>
-                            <option value="3" <?php if ($course->categoryId == 3) echo 'selected' ?>>Programação
-                            </option>
-                            <option value="4" <?php if ($course->categoryId == 4) echo 'selected' ?>>Robótica</option>
-                            <option value="9" <?php if ($course->categoryId == 9) echo 'selected' ?>>Segurança da
-                                Informação
-                            </option>
-                            <option value="12" <?php if ($course->categoryId == 12) echo 'selected' ?>>Sistemas
-                                Operacionais
-                            </option>
-                        </select>
+                            <input type="number" step="1" min="0" name="maxStudent" id="studentLimit"
+                                   placeholder="Limite de alunos"
+                                   value="<?php if ($maxStudent > 0) echo htmlspecialchars($maxStudent); ?>">
+                        </section>
+                    </div>
 
-                        <input type="number" step="0.5" min="0" name="price" id="price" placeholder="(€) Preço"
-                               value="<?php if ($course->price > 0) echo htmlspecialchars($course->price); ?>">
-
-                        <input type="number" step="1" min="0" name="studentLimit" id="studentLimit" placeholder="Limite de alunos" value="<?php if ($course->maxStudent > 0) echo htmlspecialchars($course->maxStudent); ?>">
+                    <section id="descriptionEditorBox">
+                        <input type="hidden" id="descriptionContent" name="description"
+                               value="<?php echo htmlspecialchars($description); ?>">
+                        <div>
+                            <div id="descriptionEditor"></div>
+                        </div>
                     </section>
 
-                </div>
-
-                <section id="descriptionEditorBox">
-                    <input type="hidden" id="descriptionContent" name="description"
-                           value="<?php echo htmlspecialchars($course->description); ?>">
-                    <div>
-                        <div id="descriptionEditor"></div>
+                    <div class="course-details-buttons mt20">
+                        <input onclick="updateDescriptionContent()" onsubmit="updateDescriptionContent()" class="mb10"
+                               type="submit" value="EDITAR">
+                        <input class="red-color" onclick="hideModalAddCourse()" type="button" value="ELIMINAR">
                     </div>
-                </section>
-
-                <div class="course-details-buttons mt20">
-                    <input onclick="updateDescriptionContent()" onsubmit="updateDescriptionContent()" class="mb10" type="submit" value="EDITAR">
-                    <input class="red-color" onclick="hideModalAddCourse()" type="button" value="ELIMINAR">
                 </div>
-
-            </div>
+            </form>
 
         </div>
 

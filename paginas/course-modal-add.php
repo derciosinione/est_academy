@@ -16,6 +16,7 @@
                 $category = $formData['category'];
                 $price = $formData['price'];
                 $description = $formData['description'];
+                unset($_SESSION['form_data']);
             }
             ?>
 

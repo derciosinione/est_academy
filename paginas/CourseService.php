@@ -137,11 +137,37 @@ class CourseService implements CourseInterface
         return new GenericResponse($courseId, true);
     }
 
-    public function update($creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl)
+    /**
+     * @return GenericResponse
+     */
+    public function update($id, $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl)
     {
-        // TODO: Implement update() method.
+        $query = sprintf("UPDATE Courses SET
+                     CreatorId = %d,
+                     Name = '%s',
+                     CategoryId = %d,
+                     Price = %f,
+                     Description = '%s',
+                     MaxStudent = %d,
+                     ImageUrl = '%s'
+                  WHERE Id = %d",
+            $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl, $id);
+
+        echo $query;
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel atualizar o curso, tente novamente!");
+        }
+
+        return new GenericResponse($id, true);
     }
 
+    /**
+     * @param array $row
+     * @return CourseModel
+     */
     private function courseInstance(array $row)
     {
         $course = new CourseModel();
