@@ -58,11 +58,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar.jpg">
                     </div>
 
                     <div class="content-title">
@@ -80,11 +80,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar.jpg">
                     </div>
 
                     <div class="content-title">
@@ -102,11 +102,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -124,11 +124,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -146,11 +146,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -168,11 +168,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -190,11 +190,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -212,11 +212,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -234,11 +234,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -256,11 +256,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -278,11 +278,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -300,11 +300,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -322,11 +322,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">
@@ -344,11 +344,11 @@
                 <div class="user-card pb10 auto-height">
 
                     <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
 
                     <div class="user-avatar">
-                        <img alt="" class="img-cover" src="img/docent-avatar1.jpg">
+                        <img alt="" class="img-cover" src="docent-avatar1.jpg">
                     </div>
 
                     <div class="content-title">

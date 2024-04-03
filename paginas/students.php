@@ -92,7 +92,7 @@ $service = new UserService();
                  <div class="user-card">
                  <a href="students-detail.php?id=$student->id">
                                      <div class="background-image">
-                        <img alt="" src="img/studentbg1.png">
+                        <img alt="" src="studentbg1.png">
                     </div>
                     
                     <div class="user-avatar">
