@@ -271,4 +271,4 @@ UPDATE Users SET PasswordHash='123456' WHERE Id!=0;
 
 UPDATE Users SET AvatarUrl='studentavatar.jpg' WHERE ProfileId=1;
 
-update Users set IsApproved=false where ProfileId=1 and Id in (23,20,18,15);
+UPDATE Users SET IsApproved=FALSE WHERE ProfileId=1 AND Id IN (23,20,18,15);
