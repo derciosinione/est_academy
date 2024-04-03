@@ -1,6 +1,5 @@
 <?php
 include_once 'Utils.php';
-app_session_start();
 include 'ShowErrorDetails.php';
 require_once 'CourseService.php';
 ?>
@@ -22,7 +21,7 @@ require_once 'CourseService.php';
 
 <div class="board">
     <!-- SIDE BAR -->
-    <?php include 'SideBarMenu.php' ?>
+    <?php include_once 'SideBarMenu.php' ?>
 
     <!-- MAIN ELEMENT  -->
     <main>
@@ -74,7 +73,6 @@ require_once 'CourseService.php';
                 <?php
                 $courseService = new CourseService();
 
-                /** @var CourseModel[] $courses */
                 $courses = $courseService->getAll();
 
                 foreach ($courses as $course) {

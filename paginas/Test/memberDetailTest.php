@@ -30,7 +30,7 @@ require_once '../../Services/userService.php';
     if (isset($_GET['userId'])){
         $userId = $_GET['userId'];
 
-        $userService = new userService();
+        $userService = new UserService();
         $createdManager =  $userService->getUserById($userId);
 
         echo "Manager created successfully!<br>";

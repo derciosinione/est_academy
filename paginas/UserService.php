@@ -7,7 +7,7 @@ require_once __DIR__ . '/../basedados/basedados.php';
 require_once __DIR__ . '/Constants.php';
 require_once __DIR__ . '/UserModel.php';
 
-class userService implements UserInterface
+class UserService implements UserInterface
 {
     private $db;
     private $connection;
@@ -16,6 +16,26 @@ class userService implements UserInterface
     {
         $this->db = new DbContext();
         $this->connection = $this->db->getConnection();
+    }
+
+    public function getDefaultSqlQuery()
+    {
+        return /** @lang text */ "
+            SELECT
+                u.Id,
+                u.Name,
+                u.Email,
+                u.ProfileId,
+                p.Name 'Profile',
+                u.PhoneNumber,
+                u.BirthDay,
+                u.AvatarUrl,
+                u.IsApproved
+            FROM Users u
+            JOIN Profiles p ON u.ProfileId = p.Id
+            WHERE 1=1
+            AND !u.IsDeleted
+            AND u.IsActive";
     }
 
     public function login($email, $password)
@@ -30,7 +50,8 @@ class userService implements UserInterface
                 u.Email,
                 u.ProfileId,
                 p.Name 'Profile',
-                u.AvatarUrl
+                u.AvatarUrl,
+                u.IsApproved
             FROM Users u
             JOIN Profiles p ON u.ProfileId = p.Id
             WHERE 1=1
@@ -156,5 +177,46 @@ class userService implements UserInterface
         if ($userId == null || $userId == 0) return "Nao foi possivel criar o gerente";
 
         return $userId;
+    }
+
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllStudents()
+    {
+        $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        $data = [];
+
+        if ($result == null) return $data;
+
+        while ($row = $result->fetch_assoc()) {
+            $data [] = $this->studentInstance($row);
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param array $row
+     * @return UserModel
+     */
+    private function studentInstance(array $row)
+    {
+        $user = new UserModel($row["Id"],
+            $row["Name"],
+            $row["Email"],
+            $row["PhoneNumber"],
+            $row["BirthDay"],
+            $row["ProfileId"]);
+
+        $user->setProfileName($row["Profile"]);
+        $user->setAvatarUrl($row["AvatarUrl"]);
+        $user->setApprovedStatus($row["IsApproved"]);
+
+        return $user;
     }
 }

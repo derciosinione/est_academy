@@ -24,7 +24,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-$userService = new userService();
+$userService = new UserService();
 
 $myLogin = $userService->login($email, $password);
 

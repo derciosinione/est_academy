@@ -48,7 +48,7 @@ class CourseService implements CourseInterface
      */
     public function getAll()
     {
-        $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy() . $this->db->getQueryLimit(8);
+        $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy("c") . $this->db->getQueryLimit(8);
 
         $result = $this->db->executeSqlQuery($query);
 
@@ -69,7 +69,7 @@ class CourseService implements CourseInterface
      */
     public function getAllByCategory($categoryId)
     {
-        $query = $this->getDefaultSqlQuery() . " AND c.CategoryId=$categoryId " . $this->db->getOrderBy();
+        $query = $this->getDefaultSqlQuery() . " AND c.CategoryId=$categoryId " . $this->db->getOrderBy("c");
 
         $data = $this->db->executeSqlQuery($query);
 

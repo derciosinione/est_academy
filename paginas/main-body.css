@@ -64,6 +64,8 @@
     margin: 0 auto;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 13px;
+    color: white;
 
     p {
         font-size: 13px;

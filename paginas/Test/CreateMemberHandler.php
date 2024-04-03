@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phoneNumber = $_POST['phoneNumber'];
     $birthDay = $_POST['birthDay'];
 
-    $userService = new userService();
+    $userService = new UserService();
 
     $response = $userService->createManager($name, $email, $nif, $birthDay, $phoneNumber);
 

@@ -12,6 +12,8 @@ class UserModel
     public $profileName;
     public $isStaff;
     public $isActive;
+    private $approvedStatus;
+    private $isApproved;
     public $isDeleted;
     public $createdAt;
     public $updatedAt;
@@ -56,35 +58,12 @@ class UserModel
         $this->id = $id;
     }
 
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->phoneNumber = $phoneNumber;
-    }
 
     public function setAvatarUrl($avatarUrl)
     {
         $this->avatarUrl = $avatarUrl;
     }
 
-    public function setBirthDay($birthDay)
-    {
-        $this->birthDay = $birthDay;
-    }
-
-    public function setProfileId($profileId)
-    {
-        $this->profileId = $profileId;
-    }
 
     public function setProfileName($profileName)
     {
@@ -101,19 +80,22 @@ class UserModel
         $this->isActive = $isActive;
     }
 
-    public function setIsDeleted($isDeleted)
+    public function getApprovedStatus()
     {
-        $this->isDeleted = $isDeleted;
+        return $this->approvedStatus;
     }
 
-    public function setCreatedAt($createdAt)
+    public function getIsApproved()
     {
-        $this->createdAt = $createdAt;
+        return $this->isApproved;
     }
 
-    public function setUpdatedAt($updatedAt)
+    public function setApprovedStatus($isApproved)
     {
-        $this->updatedAt = $updatedAt;
+        $this->isApproved = $isApproved;
+        $this->approvedStatus = $isApproved ? 'Aprovado' : 'Aguardando aprovação';
     }
+
+
 
 }

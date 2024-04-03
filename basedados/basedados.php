@@ -102,9 +102,9 @@ class DbContext
         return $lastInsertedId;
     }
 
-    public function getOrderBy()
+    public function getOrderBy($alias)
     {
-        return " ORDER BY CreatedAt DESC ";
+        return " ORDER BY $alias.Id DESC, $alias.CreatedAt DESC ";
     }
 
     public function getQueryLimit ($limit)
