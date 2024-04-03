@@ -26,24 +26,7 @@ $service = new UserService();
     <!-- MAIN ELEMENT  -->
     <main id="main">
         <!-- MAIN HEADER -->
-        <div class="main-header">
-            <div class="main-header-left">
-                <div class="main-menu-option">
-                    <i class="fas fa-bars menu-icon"></i>
-                </div>
-            </div>
 
-            <div class="main-header-right">
-                <div class="search-container">
-                    <input placeholder="Search..." type="text">
-                    <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
-                </div>
-
-                <!-- Circular avatar -->
-                <?php include_once 'circularAvatar.php' ?>
-
-            </div>
-        </div>
 
         <!-- MAIN BODY -->
         <div class="main-body">

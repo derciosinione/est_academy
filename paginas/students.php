@@ -1,13 +1,9 @@
 <?php
 include_once 'Utils.php';
-app_session_start();
 include 'ShowErrorDetails.php';
 require_once 'UserService.php';
 
 $service = new UserService();
-
-//$courses = $courseService->getAll();
-
 ?>
 
 <!DOCTYPE html>
