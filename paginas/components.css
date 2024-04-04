@@ -97,6 +97,14 @@ a {
     margin-top: 20px;
 }
 
+.mt25 {
+    margin-top: 25px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
 
 .pb5 {
     padding-bottom: 5px;
@@ -328,3 +336,4 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
         line-height: 1.6;
     }
 }
+

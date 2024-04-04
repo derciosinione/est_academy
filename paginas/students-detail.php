@@ -13,7 +13,6 @@ $service = new UserService();
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="components.css" rel="stylesheet">
     <link href="user.css" rel="stylesheet">
     <title>Students</title>
 </head>
@@ -25,44 +24,83 @@ $service = new UserService();
 
     <!-- MAIN ELEMENT  -->
     <main id="main">
-        <!-- MAIN HEADER -->
 
+        <div class="student-detail-header">
+            <div class="user-detail-bg-image">
+                <img src="studentdetail-background.png">
+            </div>
 
-        <!-- MAIN BODY -->
-        <div class="main-body">
+            <div class="circular-avatar">
+                <img src="studentavatar.jpg">
+            </div>
+        </div>
 
-            <div class="main-description">
-                <h2>Alunos</h2>
+        <section class="student-detail-section">
+            <div>
+                <h3>Dercio Sinione Derone</h3>
+                <p class="blackOpacity mt5"><i class="fas fa-book-reader"></i> Aluno</p>
+            </div>
+
+            <div class="student-detail-tab">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span>Perfil</span>
+                        </a>
+                        <div class="active-tab mt5"></div>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Inscrições</span>
+                        </a>
+                        <div class="active-tab mt5" hidden></div>
+                    </li>
+                </ul>
+                <div class="line"></div>
+            </div>
+
+            <div class="student-detail-info">
                 <div>
-                    <button class="more-option-btn" onclick="toggleMoreOption()">MAIS OPÇÕES</button>
-                    <div class="more-option" id="more-option">
-                        <p>Mais opções</p>
-                        <hr>
-                        <div>
-                            <input id="situation1" name="situation" type="checkbox"> <label
-                                for="situation1">Inativos</label>
-                        </div>
-                        <div>
-                            <input id="situation2" name="situation" type="checkbox"> <label
-                                for="situation2">Aprovados</label>
-                        </div>
+                    <div>
+                        <label>NIF</label>
+                        <span>525 652 356</span>
+                    </div>
 
-                        <div>
-                            <input id="situation3" name="situation" type="checkbox"> <label for="situation3">Aguardando
-                            aprovação</label>
-                        </div>
+                    <div>
+                        <label>Email</label>
+                        <span>derciosinione@example.com</span>
+                    </div>
+                </div>
 
-                        <div class="mt10 more-option-buttons">
-                            <button class="red-color" onclick="">Cancelar</button>
-                            <button class="" onclick="">Aplicar filtro</button>
-                        </div>
+                <div>
+                    <div>
+                        <label>Contacto</label>
+                        <span>+351 925 564 251</span>
+                    </div>
+
+                    <div>
+                        <label>Data de Nascimento</label>
+                        <span>12/04/2000</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <label>Status</label>
+                        <span>Aprovado</span>
+                    </div>
+
+                    <div>
+                        <label>Data de Cadastro</label>
+                        <span>12/04/2000</span>
                     </div>
                 </div>
             </div>
 
-            <h1>Student detail</h1>
-        </div>
+            <button class="mt30">ADMITIR</button>
 
+
+        </section>
     </main>
 </div>
 
