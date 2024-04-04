@@ -118,7 +118,6 @@ if (empty($student)) {
 
             <button class="mt30">ADMITIR</button>
 
-
         </section>
     </main>
 </div>
