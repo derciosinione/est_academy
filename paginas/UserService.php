@@ -25,12 +25,14 @@ class UserService implements UserInterface
                 u.Id,
                 u.Name,
                 u.Email,
+                u.NIF,
                 u.ProfileId,
                 p.Name 'Profile',
                 u.PhoneNumber,
                 u.BirthDay,
                 u.AvatarUrl,
-                u.IsApproved
+                u.IsApproved,
+                u.CreatedAt
             FROM Users u
             JOIN Profiles p ON u.ProfileId = p.Id
             WHERE 1=1
@@ -116,16 +118,17 @@ class UserService implements UserInterface
      */
     public function getUserById($userId)
     {
-        $query = "SELECT * FROM Users WHERE Id = ?";
+        $query = $this->getDefaultSqlQuery() . " AND u.Id = $userId";
 
-        $statement = $this->connection->prepare($query);
-        $statement->bind_param("i", $userId);
+        $result = $this->db->executeSqlQuery($query);
 
-        $row = $this->db->executeSqlCommand($statement);
+        if ($result == null) return null;
 
-        if ($row == null) return null;
+        $row = $result->fetch_assoc();
 
-        return new UserModel($row["Id"], $row["Name"], $row["Email"], $row["PhoneNumber"], $row["BirthDay"], $row["ProfileId"]);
+        if ($row==null) return null;
+
+        return $this->userInstance($row);
     }
 
     /**
@@ -194,7 +197,7 @@ class UserService implements UserInterface
         if ($result == null) return $data;
 
         while ($row = $result->fetch_assoc()) {
-            $data [] = $this->studentInstance($row);
+            $data [] = $this->userInstance($row);
         }
 
         return $data;
@@ -204,7 +207,7 @@ class UserService implements UserInterface
      * @param array $row
      * @return UserModel
      */
-    private function studentInstance(array $row)
+    private function userInstance(array $row)
     {
         $user = new UserModel($row["Id"],
             $row["Name"],
@@ -213,6 +216,8 @@ class UserService implements UserInterface
             $row["BirthDay"],
             $row["ProfileId"]);
 
+        $user->createdAt = $row["CreatedAt"];
+        $user->setNif($row["NIF"]);
         $user->setProfileName($row["Profile"]);
         $user->setAvatarUrl($row["AvatarUrl"]);
         $user->setApprovedStatus($row["IsApproved"]);

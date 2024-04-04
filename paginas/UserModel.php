@@ -5,6 +5,7 @@ class UserModel
     public $id;
     public $name;
     public $email;
+    private $nif;
     public $phoneNumber;
     public $avatarUrl;
     public $birthDay;
@@ -36,6 +37,17 @@ class UserModel
         $this->birthDay = $birthDay;
         $this->profileId = $profileId;
     }
+
+    public function getNif()
+    {
+        return $this->nif;
+    }
+
+    public function setNif($nif)
+    {
+        $this->nif = empty($nif) ? "Não Informado" : $nif;
+    }
+
 
     /**
      * @return mixed

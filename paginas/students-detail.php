@@ -3,8 +3,23 @@ include_once 'Utils.php';
 include 'ShowErrorDetails.php';
 require_once 'UserService.php';
 
+if (!isset($_GET["id"])) {
+    $_SESSION['404_message'] = "Informe o identificado do Aluno";
+    header("Location: 404.php");
+    exit();
+}
+
 $service = new UserService();
 
+$studentId = $_GET["id"];
+
+$student = $service->getUserById($studentId);
+
+if (empty($student)) {
+    $_SESSION['404_message'] = "Aluno com identificador $studentId não encontrado.";
+    header("Location: 404.php");
+    return;
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,10 +50,14 @@ $service = new UserService();
             </div>
         </div>
 
+        <?php
+//            $student = $service->getUserById()
+        ?>
+
         <section class="student-detail-section">
             <div>
-                <h3>Dercio Sinione Derone</h3>
-                <p class="blackOpacity mt5"><i class="fas fa-book-reader"></i> Aluno</p>
+                <h3><?php echo $student->name ?></h3>
+                <p class="blackOpacity mt5"><i class="fas fa-book-reader"></i> <?php echo $student->profileName ?></p>
             </div>
 
             <div class="student-detail-tab">
@@ -63,36 +82,36 @@ $service = new UserService();
                 <div>
                     <div>
                         <label>NIF</label>
-                        <span>525 652 356</span>
+                        <span><?php echo $student->getNif() ?></span>
                     </div>
 
                     <div>
                         <label>Email</label>
-                        <span>derciosinione@example.com</span>
+                        <span><?php echo $student->email ?></span>
                     </div>
                 </div>
 
                 <div>
                     <div>
                         <label>Contacto</label>
-                        <span>+351 925 564 251</span>
+                        <span><?php echo $student->phoneNumber ?></span>
                     </div>
 
                     <div>
                         <label>Data de Nascimento</label>
-                        <span>12/04/2000</span>
+                        <span><?php echo $student->birthDay ?></span>
                     </div>
                 </div>
 
                 <div>
                     <div>
                         <label>Status</label>
-                        <span>Aprovado</span>
+                        <span><?php echo $student->getApprovedStatus() ?></span>
                     </div>
 
                     <div>
                         <label>Data de Cadastro</label>
-                        <span>12/04/2000</span>
+                        <span><?php echo $student->createdAt ?></span>
                     </div>
                 </div>
             </div>
