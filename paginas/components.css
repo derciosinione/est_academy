@@ -122,6 +122,30 @@ a {
     padding-bottom: 20px;
 }
 
+.pl10 {
+    padding-left: 10px;
+}
+
+.pr10 {
+    padding-right: 10px;
+}
+
+.pl15 {
+    padding-left: 15px;
+}
+
+.pr15 {
+    padding-right: 15px;
+}
+
+.pl20 {
+    padding-left: 20px;
+}
+
+.pr20 {
+    padding-right: 20px;
+}
+
 .fz18 {
     font-size: 18px;
 }
@@ -337,3 +361,8 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
     }
 }
 
+.horizontal-line {
+    background-color: #D9D9D9;
+    height: 1px;
+    width: 100%;
+}
