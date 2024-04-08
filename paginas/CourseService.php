@@ -8,7 +8,7 @@ require_once __DIR__ . '/CategoryModel.php';
 require_once __DIR__ . '/UserModel.php';
 require_once __DIR__ . '/CourseModel.php';
 require_once __DIR__ . '/GenericResponse.php';
-require_once __DIR__ . '/../basedados/basedados.php';
+require_once __DIR__ . '/../basedados/basedados.h';
 
 
 class CourseService implements CourseInterface
