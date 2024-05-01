@@ -5,9 +5,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
-<!--    <link href="components.css" rel="stylesheet">-->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.core.css">
     <link href="settings.css" rel="stylesheet">
-    <link href="components.css" rel="stylesheet">
     <title>Settings</title>
 </head>
 <body>
@@ -55,9 +55,9 @@
 
                 <nav>
                     <ul>
-                        <li class="active-settings-menu"><a href="settings.php">Conta</a></li>
+                        <li><a href="settings.php">Conta</a></li>
                         <li><a href="settings-change-password.php">Senha</a></li>
-                        <li><a href="settings-about.php">Sobre</a></li>
+                        <li class="active-settings-menu"><a href="settings-about.php">Sobre</a></li>
                         <li><a href="#">Usuários</a></li>
                         <li><a href="#">Categorias</a></li>
                         <li><a href="#">Estados</a></li>
@@ -68,52 +68,25 @@
 
             <section>
 
-                <h3 class="mt15 ml10 mb15">Informações Pessoais</h3>
+                <h3 class="mt15 ml10 mb15">Sobre Mim</h3>
                 <div class="horizontal-line"></div>
 
-                <div class="setting-container">
-
-                    <div class="input-box">
-                        <label>
-                            Nome
-                            <input placeholder="myacademy" type="text" name="name">
-                        </label>
-
-                        <label>
-                            Email
-                            <input placeholder="myacademy@gmail.com" type="text" name="email">
-                        </label>
-
-                        <label>
-                            NIF
-                            <input placeholder="000 000 000" type="text" name="nif">
-                        </label>
-
-                        <label>
-                            Contacto
-                            <input placeholder="+351 925 365 214" type="text" name="phoneNumber">
-                        </label>
-
-                        <label>
-                            País
-                            <input placeholder="Portugal" type="text" name="country">
-                        </label>
-
-                        <label>
-                            Data de Nascimento
-                            <input placeholder="12/06/2001" type="text" name="birthday">
-                        </label>
-                    </div>
-
-                    <input onclick="" onsubmit="" class="mt30 save-info-btn" type="submit" value="SALVAR">
-
-                </div>
-
+                    <section id="descriptionEditorBox" class="setting-container">
+                        <input type="hidden" id="descriptionContent" name="description">
+                        <label>Descrição</label>
+                        <div class="mt10">
+                            <div id="descriptionEditor"></div>
+                        </div>
+                        <input onclick="" onsubmit="" class="mt30 save-info-btn center" type="submit" value="SALVAR">
+                    </section>
             </section>
 
         </div>
 
     </main>
 </div>
+
+<?php require 'textEditorElement.php' ?>
+
 </body>
 </html>

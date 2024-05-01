@@ -114,6 +114,10 @@ a {
     padding-bottom: 10px;
 }
 
+.p20 {
+    padding: 20px;
+}
+
 .pb15 {
     padding-bottom: 15px;
 }
@@ -367,3 +371,46 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
     width: 100%;
 }
 
+label {
+    display: block;
+    color: #ADADAD;
+
+    input {
+        display: block;
+        margin-top: 5px;
+    }
+}
+
+.input-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.input-box-row {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+    flex-grow: 1;
+
+    input {
+        width: 100%;
+    }
+}
+
+#descriptionEditorBox {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#descriptionEditor {
+    min-height: 200px;
+    font-size: 15px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: 48px;
+    background-color: #fafbfd;
+    border: 1px solid #D5D5D5;
+}

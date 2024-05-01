@@ -23,7 +23,7 @@
 .main-body section {
     background-color: white;
     width: 825px;
-    height: 566px;
+    height: 466px;
     border-radius: 8px;
 }
 
@@ -60,4 +60,14 @@
     a {
         color: white!important;
     }
+}
+
+.setting-container {
+    /*background-color: #1C344F;*/
+    padding: 30px 40px;
+}
+
+.save-info-btn {
+    width: 156px!important;
+    height: 42px;
 }

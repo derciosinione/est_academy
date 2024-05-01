@@ -55,8 +55,8 @@
 
                 <nav>
                     <ul>
-                        <li class="active-settings-menu"><a href="settings.php">Conta</a></li>
-                        <li><a href="settings-change-password.php">Senha</a></li>
+                        <li><a href="settings.php">Conta</a></li>
+                        <li class="active-settings-menu"><a href="settings-change-password.php">Senha</a></li>
                         <li><a href="settings-about.php">Sobre</a></li>
                         <li><a href="#">Usuários</a></li>
                         <li><a href="#">Categorias</a></li>
@@ -73,39 +73,24 @@
 
                 <div class="setting-container">
 
-                    <div class="input-box">
+                    <div class="input-box-row">
                         <label>
-                            Nome
-                            <input placeholder="myacademy" type="text" name="name">
+                            Senha antiga
+                            <input placeholder="****" type="password" name="oldPassword">
                         </label>
 
                         <label>
-                            Email
-                            <input placeholder="myacademy@gmail.com" type="text" name="email">
+                            Senha nova
+                            <input placeholder="****" type="password" name="newPassword">
                         </label>
 
                         <label>
-                            NIF
-                            <input placeholder="000 000 000" type="text" name="nif">
-                        </label>
-
-                        <label>
-                            Contacto
-                            <input placeholder="+351 925 365 214" type="text" name="phoneNumber">
-                        </label>
-
-                        <label>
-                            País
-                            <input placeholder="Portugal" type="text" name="country">
-                        </label>
-
-                        <label>
-                            Data de Nascimento
-                            <input placeholder="12/06/2001" type="text" name="birthday">
+                            Confirmar senha
+                            <input placeholder="****" type="password" name="confirmPassword">
                         </label>
                     </div>
 
-                    <input onclick="" onsubmit="" class="mt30 save-info-btn" type="submit" value="SALVAR">
+                    <input onclick="" onsubmit="" class="mt30 save-info-btn center" type="submit" value="SALVAR">
 
                 </div>
 
