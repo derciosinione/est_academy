@@ -1,5 +1,7 @@
 <?php
 
+use basedados\DbContext;
+
 require_once __DIR__ . '/UserInterface.php';
 require_once __DIR__ . '/../basedados/basedados.h';
 require_once __DIR__ . '/Constants.php';

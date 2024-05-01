@@ -7,6 +7,7 @@
     <link href="main.css" rel="stylesheet">
     <link href="components.css" rel="stylesheet">
     <link href="settings.css" rel="stylesheet">
+    <link href="components.scss" rel="stylesheet">
     <title>Settings</title>
 </head>
 <body>
