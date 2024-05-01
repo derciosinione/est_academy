@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
-    <link href="components.css" rel="stylesheet">
+    <link href="components.scss" rel="stylesheet">
     <title>Settings</title>
 </head>
 <body>
