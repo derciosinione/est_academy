@@ -5,7 +5,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
-<!--    <link href="components.css" rel="stylesheet">-->
     <link href="settings.css" rel="stylesheet">
     <link href="components.css" rel="stylesheet">
     <title>Settings</title>
@@ -68,7 +67,7 @@
 
             <section>
 
-                <h3 class="mt15 ml10 mb15">Informações Pessoais</h3>
+                <h3 class="mt15 ml15 mb15">Informações Pessoais</h3>
                 <div class="horizontal-line"></div>
 
                 <div class="setting-container">

@@ -68,7 +68,7 @@
 
             <section>
 
-                <h3 class="mt15 ml10 mb15">Sobre Mim</h3>
+                <h3 class="mt15 ml15 mb15">Sobre Mim</h3>
                 <div class="horizontal-line"></div>
 
                     <section id="descriptionEditorBox" class="setting-container">
