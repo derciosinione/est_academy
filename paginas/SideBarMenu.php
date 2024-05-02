@@ -4,7 +4,7 @@ include 'RedirectNonLoggedUser.php';
 require_once "UserModel.php";
 
 /** @var string $currentFileName */
-$activeSettingsPages = array("settings", "account-profile");
+$activeSettingsPages = array("settings", "account-profile", "settings-change-password", "settings-about");
 
 if(isset($_SESSION['loggedUser'])){
     /** @var userModel $loggedUser */
@@ -111,7 +111,7 @@ if(isset($_SESSION['loggedUser'])){
             <div class="user-information">
                 <p class="blackOpacity smallText"><?php echo $loggedUser->profileName ?></p>
                 <p class="bold blackText"><?php echo $loggedUser->name ?></p>
-                <a href="account-profile.php"><button>Ver Perfil</button></a>
+                <a href="settings.php"><button>Ver Perfil</button></a>
             </div>
         </div>
     </div>
