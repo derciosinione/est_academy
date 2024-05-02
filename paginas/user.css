@@ -154,3 +154,13 @@
 .student-detail-section button {
     width: 156px;
 }
+
+.user-registration-form {
+    background-color: white;
+    width: 55vw;
+    /*padding: 50px 20px;*/
+    padding: 30px;
+
+    border-radius: 10px;
+    margin: 20px auto 0;
+}

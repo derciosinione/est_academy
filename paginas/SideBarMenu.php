@@ -63,7 +63,7 @@ if(isset($_SESSION['loggedUser'])){
             </li>
         </ul>
 
-        <ul <?php if ($currentFileName=='instructors') echo 'class="active-sidebar-menu"' ?>>
+        <ul <?php if ($currentFileName=='instructors' || $currentFileName=="create-instructor") echo 'class="active-sidebar-menu"' ?>>
             <div class="active-sidebar-menu-line"></div>
             <li>
                 <a href="instructors.php">

@@ -190,6 +190,7 @@ a {
 /* STYLE INPUT TEXT */
 
 input,
+.custom-select,
 /*input[type="text"],*/
 /*input[type="password"],*/
 /*input[type="email"],*/
@@ -297,7 +298,7 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
 .custom-select {
     position: relative;
     display: inline-block;
-    min-width: 250px;
+    /*min-width: 250px;*/
     /*width: 300px;*/
     font-size: 16px;
     color: #565656;
@@ -391,7 +392,7 @@ label {
     display: block;
     color: #ADADAD;
 
-    input {
+    input, select, .custom-select {
         display: block;
         margin-top: 5px;
     }
@@ -402,6 +403,10 @@ label {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
+
+    .custom-select {
+        width: 300px;
+    }
 }
 
 .input-box-row {
@@ -411,10 +416,11 @@ label {
     gap: 20px;
     flex-grow: 1;
 
-    input {
+    input, select, .custom-select {
         width: 100%;
     }
 }
+
 
 #descriptionEditorBox {
     width: 100%;
@@ -532,5 +538,10 @@ td span[data-status="aprovado"] {
 
 td span[data-status="reprovado"] {
     background-color: var(--cor-reprovado);
+}
+
+.large-btn {
+    width: 250px!important;
+    height: 42px!important;
 }
 

@@ -100,12 +100,17 @@ if (isset($_SESSION['form_data'])) {
 
             <form action="CourseEditHandler.php?id=<?php echo $course->id ?>" method="post">
                 <div class="course-detail">
-                    <div class="course-detail-inputs">
-                        <section>
+
+                    <div class="input-box">
+                        <label>
+                            Nome
                             <input placeholder="Nome do Curso" type="text" name="name"
                                    value="<?php echo htmlspecialchars($name); ?>">
+                        </label>
 
-                            <select id="category" class="custom-select" name="category">
+                        <label for="category">
+                            Categoria
+                            <select id="category" class="custom-select"  name="category">
                                 <option value="0" selected>Escolha a categoria</option>
                                 <option value="8" <?php if ($categoryId == 8) echo 'selected' ?>>Banco de Dados
                                 </option>
@@ -134,14 +139,21 @@ if (isset($_SESSION['form_data'])) {
                                     Operacionais
                                 </option>
                             </select>
+                        </label>
 
+                        <label for="price">
+                            Preço
                             <input type="number" step="0.5" min="0" name="price" id="price" placeholder="(€) Preço"
                                    value="<?php if ($price > 0) echo htmlspecialchars($price); ?>">
+                        </label>
 
+                        <label for="studentLimit">
+                            Vagas
                             <input type="number" step="1" min="0" name="maxStudent" id="studentLimit"
                                    placeholder="Limite de alunos"
                                    value="<?php if ($maxStudent > 0) echo htmlspecialchars($maxStudent); ?>">
-                        </section>
+                        </label>
+
                     </div>
 
                     <section id="descriptionEditorBox">

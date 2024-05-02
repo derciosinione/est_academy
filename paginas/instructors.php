@@ -43,7 +43,7 @@
                 <h2>Docentes</h2>
 
                 <div>
-                    <button onclick=""><i class="fas fa-plus"></i> ADICIONAR</button>
+                    <a href="create-instructor.php"><button onclick=""><i class="fas fa-plus"></i> ADICIONAR</button></a>
                     <button class="more-option-btn" onclick="toggleMoreOption()">MAIS OPÇÕES</button>
                     <div class="more-option" id="more-option">
                         <p>Mais opções</p>
