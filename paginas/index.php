@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Academy</title>
+</head>
+<body>
+<h1>
+    Landing Page My Academy
+</h1>
+<a href="login.php"> login</a> <br> <a href="signup.php">Create Account</a>
+</body>
+</html>

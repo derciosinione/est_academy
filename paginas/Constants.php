@@ -1,9 +1,10 @@
 <?php
 
 
-class constants
+class Constants
 {
-    public static $adminId = 1;
-    public static $managerId = 2;
-    public static $companyId = 3;
+    public static $student = 1;
+    public static $instructor = 2;
+    public static $adminId = 3;
 }
+
