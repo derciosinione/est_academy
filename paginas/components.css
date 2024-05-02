@@ -1,3 +1,11 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+:root {
+    --cor-pendente: #FEC400;
+    --cor-aprovado: #29CC97;
+    --cor-reprovado: #F5365C;
+}
+
 p {
     color: #313638;
 }
@@ -31,6 +39,14 @@ a {
 
 .green-color {
     background-color: #2CC304 !important;
+}
+
+.green-text {
+    color: #208a06 !important;
+}
+
+.red-text {
+    color: #F5365C !important;
 }
 
 .blue-color {
@@ -414,3 +430,107 @@ label {
     background-color: #fafbfd;
     border: 1px solid #D5D5D5;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltipText {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+}
+
+.table-container {
+    margin-top: 40px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead tr {
+        height: 36px;
+        th {
+            color: #9FA2B4;
+            text-align: left;
+            border-bottom: 2px solid #DFE0EB;
+        }
+    }
+}
+
+tbody {
+    tr {
+        height: auto;
+
+        td {
+            border-bottom: 1px solid #DFE0EB;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        i {
+            color: #1C344F;
+            font-size: 20px;
+            /*padding-left: 10px;*/
+            /*margin-right: 12px;*/
+            /*background-color: #1C344F;*/
+        }
+    }
+}
+
+.td-line {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+td a {
+    text-decoration: none;
+}
+
+.table-actions {
+    display: flex;
+    gap: 10px;
+}
+
+td span {
+    background-color: #1C344F;
+    border-radius: 20px;
+    padding: 5px 20px;
+    color: white;
+}
+
+td span[data-status="pendente"] {
+    background-color: var(--cor-pendente);
+}
+
+td span[data-status="aprovado"] {
+    background-color: var(--cor-aprovado);
+}
+
+td span[data-status="reprovado"] {
+    background-color: var(--cor-reprovado);
+}
+

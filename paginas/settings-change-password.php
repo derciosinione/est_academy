@@ -68,7 +68,7 @@
 
             <section>
 
-                <h3 class="mt15 ml10 mb15">Informações Pessoais</h3>
+                <h3 class="mt15 ml15 mb15">Alterar Senha</h3>
                 <div class="horizontal-line"></div>
 
                 <div class="setting-container">
