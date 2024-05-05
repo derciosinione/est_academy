@@ -28,7 +28,6 @@ if (empty($messages)) return;
     </section>
 </div>
 
-
 <script>
     function hideMessageBox() {
         let elements = document.getElementsByClassName("message-box");

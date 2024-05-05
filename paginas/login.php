@@ -1,5 +1,14 @@
 <?php include_once 'RedirectLoggedUser.php'; ?>
 
+<?php
+$messages = [];
+
+if (isset($_SESSION["warning_message"])) {
+    $messages = $_SESSION['warning_message'];
+    unset($_SESSION['warning_message']);
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,8 +19,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="login.css" rel="stylesheet">
     <title>Login</title>
-
-
 </head>
 <body>
 
@@ -22,20 +29,24 @@
             <span>Don’t have an account? <a href="signup.php">Sign up!</a></span>
         </nav>
 
-        <?php include "displayMessageIfExists.php" ?>
-
         <section>
             <form action="LoginHandler.php" method="post">
                 <h1>Welcome Back</h1>
                 <p class="fz18">Login into your account</p>
 
-                <div class="inputs">
-                    <input type="email" placeholder="Email" id="email" name="email">
+                <?php if ($messages) { ?>
+                    <div class="message-warning blue-color">
+                        <?php
+                        foreach ($messages as $message) echo "<p><b>*</b> $message </p>";
+                        ?>
+                    </div>
+                <?php } ?>
 
+                <div class="inputs">
+                    <input type="text" placeholder="Email ou username" id="email" name="email">
                     <div class="password-div">
                         <input id="password" name="password" placeholder="Password" type="password">
-                        <span class="toggle-password" onclick="togglePasswordVisibility()"><i
-                                class="fas fa-eye blackOpacity"></i></span>
+                        <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fas fa-eye blackOpacity"></i></span>
                     </div>
 
                     <input type="submit" value="Login">
