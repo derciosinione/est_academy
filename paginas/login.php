@@ -30,7 +30,7 @@ if (isset($_SESSION["warning_message"])) {
         </nav>
 
         <section>
-            <form action="LoginHandler.php" method="post">
+            <form action="HandlerLogin.php" method="post">
                 <h1>Welcome Back</h1>
                 <p class="fz18">Login into your account</p>
 

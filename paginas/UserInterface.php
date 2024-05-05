@@ -7,7 +7,7 @@ interface UserInterface
 
     public function logOut();
 
-    public function changePassword($password, $confirmPassword);
+    public function changePassword($email, $currentPassword, $password, $confirmPassword);
 
     public function getUserById($userId);
 
@@ -17,4 +17,6 @@ interface UserInterface
     public function getAllStudents();
 
     public function createManager($name, $email, $nif, $birthDay, $phoneNumber, $avatarUrl);
+
+    public function updateUserInfo($id, $name, $username, $email, $nif, $phoneNumber, $birthDay);
 }

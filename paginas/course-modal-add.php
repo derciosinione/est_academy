@@ -4,7 +4,7 @@
     </div>
 
     <div class="modal-content">
-        <form action="CourseHandler.php" method="post">
+        <form action="HandlerCourse.php" method="post">
             <h1>Cadastrar Curso</h1>
 
             <?php

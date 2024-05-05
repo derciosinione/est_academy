@@ -13,7 +13,9 @@
 
 <div class="board">
     <!-- SIDE BAR -->
-    <?php include_once 'SideBarMenu.php' ?>
+    <?php
+        include_once 'SideBarMenu.php';
+    ?>
 
     <!-- MAIN ELEMENT  -->
     <main>
@@ -37,74 +39,58 @@
             </div>
         </div>
 
+        <div style="width: 91%; margin: 0 auto;">
+            <?php include_once 'displayMessageIfExists.php'; ?>
+        </div>
+
         <!-- MAIN BODY -->
         <div class="main-body">
 
-            <div class="setting-aside">
-                <div class="user-avatar">
-                    <img class="img-cover"
-                         src="https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                </div>
-                <div class="pl20 pr20 mt15 pb10">
-                    <h3>Angela de Jesus Derone</h3>
-                    <p class="blackOpacity mt5 smallText"><i class="fas fa-id-card"></i> Administrador</p>
-                </div>
-
-                <div class="horizontal-line"></div>
-
-                <nav>
-                    <ul>
-                        <li class="active-settings-menu"><a href="settings.php">Conta</a></li>
-                        <li><a href="settings-change-password.php">Senha</a></li>
-                        <li><a href="settings-about.php">Sobre</a></li>
-                        <li><a href="#">Usuários</a></li>
-                        <li><a href="#">Categorias</a></li>
-                        <li><a href="#">Estados</a></li>
-                    </ul>
-                </nav>
-
-            </div>
+            <?php
+            include_once 'settings-aside.php';
+            global  $loggedUser;
+            ?>
 
             <section>
-
                 <h3 class="mt15 ml15 mb15">Informações Pessoais</h3>
                 <div class="horizontal-line"></div>
 
                 <div class="setting-container">
 
-                    <div class="input-box">
+                    <form action="HandlerUpdateUserInfo.php" method="post">
+                        <div class="input-box">
                         <label>
                             Nome
-                            <input placeholder="myacademy" type="text" name="name">
+                            <input placeholder="myacademy" type="text" name="name" value="<?php echo htmlspecialchars($loggedUser->name); ?>">
                         </label>
 
                         <label>
                             Email
-                            <input placeholder="myacademy@gmail.com" type="text" name="email">
+                            <input placeholder="myacademy@gmail.com" type="text" name="email" value="<?php echo htmlspecialchars($loggedUser->email); ?>">
+                        </label>
+
+                        <label>
+                            Username
+                            <input placeholder="myacademy" type="text" name="username" value="<?php echo htmlspecialchars($loggedUser->username); ?>">
                         </label>
 
                         <label>
                             NIF
-                            <input placeholder="000 000 000" type="text" name="nif">
+                            <input placeholder="000 000 000" type="text" name="nif" value="<?php echo htmlspecialchars($loggedUser->getNif()); ?>">
                         </label>
 
                         <label>
                             Contacto
-                            <input placeholder="+351 925 365 214" type="text" name="phoneNumber">
-                        </label>
-
-                        <label>
-                            País
-                            <input placeholder="Portugal" type="text" name="country">
+                            <input placeholder="+351 925 365 214" type="text" name="phoneNumber" value="<?php echo htmlspecialchars($loggedUser->phoneNumber); ?>">
                         </label>
 
                         <label>
                             Data de Nascimento
-                            <input placeholder="12/06/2001" type="text" name="birthday">
+                            <input placeholder="YYYY-MM-DD" type="text" name="birthday" value="<?php echo htmlspecialchars($loggedUser->birthDay); ?>">
                         </label>
                     </div>
-
-                    <input onclick="" onsubmit="" class="mt30 save-info-btn" type="submit" value="SALVAR">
+                        <input onclick="" onsubmit="" class="mt30 save-info-btn" type="submit" value="SALVAR">
+                    </form>
 
                 </div>
 
