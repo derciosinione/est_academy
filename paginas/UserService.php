@@ -44,6 +44,8 @@ class UserService implements UserInterface
 
     public function login($email, $password)
     {
+        $password = md5($password);
+
         $query = $this->getDefaultSqlQuery() . " AND (u.Email='$email' OR u.Username='$email') AND u.PasswordHash='$password'";
 
         $result = $this->db->executeSqlQuery($query);
@@ -62,12 +64,24 @@ class UserService implements UserInterface
         // TODO: Implement logOut() method.
     }
 
-    public function changePassword($password, $confirmPassword): bool
+    public function changePassword($email, $currentPassword, $password, $confirmPassword): GenericResponse
     {
-        if ($password != $confirmPassword) return false;
+        $user = $this->login($email, $currentPassword);
 
-        //TODO: Implementar codigo de alteracao da senha no banco de dados
-        return true;
+        if ($user==null){
+            return new GenericResponse(0, false, "Senha atual incorreta!");
+        }
+
+        $query = sprintf("UPDATE Users SET 
+                 PasswordHash = md5('%s') WHERE Id=%d", $password, $user->id);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel atualizar a senha, tente novamente!");
+        }
+
+        return new GenericResponse($user->id, true);
     }
 
     /**

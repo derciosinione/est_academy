@@ -71,6 +71,9 @@ if (!$response->success){
         'phoneNumber' => $phoneNumber,
         'birthday' => $birthday
     ];
+
+    header($redirectUrl);
+    exit();
 }
 
 $user = $service->getUserById($loggedUserId);

@@ -283,3 +283,5 @@ UPDATE Users SET AvatarUrl='docent-avatar.jpg' WHERE ProfileId in (2,3);
 UPDATE Users SET IsApproved=FALSE WHERE ProfileId=1 AND Id IN (23,20,18,15);
 
 UPDATE Users SET Email='derciosinione@gmail.com',Username='derciosionione', Nif='85125554', PhoneNumber='3232423', BirthDay='2000/03/01' WHERE Id=3;
+
+UPDATE Users SET Username=trim(Username), Email=trim(Email), PasswordHash=md5(PasswordHash) WHERE Id!=0;

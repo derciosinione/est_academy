@@ -7,7 +7,7 @@ interface UserInterface
 
     public function logOut();
 
-    public function changePassword($password, $confirmPassword);
+    public function changePassword($email, $currentPassword, $password, $confirmPassword);
 
     public function getUserById($userId);
 

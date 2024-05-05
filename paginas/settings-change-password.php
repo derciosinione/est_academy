@@ -38,6 +38,10 @@
             </div>
         </div>
 
+        <div style="width: 91%; margin: 0 auto;">
+            <?php include_once 'displayMessageIfExists.php'; ?>
+        </div>
+
         <!-- MAIN BODY -->
         <div class="main-body">
 
@@ -50,24 +54,26 @@
 
                 <div class="setting-container">
 
-                    <div class="input-box-row">
-                        <label>
-                            Senha antiga
-                            <input placeholder="****" type="password" name="oldPassword">
-                        </label>
+                    <form action="HandlerUpdateUserPassword.php" method="post">
+                        <div class="input-box-row">
+                            <label>
+                                Senha atual
+                                <input placeholder="****" type="password" name="currentPassword">
+                            </label>
 
-                        <label>
-                            Senha nova
-                            <input placeholder="****" type="password" name="newPassword">
-                        </label>
+                            <label>
+                                Senha nova
+                                <input placeholder="****" type="password" name="newPassword">
+                            </label>
 
-                        <label>
-                            Confirmar senha
-                            <input placeholder="****" type="password" name="confirmPassword">
-                        </label>
-                    </div>
+                            <label>
+                                Confirmar senha
+                                <input placeholder="****" type="password" name="confirmPassword">
+                            </label>
+                        </div>
 
-                    <input onclick="" onsubmit="" class="mt30 save-info-btn center" type="submit" value="SALVAR">
+                        <input onclick="" onsubmit="" class="mt30 save-info-btn center" type="submit" value="SALVAR">
+                    </form>
 
                 </div>
 

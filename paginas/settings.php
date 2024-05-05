@@ -57,7 +57,7 @@
 
                 <div class="setting-container">
 
-                    <form action="HandlerupdateUserInfo.php" method="post">
+                    <form action="HandlerUpdateUserInfo.php" method="post">
                         <div class="input-box">
                         <label>
                             Nome
