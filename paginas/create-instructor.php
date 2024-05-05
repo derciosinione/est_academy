@@ -27,7 +27,6 @@
             <div class="main-header-right">
                 <!-- Circular avatar -->
                 <?php include_once 'circularAvatar.php' ?>
-
             </div>
         </div>
 

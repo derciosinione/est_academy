@@ -153,8 +153,6 @@ class CourseService implements CourseInterface
                   WHERE Id = %d",
             $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl, $id);
 
-        echo $query;
-
         $result = $this->db->executeSqlQuery($query);
 
         if ($result == null) {

@@ -107,7 +107,7 @@ if(isset($_SESSION['loggedUser'])){
         <ul>
             <div class="active-sidebar-menu-line"></div>
             <li>
-                <a href="LogoutHandler.php">
+                <a href="HandlerLogout.php">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>

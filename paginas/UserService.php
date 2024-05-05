@@ -6,6 +6,7 @@ require_once __DIR__ . '/UserInterface.php';
 require_once __DIR__ . '/../basedados/basedados.h';
 require_once __DIR__ . '/Constants.php';
 require_once __DIR__ . '/UserModel.php';
+require_once __DIR__ . '/GenericResponse.php';
 
 class UserService implements UserInterface
 {
@@ -18,13 +19,14 @@ class UserService implements UserInterface
         $this->connection = $this->db->getConnection();
     }
 
-    public function getDefaultSqlQuery()
+    public function getDefaultSqlQuery(): string
     {
         return /** @lang text */ "
             SELECT
                 u.Id,
                 u.Name,
                 u.Email,
+                u.Username,
                 u.NIF,
                 u.ProfileId,
                 p.Name 'Profile',
@@ -42,38 +44,17 @@ class UserService implements UserInterface
 
     public function login($email, $password)
     {
-//        $password = md5($password);
-//        $query = "SELECT Id, Email, Name, PasswordHash FROM Users WHERE Email=? AND PasswordHash=?";
+        $query = $this->getDefaultSqlQuery() . " AND (u.Email='$email' OR u.Username='$email') AND u.PasswordHash='$password'";
 
-        $query = /** @lang sql */
-            "SELECT
-                u.Id,
-                u.Name,
-                u.Email,
-                u.ProfileId,
-                p.Name 'Profile',
-                u.AvatarUrl,
-                u.IsApproved
-            FROM Users u
-            JOIN Profiles p ON u.ProfileId = p.Id
-            WHERE 1=1
-            AND u.IsActive
-            AND u.Email=? 
-            AND u.PasswordHash=?";
+        $result = $this->db->executeSqlQuery($query);
 
-        $statement = $this->connection->prepare($query);
-        $statement->bind_param("ss", $email, $password);
+        if ($result == null) return null;
 
-        $row = $this->db->executeSqlCommand($statement);
+        $row = $result->fetch_assoc();
 
-        if ($row == null) return null;
+        if ($row==null) return null;
 
-        $user = new UserModel($row["Id"], $row["Name"], $row["Email"]);
-        $user->profileName = $row["Profile"];
-        $user->profileId = $row["ProfileId"];
-        $user->avatarUrl = $row["AvatarUrl"];
-
-        return $user;
+        return $this->userInstance($row);
     }
 
     public function logOut()
@@ -81,7 +62,7 @@ class UserService implements UserInterface
         // TODO: Implement logOut() method.
     }
 
-    public function changePassword($password, $confirmPassword)
+    public function changePassword($password, $confirmPassword): bool
     {
         if ($password != $confirmPassword) return false;
 
@@ -94,7 +75,7 @@ class UserService implements UserInterface
      *
      * @return userModel[] Array of userModel objects.
      */
-    public function getAllUserStaff()
+    public function getAllUserStaff(): array
     {
         $users = [];
         $query = "SELECT * FROM Users WHERE IsStaff";
@@ -186,7 +167,7 @@ class UserService implements UserInterface
     /**
      * @return UserModel[]
      */
-    public function getAllStudents()
+    public function getAllStudents(): array
     {
         $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
 
@@ -207,11 +188,12 @@ class UserService implements UserInterface
      * @param array $row
      * @return UserModel
      */
-    private function userInstance(array $row)
+    private function userInstance(array $row): UserModel
     {
         $user = new UserModel($row["Id"],
             $row["Name"],
             $row["Email"],
+            $row["Username"],
             $row["PhoneNumber"],
             $row["BirthDay"],
             $row["ProfileId"]);
@@ -224,4 +206,41 @@ class UserService implements UserInterface
 
         return $user;
     }
+
+    /**
+     * @param $id
+     * @param $name
+     * @param $username
+     * @param $email
+     * @param $nif
+     * @param $phoneNumber
+     * @param $birthDay
+     * @return GenericResponse
+     */
+    public function updateUserInfo($id, $name, $username, $email, $nif, $phoneNumber, $birthDay): GenericResponse
+    {
+        if (!Constants::isValidDateFormat($birthDay)) {
+            return new GenericResponse(0, false, "A data de nascimento deve estar no formato yyyy/mm/dd.");
+        }
+
+        $query = sprintf("UPDATE Users SET
+                     Name= '%s',
+                     Email='%s',
+                     Username='%s',
+                     Nif='%s',
+                     PhoneNumber='%s',
+                     BirthDay='%s'
+                  WHERE Id=%d",
+             $name, $email, $username, $nif, $phoneNumber, $birthDay, $id);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel atualizar as informações, tente novamente!");
+        }
+
+        return new GenericResponse($id, true);
+    }
+
+
 }

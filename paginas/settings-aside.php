@@ -1,6 +1,5 @@
 <?php
-/** @var UserModel $loggedUser */
-global $currentFileName;
+global $currentFileName, $loggedUser;
 ?>
 
 <div class="setting-aside">

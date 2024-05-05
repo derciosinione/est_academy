@@ -4,6 +4,7 @@ class UserModel
 {
     public $id;
     public $name;
+    public $username;
     public $email;
     private $nif;
     public $phoneNumber;
@@ -28,7 +29,7 @@ class UserModel
      * @param $birthDay
      * @param $profileId
      */
-    public function __construct($id = null, $name = null, $email = null, $phoneNumber = null, $birthDay = null, $profileId = null)
+    public function __construct($id = null, $name = null, $username = null,$email = null, $phoneNumber = null, $birthDay = null, $profileId = null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -36,6 +37,7 @@ class UserModel
         $this->phoneNumber = $phoneNumber;
         $this->birthDay = $birthDay;
         $this->profileId = $profileId;
+        $this->username = $username;
     }
 
     public function getNif()

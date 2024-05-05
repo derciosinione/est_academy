@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Profiles(
 CREATE TABLE IF NOT EXISTS Users (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(50) NOT NULL,
+    Username VARCHAR(30) UNICODE DEFAULT NULL,
     Nif varchar(20) UNIQUE DEFAULT NULL,
     Email VARCHAR(50) NOT NULL,
     PhoneNumber VARCHAR(20),
@@ -280,3 +281,5 @@ UPDATE Users SET AvatarUrl='studentavatar.jpg' WHERE ProfileId=1;
 UPDATE Users SET AvatarUrl='docent-avatar.jpg' WHERE ProfileId in (2,3);
 
 UPDATE Users SET IsApproved=FALSE WHERE ProfileId=1 AND Id IN (23,20,18,15);
+
+UPDATE Users SET Email='derciosinione@gmail.com',Username='derciosionione', Nif='85125554', PhoneNumber='3232423', BirthDay='2000/03/01' WHERE Id=3;

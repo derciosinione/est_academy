@@ -17,4 +17,6 @@ interface UserInterface
     public function getAllStudents();
 
     public function createManager($name, $email, $nif, $birthDay, $phoneNumber, $avatarUrl);
+
+    public function updateUserInfo($id, $name, $username, $email, $nif, $phoneNumber, $birthDay);
 }
