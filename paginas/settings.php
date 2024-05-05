@@ -13,7 +13,9 @@
 
 <div class="board">
     <!-- SIDE BAR -->
-    <?php include_once 'SideBarMenu.php' ?>
+    <?php
+        include_once 'SideBarMenu.php';
+    ?>
 
     <!-- MAIN ELEMENT  -->
     <main>
@@ -40,33 +42,9 @@
         <!-- MAIN BODY -->
         <div class="main-body">
 
-            <div class="setting-aside">
-                <div class="user-avatar">
-                    <img class="img-cover"
-                         src="https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                </div>
-                <div class="pl20 pr20 mt15 pb10">
-                    <h3>Angela de Jesus Derone</h3>
-                    <p class="blackOpacity mt5 smallText"><i class="fas fa-id-card"></i> Administrador</p>
-                </div>
-
-                <div class="horizontal-line"></div>
-
-                <nav>
-                    <ul>
-                        <li class="active-settings-menu"><a href="settings.php">Conta</a></li>
-                        <li><a href="settings-change-password.php">Senha</a></li>
-                        <li><a href="settings-about.php">Sobre</a></li>
-                        <li><a href="#">Usuários</a></li>
-                        <li><a href="#">Categorias</a></li>
-                        <li><a href="#">Estados</a></li>
-                    </ul>
-                </nav>
-
-            </div>
+            <?php include_once 'settings-aside.php' ?>
 
             <section>
-
                 <h3 class="mt15 ml15 mb15">Informações Pessoais</h3>
                 <div class="horizontal-line"></div>
 
