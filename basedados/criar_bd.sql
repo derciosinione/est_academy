@@ -166,7 +166,6 @@ VALUES
 ('Marcelo Lima', 'marcelo.lima@example.com', '+55234343434', NULL, '1993-08-14', 'senhadef', TRUE, TRUE, FALSE, 1, NOW(), NOW());
 
 
-
 INSERT INTO Categories (Name, IsActive, IsDeleted, CreatorId, CreatedAt, UpdatedAt) VALUES
 ('Diversos', TRUE, FALSE, 3, NOW(), NOW()),
 ('História', TRUE, FALSE, 3, NOW(), NOW()),
@@ -269,6 +268,15 @@ VALUES
 
 UPDATE Users SET PasswordHash='123456' WHERE Id!=0;
 
+INSERT INTO Users (Name, Email, PhoneNumber, AvatarUrl, BirthDay, PasswordHash, IsApproved, IsActive, IsDeleted, ProfileId, CreatedAt, UpdatedAt)
+VALUES
+    ('admin', 'admin', '+55123123123', NULL, '1992-05-01', 'admin', TRUE, TRUE, FALSE, 3, NOW(), NOW()),
+    ('docente', 'docente', '+55123123312', NULL, '1992-05-01', 'docente', TRUE, TRUE, FALSE, 2, NOW(), NOW()),
+    ('aluno', 'aluno', '+551231232', NULL, '1992-05-01', 'aluno', TRUE, TRUE, FALSE, 1, NOW(), NOW());
+
+
 UPDATE Users SET AvatarUrl='studentavatar.jpg' WHERE ProfileId=1;
+
+UPDATE Users SET AvatarUrl='docent-avatar.jpg' WHERE ProfileId in (2,3);
 
 UPDATE Users SET IsApproved=FALSE WHERE ProfileId=1 AND Id IN (23,20,18,15);
