@@ -95,6 +95,21 @@ section .inputs {
     margin-top: 60px;
 }
 
+.message-warning {
+    background-color: #F5365C;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    margin: 20px auto 0;
+    overflow: clip;
+
+    p {
+        color: white;
+        text-align: center;
+        overflow: clip;
+    }
+}
+
 @media (max-width: 1072px) {
 
     .bgImg {
