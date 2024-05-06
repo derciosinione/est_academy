@@ -187,4 +187,32 @@ class CourseService implements CourseInterface
         $course->setCategory($category);
         return $course;
     }
+
+    /**
+     * @param $id
+     * @param UserModel $loggedUser
+     * @return mixed
+     */
+    public function delete($id, $loggedUser)
+    {
+        $course = $this->getById($id);
+        if ($course == null) {
+            return new GenericResponse(0, false, "Curso não foi encontrado!");
+        }
+
+        if ($loggedUser->profileName != Constants::$adminId && $loggedUser->id != $course->creatorId) {
+            return new GenericResponse(0, false, "Não tens permisao para eliminar o curso!");
+        }
+
+        $query = sprintf("DELETE FROM Courses WHERE Id = %d", $id);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel eliminar o curso pretendido, tente novamente!");
+        }
+
+        return new GenericResponse($id, true);
+
+    }
 }

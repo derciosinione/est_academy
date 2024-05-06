@@ -204,10 +204,11 @@ class UserService implements UserInterface
      */
     private function userInstance(array $row): UserModel
     {
-        $user = new UserModel($row["Id"],
+        $user = new UserModel(
+            $row["Id"],
             $row["Name"],
-            $row["Email"],
             $row["Username"],
+            $row["Email"],
             $row["PhoneNumber"],
             $row["BirthDay"],
             $row["ProfileId"]);

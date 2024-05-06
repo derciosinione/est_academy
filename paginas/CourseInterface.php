@@ -10,4 +10,5 @@ interface CourseInterface
     public function create($creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl);
 
     public function update($id, $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl);
+    public function delete($id, $loggedUser);
 }
