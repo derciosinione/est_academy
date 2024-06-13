@@ -98,7 +98,7 @@ if (isset($_SESSION['form_data'])) {
 
             <!-- COURSE ITEM -->
 
-            <form action="CourseEditHandler.php?id=<?php echo $course->id ?>" method="post">
+            <form action="HandlerEditCourse.php?id=<?php echo $course->id ?>" method="post">
                 <div class="course-detail">
 
                     <div class="input-box">

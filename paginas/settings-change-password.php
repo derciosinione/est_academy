@@ -38,33 +38,14 @@
             </div>
         </div>
 
+        <div style="width: 91%; margin: 0 auto;">
+            <?php include_once 'displayMessageIfExists.php'; ?>
+        </div>
+
         <!-- MAIN BODY -->
         <div class="main-body">
 
-            <div class="setting-aside">
-                <div class="user-avatar">
-                    <img class="img-cover"
-                         src="https://images.unsplash.com/photo-1589156191108-c762ff4b96ab?q=80&w=3086&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                </div>
-                <div class="pl20 pr20 mt15 pb10">
-                    <h3>Angela de Jesus Derone</h3>
-                    <p class="blackOpacity mt5 smallText"><i class="fas fa-id-card"></i> Administrador</p>
-                </div>
-
-                <div class="horizontal-line"></div>
-
-                <nav>
-                    <ul>
-                        <li><a href="settings.php">Conta</a></li>
-                        <li class="active-settings-menu"><a href="settings-change-password.php">Senha</a></li>
-                        <li><a href="settings-about.php">Sobre</a></li>
-                        <li><a href="#">Usuários</a></li>
-                        <li><a href="#">Categorias</a></li>
-                        <li><a href="#">Estados</a></li>
-                    </ul>
-                </nav>
-
-            </div>
+            <?php include_once 'settings-aside.php' ?>
 
             <section>
 
@@ -73,24 +54,26 @@
 
                 <div class="setting-container">
 
-                    <div class="input-box-row">
-                        <label>
-                            Senha antiga
-                            <input placeholder="****" type="password" name="oldPassword">
-                        </label>
+                    <form action="HandlerUpdateUserPassword.php" method="post">
+                        <div class="input-box-row">
+                            <label>
+                                Senha atual
+                                <input placeholder="****" type="password" name="currentPassword">
+                            </label>
 
-                        <label>
-                            Senha nova
-                            <input placeholder="****" type="password" name="newPassword">
-                        </label>
+                            <label>
+                                Senha nova
+                                <input placeholder="****" type="password" name="newPassword">
+                            </label>
 
-                        <label>
-                            Confirmar senha
-                            <input placeholder="****" type="password" name="confirmPassword">
-                        </label>
-                    </div>
+                            <label>
+                                Confirmar senha
+                                <input placeholder="****" type="password" name="confirmPassword">
+                            </label>
+                        </div>
 
-                    <input onclick="" onsubmit="" class="mt30 save-info-btn center" type="submit" value="SALVAR">
+                        <input onclick="" onsubmit="" class="mt30 save-info-btn center" type="submit" value="SALVAR">
+                    </form>
 
                 </div>
 

@@ -18,11 +18,11 @@ if (empty($_POST['email']) || empty($_POST['password'])) {
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $_SESSION['warning_message'][] = "Invalid email format";;
-     header("Location: login.php");
-    exit();
-}
+//if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//    $_SESSION['warning_message'][] = "Invalid email format";;
+//     header("Location: login.php");
+//    exit();
+//}
 
 $userService = new UserService();
 
