@@ -97,9 +97,7 @@ HTML;
                 }
                 ?>
             </div>
-
         </div>
-
     </main>
 </div>
 

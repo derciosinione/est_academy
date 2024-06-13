@@ -2,14 +2,18 @@
 global $currentFileName;
 include 'RedirectNonLoggedUser.php';
 require_once "UserModel.php";
+require_once "Constants.php";
 
 /** @var string $currentFileName */
 $activeSettingsPages = array("settings", "account-profile", "settings-change-password", "settings-about");
+
+$loggedUser = new UserModel();
 
 if(isset($_SESSION['loggedUser'])){
     /** @var userModel $loggedUser */
     $loggedUser = unserialize($_SESSION['loggedUser']);
 }
+
 ?>
 
 
@@ -53,6 +57,10 @@ if(isset($_SESSION['loggedUser'])){
             </li>
         </ul>
 
+        <?php
+            if ($loggedUser->profileId!=Constants::$student){
+        ?>
+
         <ul <?php if ($currentFileName=='students') echo 'class="active-sidebar-menu"' ?>>
             <div class="active-sidebar-menu-line"></div>
             <li>
@@ -83,6 +91,10 @@ if(isset($_SESSION['loggedUser'])){
             </li>
         </ul>
 
+        <?php
+            }
+        ?>
+
         <ul <?php if (in_array($currentFileName, $activeSettingsPages)) echo 'class="active-sidebar-menu"' ?>>
             <div class="active-sidebar-menu-line"></div>
             <li><a href="settings.php">
@@ -95,7 +107,7 @@ if(isset($_SESSION['loggedUser'])){
         <ul>
             <div class="active-sidebar-menu-line"></div>
             <li>
-                <a href="LogoutHandler.php">
+                <a href="HandlerLogout.php">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>

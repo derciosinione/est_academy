@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
-@import url('main-body.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('main-body.css');
 
 
 * {
@@ -47,7 +47,7 @@ aside {
 
 .sidebar-my-profile {
     background-color: #F5F6FA;
-    height: 182px;
+    /*height: 182px;*/
     width: 182px;
     border-radius: 13px;
     margin: 20px auto 0;

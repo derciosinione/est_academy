@@ -231,7 +231,7 @@ input:hover
 /*input[type="email"]:hover,*/
 /*input[type="date"]:hover*/
 {
-    cursor: pointer;
+    /*cursor: pointer;*/
     border-color: #999;
 }
 
