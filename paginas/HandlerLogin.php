@@ -6,6 +6,7 @@ $_SESSION['warning_message'] = null;
 $message = [];
 
 include 'ShowErrorDetails.php';
+include 'helper.php';
 
 include 'UserService.php';
 
@@ -26,23 +27,4 @@ $password = $_POST['password'];
 
 $userService = new UserService();
 
-$myLogin = $userService->login($email, $password);
-
-if ($myLogin == null) {
-    $_SESSION['warning_message'][] = "Invalid Credential";
-    header("Location: login.php");
-    exit();
-}
-
-$_SESSION['loggedUser'] = serialize($myLogin);
-
-if(isset($_SESSION['redirect_url'])){
-    $redirect_url = $_SESSION['redirect_url'];
-    unset($_SESSION['redirect_url']);
-
-    header("Location: $redirect_url");
-    exit();
-}
-
-header("Location: dashboard.php");
-exit();
+makeLoginHelper($userService, $email, $password);

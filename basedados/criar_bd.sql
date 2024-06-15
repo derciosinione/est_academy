@@ -167,52 +167,40 @@ VALUES
 ('Marcelo Lima', 'marcelo.lima@example.com', '+55234343434', NULL, '1993-08-14', 'senhadef', TRUE, TRUE, FALSE, 1, NOW(), NOW());
 
 
-INSERT INTO Categories (Name, IsActive, IsDeleted, CreatorId, CreatedAt, UpdatedAt) VALUES
-('Diversos', TRUE, FALSE, 3, NOW(), NOW()),
-('História', TRUE, FALSE, 3, NOW(), NOW()),
-('Programação', TRUE, FALSE, 3, NOW(), NOW()),
-('Robótica', TRUE, FALSE, 3, NOW(), NOW()),
-('Gestão', TRUE, FALSE, 3, NOW(), NOW()),
-('Matemática', TRUE, FALSE, 3, NOW(), NOW()),
-('Desenvolvimento Web', TRUE, FALSE, 3, NOW(), NOW()),
-('Banco de Dados', TRUE, FALSE, 3, NOW(), NOW()),
-('Segurança da Informação', TRUE, FALSE, 3, NOW(), NOW()),
-('Ciência de Dados', TRUE, FALSE, 3, NOW(), NOW()),
-('Cloud Computing', TRUE, FALSE, 3, NOW(), NOW()),
-('Sistemas Operacionais', TRUE, FALSE, 3, NOW(), NOW()),
-('Desenvolvimento de Aplicativos Móveis', TRUE, FALSE, 3, NOW(), NOW());
-
+INSERT INTO Categories (Id, Name, IsActive, IsDeleted, CreatorId, CreatedAt, UpdatedAt) VALUES
+(8, 'Banco de Dados', TRUE, FALSE, 3, NOW(), NOW()),
+(10, 'Ciência de Dados', TRUE, FALSE, 3, NOW(), NOW()),
+(11, 'Cloud Computing', TRUE, FALSE, 3, NOW(), NOW()),
+(13, 'Desenvolvimento de Aplicativos Móveis', TRUE, FALSE, 3, NOW(), NOW()),
+(7, 'Desenvolvimento Web', TRUE, FALSE, 3, NOW(), NOW()),
+(1, 'Diversos', TRUE, FALSE, 3, NOW(), NOW()),
+(5, 'Gestão', TRUE, FALSE, 3, NOW(), NOW()),
+(2, 'História', TRUE, FALSE, 3, NOW(), NOW()),
+(6, 'Matemática', TRUE, FALSE, 3, NOW(), NOW()),
+(3, 'Programação', TRUE, FALSE, 3, NOW(), NOW()),
+(4, 'Robótica', TRUE, FALSE, 3, NOW(), NOW()),
+(9, 'Segurança da Informação', TRUE, FALSE, 3, NOW(), NOW()),
+(12, 'Sistemas Operacionais', TRUE, FALSE, 3, NOW(), NOW());
 
 INSERT INTO Courses (Name, MaxStudent, CategoryId, CreatorId, IsActive, IsDeleted, CreatedAt, UpdatedAt)
 VALUES
-('Introdução à Fotografia', 20, 1, 3, TRUE, FALSE, NOW(), NOW()),
-('Arte Moderna: História e Técnicas', 25, 1, 3, TRUE, FALSE, NOW(), NOW()),
-('Hobbies Criativos: Pintura e Desenho', 15, 1, 3, TRUE, FALSE, NOW(), NOW()),
-('História Mundial: da Antiguidade ao Século XX', 30, 2, 3, TRUE, FALSE, NOW(), NOW()),
-('A História do Brasil Contada por seus Monumentos', 25, 2, 3, TRUE, FALSE, NOW(), NOW()),
-('Grandes Civilizações Antigas', 20, 2, 3, TRUE, FALSE, NOW(), NOW()),
-('Introdução ao Desenvolvimento Web', 25, 3, 3, TRUE, FALSE, NOW(), NOW()),
-('Python para Iniciantes', 30, 3, 3, TRUE, FALSE, NOW(), NOW()),
-('JavaScript Avançado: Fundamentos e Práticas', 20, 3, 3, TRUE, FALSE, NOW(), NOW()),
-('Iniciação à Robótica com Arduino', 15, 4, 3, TRUE, FALSE, NOW(), NOW()),
-('Robótica Industrial: Automação e Controle', 20, 4, 3, TRUE, FALSE, NOW(), NOW()),
-('Inteligência Artificial em Robótica', 15, 4, 3, TRUE, FALSE, NOW(), NOW()),
-('Gestão de Projetos: Fundamentos e Práticas', 30, 5, 3, TRUE, FALSE, NOW(), NOW()),
-('Liderança e Tomada de Decisão', 25, 5, 3, TRUE, FALSE, NOW(), NOW()),
-('Administração Financeira', 20, 5, 3, TRUE, FALSE, NOW(), NOW()),
-('Álgebra Linear', 30, 6, 3, TRUE, FALSE, NOW(), NOW()),
-('Cálculo Diferencial e Integral', 25, 6, 3, TRUE, FALSE, NOW(), NOW()),
-('Estatística Aplicada', 20, 6, 3, TRUE, FALSE, NOW(), NOW()),
-('HTML5 e CSS3: Construindo Páginas Web', 25, 7, 3, TRUE, FALSE, NOW(), NOW()),
-('JavaScript Avançado: Frameworks e Bibliotecas', 20, 7, 3, TRUE, FALSE, NOW(), NOW()),
-('PHP para Desenvolvimento Web', 20, 7, 3, TRUE, FALSE, NOW(), NOW()),
-('Introdução ao MySQL', 25, 8, 3, TRUE, FALSE, NOW(), NOW()),
-('Modelagem de Dados com SQL', 20, 8, 3, TRUE, FALSE, NOW(), NOW()),
-('Administração de Bancos de Dados', 20, 8, 3, TRUE, FALSE, NOW(), NOW()),
-('Fundamentos de Segurança Cibernética', 30, 9, 3, TRUE, FALSE, NOW(), NOW()),
-('Ethical Hacking e Teste de Invasão', 25, 9, 3, TRUE, FALSE, NOW(), NOW()),
-('Criptografia e Segurança de Redes', 20, 9, 3, TRUE, FALSE, NOW(), NOW());
-
+    ('Introdução ao Desenvolvimento Web', 25, 3, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Python para Iniciantes', 30, 3, 3, TRUE, FALSE, NOW(), NOW()),
+    ('JavaScript Avançado: Fundamentos e Práticas', 20, 3, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Iniciação à Robótica com Arduino', 15, 4, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Robótica Industrial: Automação e Controle', 20, 4, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Inteligência Artificial em Robótica', 15, 4, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Cálculo Diferencial e Integral', 25, 6, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Estatística Aplicada', 20, 6, 3, TRUE, FALSE, NOW(), NOW()),
+    ('HTML5 e CSS3: Construindo Páginas Web', 25, 7, 3, TRUE, FALSE, NOW(), NOW()),
+    ('JavaScript Avançado: Frameworks e Bibliotecas', 20, 7, 3, TRUE, FALSE, NOW(), NOW()),
+    ('PHP para Desenvolvimento Web', 20, 7, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Introdução ao MySQL', 25, 8, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Modelagem de Dados com SQL', 20, 8, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Administração de Bancos de Dados', 20, 8, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Fundamentos de Segurança Cibernética', 30, 9, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Ethical Hacking e Teste de Invasão', 25, 9, 3, TRUE, FALSE, NOW(), NOW()),
+    ('Criptografia e Segurança de Redes', 20, 9, 3, TRUE, FALSE, NOW(), NOW());
 
 INSERT INTO EnrollmentsStatus (Name, IsActive, IsDeleted, CreatorId, CreatedAt, UpdatedAt)
 VALUES

@@ -1,4 +1,28 @@
-<?php include_once 'RedirectLoggedUser.php' ?>
+<?php //include_once 'RedirectLoggedUser.php'; ?>
+
+<?php
+session_start();
+
+$messages = [];
+
+if (isset($_SESSION["warning_message"])) {
+    $messages = $_SESSION['warning_message'];
+    unset($_SESSION['warning_message']);
+}
+
+$name = $email = $birthDay = $phoneNumber = $nif = $password = '';
+
+if (isset($_SESSION['form_data'])) {
+    $formData = $_SESSION['form_data'];
+    $name = $formData['name'];
+    $email = $formData['email'];
+    $birthDay = $formData['birthDay'];
+    $phoneNumber = $formData['phoneNumber'];
+    $nif = $formData['nif'];
+    $password = $formData['password'];
+    unset($_SESSION['form_data']);
+}
+?>
 
 <!doctype html>
 <html lang="en">
@@ -14,14 +38,11 @@
 </head>
 <body>
 
-
 <div class="login-container">
 
     <div class="bgImg">
         <img alt="" src="signupImg.png">
     </div>
-
-
     <div class="content">
         <nav>
             <a href="index.php"><span class="my-logo">My<span>Academy</span></span></a>
@@ -29,30 +50,36 @@
         </nav>
 
         <section>
-
-            <form action="dashboard.php" method="post">
+            <form action="HandlerCreateStudent.php" method="post">
                 <h1 class="fz27">Get Started With My Academy </h1>
                 <p class="fz18 blackOpacity">Getting started is easy</p>
 
+                <!-- Messages -->
+                <?php if ($messages) { ?>
+                    <div class="message-warning blue-color">
+                        <?php
+                        foreach ($messages as $message) echo "<p><b>*</b> $message </p>";
+                        ?>
+                    </div>
+                <?php } ?>
+
                 <div class="inputs">
-                    <input id="name" name="name" placeholder="Nome Completo" type="text">
-                    <input id="email" name="email" placeholder="Email" type="email">
-                    <input id="phoneNumber" name="email" placeholder="Contacto" type="text">
-                    <input id="" name="email" placeholder="Contacto" type="text">
-                    <input id="birthDay" name="birthDay" type="date">
-
-
+                    <input id="name" name="name" placeholder="Nome Completo" type="text" value="<?php echo htmlspecialchars($name); ?>">
+                    <input id="email" name="email" placeholder="Email" type="email" value="<?php echo htmlspecialchars($email); ?>">
+                    <input id="phoneNumber" name="phoneNumber" placeholder="Contacto" type="text" value="<?php echo htmlspecialchars($phoneNumber); ?>">
+                    <input id="nif" name="nif" placeholder="NIF" type="text" value="<?php echo htmlspecialchars($nif); ?>">
+                    <input id="birthDay" name="birthDay" type="date" value="<?php echo htmlspecialchars($birthDay); ?>">
                     <div class="password-div">
-                        <input id="password" name="password" placeholder="Password" type="password">
+                        <input id="password" name="password" placeholder="Password" type="password" value="<?php echo htmlspecialchars($password); ?>">
                         <span class="toggle-password" onclick="togglePasswordVisibility()"><i
-                                class="fas fa-eye blackOpacity"></i></span>
+                                    class="fas fa-eye blackOpacity"></i></span>
                     </div>
 
                     <div class="password-div">
-                        <input id="confirm-password" name="confirm-password" placeholder="Confirmar Password"
+                        <input id="confirm-password" name="confirmPassword" placeholder="Confirmar Password"
                                type="password">
                         <span class="toggle-password" onclick="toggleConfirmPasswordVisibility()"><i
-                                class="fas fa-eye blackOpacity"></i></span>
+                                    class="fas fa-eye blackOpacity"></i></span>
                     </div>
 
                     <input type="submit" value="Criar Conta">
