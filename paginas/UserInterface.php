@@ -15,6 +15,9 @@ interface UserInterface
 
     public function getAllUserStaff();
     public function getAllStudents();
+    public function getAllInstructors();
+    public function getAllAdmin();
+    public function getAllUserByProfile($profileId);
 
     public function createUser($name, $email, $nif, $birthDay, $phoneNumber, $password, $profileId, $avatarUrl);
     public function createStudent($name, $email, $nif, $birthDay, $phoneNumber, $password, $avatarUrl);

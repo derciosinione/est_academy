@@ -151,7 +151,32 @@ class UserService implements UserInterface
      */
     public function getAllStudents(): array
     {
-        $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
+        return $this->getAllUserByProfile(Constants::$student);
+    }
+
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllInstructors(): array
+    {
+        return $this->getAllUserByProfile(Constants::$instructor);
+    }
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllAdmin(): array
+    {
+        return $this->getAllUserByProfile(Constants::$adminId);
+    }
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllUserByProfile($profileId): array
+    {
+        $query = $this->getDefaultSqlQuery() . " and u.ProfileId=$profileId ". $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
 
         $result = $this->db->executeSqlQuery($query);
 
@@ -290,4 +315,5 @@ class UserService implements UserInterface
 
         return new GenericResponse($userId, true);
     }
+
 }
