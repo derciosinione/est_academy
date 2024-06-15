@@ -5,6 +5,7 @@ require_once "UserModel.php";
 require_once "Constants.php";
 
 /** @var string $currentFileName */
+
 $activeSettingsPages = array("settings", "account-profile", "settings-change-password", "settings-about");
 
 $loggedUser = new UserModel();
@@ -71,7 +72,7 @@ if(isset($_SESSION['loggedUser'])){
             </li>
         </ul>
 
-        <ul <?php if ($currentFileName=='instructors' || $currentFileName=="create-instructor") echo 'class="active-sidebar-menu"' ?>>
+        <ul <?php if ($currentFileName=='instructors') echo 'class="active-sidebar-menu"' ?>>
             <div class="active-sidebar-menu-line"></div>
             <li>
                 <a href="instructors.php">
@@ -81,7 +82,7 @@ if(isset($_SESSION['loggedUser'])){
             </li>
         </ul>
 
-        <ul <?php if ($currentFileName=='admin') echo 'class="active-sidebar-menu"' ?>>
+        <ul <?php if ($currentFileName=='admin' || $currentFileName=="create-user") echo 'class="active-sidebar-menu"' ?>>
             <div class="active-sidebar-menu-line"></div>
             <li>
                 <a href="admin.php">

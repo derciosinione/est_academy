@@ -145,38 +145,6 @@ class UserService implements UserInterface
         return $user;
     }
 
-    /**
-     * if the user was created it returns the userId, otherwise it returns the error message
-     * @param $name
-     * @param $email
-     * @param $nif
-     * @param $birthDay
-     * @param string $phoneNumber
-     * @param string $avatarUrl
-     * @return integer|string
-     */
-    public function createManager($name, $email, $nif, $birthDay, $phoneNumber = "", $avatarUrl = "")
-    {
-        //TODO: Get the manager profile id from database
-        //TODO: Implement method to upload image
-        //TODO: Update the username size in database
-
-        $managerProfile = Constants::$managerId;
-
-        $query = sprintf("INSERT INTO Users (
-            Name, Email, UserName, Nif, BirthDay, PhoneNumber, 
-            ProfileId, AvatarUrl, IsStaff) VALUES 
-            ('%s', '%s', '%s', '%s', '%s', '%s', %d,'%s', true)",
-            $name, $email, $email, $nif, $birthDay, $phoneNumber,
-            $managerProfile, 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-
-        $userId = $this->db->executeInsertQuery($query);
-
-        if ($userId == null || $userId == 0) return "Nao foi possivel criar o gerente";
-
-        return $userId;
-    }
-
 
     /**
      * @return UserModel[]
@@ -258,4 +226,68 @@ class UserService implements UserInterface
     }
 
 
+    /**
+     * @param $name
+     * @param $email
+     * @param $nif
+     * @param $birthDay
+     * @param $phoneNumber
+     * @param $password
+     * @param $avatarUrl
+     * @return GenericResponse
+     * */
+    public function createStudent($name, $email, $nif, $birthDay, $phoneNumber, $password, $avatarUrl): GenericResponse
+    {
+        $managerProfile = Constants::$student;
+        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $managerProfile, $password, false, $avatarUrl);
+    }
+
+    /**
+     * if the user was created it returns the userId, otherwise it returns the error message
+     * @param $name
+     * @param $email
+     * @param $nif
+     * @param $birthDay
+     * @param string $phoneNumber
+     * @param string $password
+     * @param int $profileId
+     * @param string $avatarUrl
+     * @return GenericResponse
+     */
+    public function createUser($name, $email, $nif, $birthDay, $phoneNumber = "", $password="", $profileId=2, $avatarUrl = ""): GenericResponse
+    {
+        $avatarUrl = 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $profileId, $password, true, $avatarUrl);
+    }
+
+    /**
+     * if the user was created it returns the userId, otherwise it returns the error message
+     * @param $name
+     * @param $email
+     * @param $nif
+     * @param $birthDay
+     * @param string $phoneNumber
+     * @param int $profileId
+     * @param string $password
+     * @param $isApproved
+     * @param string $avatarUrl
+     * @return GenericResponse
+     */
+    private function createGenericUser($name, $email, $nif, $birthDay, string $phoneNumber, int $profileId, string $password, $isApproved, string $avatarUrl = ""): GenericResponse
+    {
+        $query = sprintf("INSERT INTO Users (
+            Name, Email, UserName, Nif, BirthDay, PhoneNumber, 
+            ProfileId, AvatarUrl, PasswordHash, IsApproved, IsActive) VALUES 
+            ('%s', '%s', '%s', '%s', '%s', '%s', %d,'%s', '%s', %d, true)",
+            $name, $email, $email, $nif, $birthDay, $phoneNumber,
+            $profileId, $avatarUrl, md5($password), $isApproved);
+
+        $userId = $this->db->executeInsertQuery($query);
+
+        if ($userId == null || $userId == 0){
+            return new GenericResponse(0, false, "Não foi possivel criar o usuario, tente novamente!");
+        }
+
+        return new GenericResponse($userId, true);
+    }
 }
