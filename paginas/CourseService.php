@@ -6,6 +6,7 @@ require_once __DIR__ . '/CourseInterface.php';
 require_once __DIR__ . '/UserInterface.php';
 require_once __DIR__ . '/CategoryModel.php';
 require_once __DIR__ . '/UserModel.php';
+require_once __DIR__ . '/RegistrationModel.php';
 require_once __DIR__ . '/CourseModel.php';
 require_once __DIR__ . '/GenericResponse.php';
 require_once __DIR__ . '/../basedados/basedados.h';
@@ -166,7 +167,7 @@ class CourseService implements CourseInterface
      * @param array $row
      * @return CourseModel
      */
-    private function courseInstance(array $row)
+    private function courseInstance(array $row): CourseModel
     {
         $course = new CourseModel();
         $course->setId($row["Id"]);
@@ -243,5 +244,60 @@ class CourseService implements CourseInterface
         if ($row==null) return null;
 
         return $row["TotalStudent"];
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getAllStudentRegistrations()
+    {
+        $query = /** @lang text */ "
+            SELECT SE.Id,
+               U.Name StudentName,
+               U.Email,
+               U.AvatarUrl,
+               C.Name Course,
+               ES.Name Status,
+               SE.EnrollmentsStatusId,
+               SE.CreatedAt
+            FROM StudentEnrollments SE
+                JOIN Users U ON SE.StudentId = U.Id
+                JOIN Courses C ON SE.CourseId = C.Id
+                JOIN EnrollmentsStatus ES ON SE.EnrollmentsStatusId = ES.Id
+            WHERE 1=1
+                AND !SE.IsDeleted"
+            . $this->db->getOrderBy("SE") . $this->db->getQueryLimit(10);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) return null;
+
+        $registrations = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $registrations [] = $this->registrationsInstance($row);
+        }
+
+        return $registrations;
+    }
+
+
+    /**
+     * @param array $row
+     * @return RegistrationModel
+     */
+    private function registrationsInstance(array $row): RegistrationModel
+    {
+        $data = new RegistrationModel();
+        $data->id = $row["Id"];
+        $data->studentName = $row["StudentName"];
+        $data->email = $row["Email"];
+        $data->avatarUrl = $row["AvatarUrl"];
+        $data->course = $row["Course"];
+        $data->status = $row["Status"];
+        $data->enrollmentsStatusId = $row["EnrollmentsStatusId"];
+        $data->setCreatedAt($row["CreatedAt"]);
+
+        return $data;
     }
 }

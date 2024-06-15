@@ -3,6 +3,7 @@
 interface CourseInterface
 {
     public function getAll();
+    public function getAllStudentRegistrations();
     public function getById($id);
 
     public function getAllByCategory($categoryId);

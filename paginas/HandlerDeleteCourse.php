@@ -10,6 +10,8 @@ $loggedUser = getLoggedUser();
 unset($_SESSION['form_data']);
 unset($_SESSION['error_message']);
 
+$_SESSION['success_message'] = [];
+
 if (!isset($_GET["id"])) {
     header("Location: 404.php");
     $_SESSION['404_message'] = "Informe o identificado do curso";
@@ -38,6 +40,5 @@ if (!$response->success){
 }
 
 $_SESSION['success_message'][] = "Curso $courseId eliminado com sucesso";
-
 header("Location: courses.php");
 exit();
