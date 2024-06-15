@@ -10,7 +10,7 @@ $activeSettingsPages = array("settings", "account-profile", "settings-change-pas
 
 $loggedUser = new UserModel();
 
-if(isset($_SESSION['loggedUser'])){
+if (isset($_SESSION['loggedUser'])) {
     /** @var userModel $loggedUser */
     $loggedUser = unserialize($_SESSION['loggedUser']);
 }
@@ -28,7 +28,7 @@ if(isset($_SESSION['loggedUser'])){
 
     <!-- SIDE BAR MENU -->
     <div class="sidebar-menu">
-        <ul <?php if ($currentFileName=='dashboard') echo 'class="active-sidebar-menu"' ?>>
+        <ul <?php if ($currentFileName == 'dashboard') echo 'class="active-sidebar-menu"' ?>>
             <div class="active-sidebar-menu-line"></div>
             <li>
                 <a href="dashboard.php">
@@ -38,7 +38,7 @@ if(isset($_SESSION['loggedUser'])){
             </li>
         </ul>
 
-        <ul <?php if ($currentFileName=='registrations') echo 'class="active-sidebar-menu"' ?>>
+        <ul <?php if ($currentFileName == 'registrations') echo 'class="active-sidebar-menu"' ?>>
             <div class="active-sidebar-menu-line"></div>
             <li>
                 <a href="registrations.php">
@@ -48,7 +48,7 @@ if(isset($_SESSION['loggedUser'])){
             </li>
         </ul>
 
-        <ul <?php if ($currentFileName=='courses') echo 'class="active-sidebar-menu"' ?>>
+        <ul <?php if ($currentFileName == 'courses' || $currentFileName == "course-detail") echo 'class="active-sidebar-menu"' ?>>
             <div class="active-sidebar-menu-line"></div>
             <li>
                 <a href="courses.php">
@@ -59,41 +59,46 @@ if(isset($_SESSION['loggedUser'])){
         </ul>
 
         <?php
-            if ($loggedUser->profileId!=Constants::$student){
-        ?>
+        if ($loggedUser->profileId != Constants::$student) {
+            ?>
 
-        <ul <?php if ($currentFileName=='students') echo 'class="active-sidebar-menu"' ?>>
-            <div class="active-sidebar-menu-line"></div>
-            <li>
-                <a href="students.php">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Alunos</span>
-                </a>
-            </li>
-        </ul>
+            <ul <?php if ($currentFileName == 'students') echo 'class="active-sidebar-menu"' ?>>
+                <div class="active-sidebar-menu-line"></div>
+                <li>
+                    <a href="students.php">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Alunos</span>
+                    </a>
+                </li>
+            </ul>
 
-        <ul <?php if ($currentFileName=='instructors') echo 'class="active-sidebar-menu"' ?>>
-            <div class="active-sidebar-menu-line"></div>
-            <li>
-                <a href="instructors.php">
-                    <i class="fas fa-user-tie"></i>
-                    <span>Docentes</span>
-                </a>
-            </li>
-        </ul>
+            <ul <?php if ($currentFileName == 'instructors') echo 'class="active-sidebar-menu"' ?>>
+                <div class="active-sidebar-menu-line"></div>
+                <li>
+                    <a href="instructors.php">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Docentes</span>
+                    </a>
+                </li>
+            </ul>
 
-        <ul <?php if ($currentFileName=='admin' || $currentFileName=="create-user") echo 'class="active-sidebar-menu"' ?>>
-            <div class="active-sidebar-menu-line"></div>
-            <li>
-                <a href="admin.php">
-                    <i class="fas fa-user-shield"></i>
-                    <span>Admin</span>
-                </a>
-            </li>
-        </ul>
+            <?php
+            if ($loggedUser->profileId != Constants::$instructor) {
+                ?>
+
+                <ul <?php if ($currentFileName == 'admin' || $currentFileName == "create-user" || $currentFileName == "user-detail") echo 'class="active-sidebar-menu"' ?>>
+                    <div class="active-sidebar-menu-line"></div>
+                    <li>
+                        <a href="admin.php">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Admin</span>
+                        </a>
+                    </li>
+                </ul>
 
         <?php
             }
+        }
         ?>
 
         <ul <?php if (in_array($currentFileName, $activeSettingsPages)) echo 'class="active-sidebar-menu"' ?>>
@@ -124,7 +129,9 @@ if(isset($_SESSION['loggedUser'])){
             <div class="user-information">
                 <p class="blackOpacity smallText"><?php echo $loggedUser->profileName ?></p>
                 <p class="bold blackText"><?php echo $loggedUser->name ?></p>
-                <a href="settings.php"><button>Ver Perfil</button></a>
+                <a href="settings.php">
+                    <button>Ver Perfil</button>
+                </a>
             </div>
         </div>
     </div>

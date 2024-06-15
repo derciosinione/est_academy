@@ -1,3 +1,9 @@
+<?php
+include_once 'Utils.php';
+include 'ShowErrorDetails.php';
+require_once 'CourseService.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,10 +74,6 @@
                 </div>
             </div>
 
-
-
-
-
             <div class="table-container">
                 <table>
                     <thead>
@@ -84,28 +86,43 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <?php
+                    include_once 'RegistrationModel.php';
+
+                    /** @var RegistrationModel $data */
+
+                    $courseService = new CourseService();
+                    $registrations = $courseService->getAllStudentRegistrations();
+
+                    $courses = $courseService->getAll();
+
+                    foreach ($registrations as $data) {
+
+                        $formatedCreatedAt = $data->getCreatedAt();
+
+                        echo <<<HTML
+                        <tr>
                         <td class="td-line">
                             <div class="avatar">
-                                <img src="studentavatar.jpg">
+                                <img src="$data->avatarUrl">
                             </div>
                             <div>
-                                Dércio Sinione Derone
-                                <p class="blackOpacity mt5 smallText">derciosinione@email.com</p>
+                                $data->studentName
+                                <p class="blackOpacity mt5 smallText">$data->email</p>
                             </div>
                         </td>
-                        <td>Informatica Movel</td>
-                        <td>May 26, 2019</td>
-                        <td><span data-status="pendente">Pendente</span></td>
+                        <td>$data->course</td>
+                        <td>$formatedCreatedAt</td>
+                        <td><span data-status="$data->enrollmentsStatusId">$data->status</span></td>
                         <td>
                             <div class="table-actions">
-                                <a href="#">
+                                <a href="registrationApproveHandler.php?id=$data->id">
                                     <div class="tooltip">
                                         <i class="fas fa-check-double green-text"></i>
                                         <span class="tooltipText">Aceitar inscrição do aluno</span>
                                     </div>
                                 </a>
-                                <a href="#">
+                                <a href="registrationApproveHandler.php?id=$data->id">
                                     <div class="tooltip">
                                         <i class="fas fa-times red-text" style="font-size: 22px"></i>
                                         <span class="tooltipText">Recusar inscrição do aluno</span>
@@ -120,118 +137,9 @@
                             </div>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td class="td-line">
-                            <div class="avatar">
-                                <img src="studentavatar.jpg">
-                            </div>
-                            <div>
-                                Dércio Sinione Derone
-                                <p class="blackOpacity mt5 smallText">derciosinione@email.com</p>
-                            </div>
-                        </td>
-                        <td>Informatica Movel</td>
-                        <td>May 26, 2019</td>
-                        <td><span data-status="aprovado">Aprovado</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-check-double green-text"></i>
-                                        <span class="tooltipText">Aceitar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-times red-text" style="font-size: 22px"></i>
-                                        <span class="tooltipText">Recusar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fa fa-info-circle"></i>
-                                        <span class="tooltipText">Informações da inscrição.</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-line">
-                            <div class="avatar">
-                                <img src="studentavatar.jpg">
-                            </div>
-                            <div>
-                                Dércio Sinione Derone
-                                <p class="blackOpacity mt5 smallText">derciosinione@email.com</p>
-                            </div>
-                        </td>
-                        <td>Informatica Movel</td>
-                        <td>May 26, 2019</td>
-                        <td><span data-status="reprovado">Reprovado</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-check-double green-text"></i>
-                                        <span class="tooltipText">Aceitar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-times red-text" style="font-size: 22px"></i>
-                                        <span class="tooltipText">Recusar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fa fa-info-circle"></i>
-                                        <span class="tooltipText">Informações da inscrição.</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-line">
-                            <div class="avatar">
-                                <img src="studentavatar.jpg">
-                            </div>
-                            <div>
-                                Dércio Sinione Derone
-                                <p class="blackOpacity mt5 smallText">derciosinione@email.com</p>
-                            </div>
-                        </td>
-                        <td>Informatica Movel</td>
-                        <td>May 26, 2019</td>
-                        <td><span data-status="pendente">Pendente</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-check-double green-text"></i>
-                                        <span class="tooltipText">Aceitar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-times red-text" style="font-size: 22px"></i>
-                                        <span class="tooltipText">Recusar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fa fa-info-circle"></i>
-                                        <span class="tooltipText">Informações da inscrição.</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
+HTML;
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>

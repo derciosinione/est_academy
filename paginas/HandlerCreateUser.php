@@ -15,7 +15,7 @@ $message = [];
 $errors = [];
 
 //TODO: Buscar o perfil Admin na base de dados e fazer a comparação
-if ($user->profileId!=Constants::$adminId){
+if ($user->profileId != Constants::$adminId) {
     $errors[] = "Esta funcionalidade só é permitido para Administradores.";
     $_SESSION['error_message'] = $errors;
 
@@ -29,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
 $redirectUrl = "Location: ";
 
-
 $name = htmlspecialchars($_POST['name']);
 $email = htmlspecialchars($_POST['email']);
 $birthDay = htmlspecialchars($_POST['birthDay']);
@@ -39,7 +38,7 @@ $profileId = htmlspecialchars($_POST['profileId']);
 
 $errors = userValidator($name, $email, $phoneNumber, $nif);
 
-if (empty($profileId) || $profileId <= 0){
+if (empty($profileId) || $profileId <= 0) {
     $errors[] = "Informe o perfil do usuario.";
 }
 
@@ -90,7 +89,7 @@ $response = $userService->createUser(
     $profileId,
     $avatarUrl);
 
-if (!$response->success){
+if (!$response->success) {
 
     $_SESSION['error_message'][] = $response->errorMessage;
 
