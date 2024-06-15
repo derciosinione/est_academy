@@ -204,6 +204,12 @@ class CourseService implements CourseInterface
             return new GenericResponse(0, false, "Não tens permisao para eliminar o curso!");
         }
 
+        $totalStudents = $this->getTotalStudent($id);
+
+        if ($totalStudents > 0){
+            return new GenericResponse(0, false, "Este curso não pode ser eliminado porque tem $totalStudents alunos inscritos!");
+        }
+
         $query = sprintf("DELETE FROM Courses WHERE Id = %d", $id);
 
         $result = $this->db->executeSqlQuery($query);
@@ -214,5 +220,28 @@ class CourseService implements CourseInterface
 
         return new GenericResponse($id, true);
 
+    }
+
+    /**
+     * @param $courseId
+     * @return mixed
+     */
+    public function getTotalStudent($courseId)
+    {
+        $query = /** @lang text */ "
+            SELECT 
+                  COUNT(Id) TotalStudent
+              FROM StudentEnrollments
+            WHERE CourseId = $courseId";
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) return null;
+
+        $row = $result->fetch_assoc();
+
+        if ($row==null) return null;
+
+        return $row["TotalStudent"];
     }
 }
