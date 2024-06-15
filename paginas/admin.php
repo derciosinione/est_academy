@@ -56,7 +56,6 @@ $service = new UserService();
                     <div class="more-option" id="more-option">
                         <p>Mais opções</p>
                         <hr>
-
                     </div>
                 </div>
             </div>
