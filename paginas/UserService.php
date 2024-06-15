@@ -318,4 +318,23 @@ class UserService implements UserInterface
         return new GenericResponse($userId, true);
     }
 
+    /**
+     * @param $id
+     * @return GenericResponse
+     */
+    public function deleteUser($id) : GenericResponse
+    {
+        $query = sprintf("UPDATE Users SET
+                     IsActive= false,
+                     IsDeleted=true
+                  WHERE Id=%d", $id);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel eliminar o usuario, tente novamente!");
+        }
+
+        return new GenericResponse(0, true);
+    }
 }

@@ -75,8 +75,13 @@ if (isset($_SESSION['form_data'])) {
 
         <!-- MAIN BODY -->
         <div class="main-body">
+
             <div class="main-description">
                 <h2>Detalhes de Usuário</h2>
+
+                <div>
+                    <a href="HandlerDeleteUser.php?id=<?php echo $user->id ?>"><button onclick="" class="red-color">ELIMINAR</button></a>
+                </div>
             </div>
 
             <!-- DISPLAY SERVER MESSAGES -->
