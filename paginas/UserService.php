@@ -218,28 +218,30 @@ class UserService implements UserInterface
     /**
      * @param $id
      * @param $name
-     * @param $username
      * @param $email
      * @param $nif
      * @param $phoneNumber
+     * @param $profileId
      * @param $birthDay
      * @return GenericResponse
      */
-    public function updateUserInfo($id, $name, $username, $email, $nif, $phoneNumber, $birthDay): GenericResponse
+    public function updateUserInfo($id, $name, $email, $nif, $phoneNumber, $profileId, $birthDay): GenericResponse
     {
         if (!Constants::isValidDateFormat($birthDay)) {
             return new GenericResponse(0, false, "A data de nascimento deve estar no formato yyyy/mm/dd.");
         }
 
+        if ($nif=='Não Informado') $nif = null;
+
         $query = sprintf("UPDATE Users SET
                      Name= '%s',
                      Email='%s',
-                     Username='%s',
                      Nif='%s',
                      PhoneNumber='%s',
-                     BirthDay='%s'
+                     BirthDay='%s',
+                     ProfileId=%d
                   WHERE Id=%d",
-             $name, $email, $username, $nif, $phoneNumber, $birthDay, $id);
+             $name, $email, $nif, $phoneNumber, $birthDay, $profileId, $id);
 
         $result = $this->db->executeSqlQuery($query);
 
