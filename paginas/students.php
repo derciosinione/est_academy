@@ -75,6 +75,9 @@ $service = new UserService();
                 </div>
             </div>
 
+            <!-- DISPLAY SERVER MESSAGES -->
+            <?php include 'displayMessageIfExists.php' ?>
+
             <div class="cards-container">
 
                 <?php

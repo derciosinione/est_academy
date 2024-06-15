@@ -151,7 +151,32 @@ class UserService implements UserInterface
      */
     public function getAllStudents(): array
     {
-        $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
+        return $this->getAllUserByProfile(Constants::$student);
+    }
+
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllInstructors(): array
+    {
+        return $this->getAllUserByProfile(Constants::$instructor);
+    }
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllAdmin(): array
+    {
+        return $this->getAllUserByProfile(Constants::$adminId);
+    }
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllUserByProfile($profileId): array
+    {
+        $query = $this->getDefaultSqlQuery() . " and u.ProfileId=$profileId ". $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
 
         $result = $this->db->executeSqlQuery($query);
 
@@ -193,28 +218,30 @@ class UserService implements UserInterface
     /**
      * @param $id
      * @param $name
-     * @param $username
      * @param $email
      * @param $nif
      * @param $phoneNumber
+     * @param $profileId
      * @param $birthDay
      * @return GenericResponse
      */
-    public function updateUserInfo($id, $name, $username, $email, $nif, $phoneNumber, $birthDay): GenericResponse
+    public function updateUserInfo($id, $name, $email, $nif, $phoneNumber, $profileId, $birthDay): GenericResponse
     {
         if (!Constants::isValidDateFormat($birthDay)) {
             return new GenericResponse(0, false, "A data de nascimento deve estar no formato yyyy/mm/dd.");
         }
 
+        if ($nif=='Não Informado') $nif = null;
+
         $query = sprintf("UPDATE Users SET
                      Name= '%s',
                      Email='%s',
-                     Username='%s',
                      Nif='%s',
                      PhoneNumber='%s',
-                     BirthDay='%s'
+                     BirthDay='%s',
+                     ProfileId=%d
                   WHERE Id=%d",
-             $name, $email, $username, $nif, $phoneNumber, $birthDay, $id);
+             $name, $email, $nif, $phoneNumber, $birthDay, $profileId, $id);
 
         $result = $this->db->executeSqlQuery($query);
 
@@ -289,5 +316,25 @@ class UserService implements UserInterface
         }
 
         return new GenericResponse($userId, true);
+    }
+
+    /**
+     * @param $id
+     * @return GenericResponse
+     */
+    public function deleteUser($id) : GenericResponse
+    {
+        $query = sprintf("UPDATE Users SET
+                     IsActive= false,
+                     IsDeleted=true
+                  WHERE Id=%d", $id);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel eliminar o usuario, tente novamente!");
+        }
+
+        return new GenericResponse(0, true);
     }
 }
