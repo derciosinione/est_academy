@@ -295,7 +295,7 @@ class UserService implements UserInterface
     {
         $query = sprintf("INSERT INTO Users (
             Name, Email, UserName, Nif, BirthDay, PhoneNumber, 
-            ProfileId, AvatarUrl, PasswordHash, IsStaff) VALUES 
+            ProfileId, AvatarUrl, PasswordHash, IsActive) VALUES 
             ('%s', '%s', '%s', '%s', '%s', '%s', %d,'%s', '%s', true)",
             $name, $email, $email, $nif, $birthDay, $phoneNumber,
             $profileId, $avatarUrl, md5($password));
