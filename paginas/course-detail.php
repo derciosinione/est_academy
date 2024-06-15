@@ -167,7 +167,9 @@ if (isset($_SESSION['form_data'])) {
                     <div class="course-details-buttons mt20">
                         <input onclick="updateDescriptionContent()" onsubmit="updateDescriptionContent()" class="mb10"
                                type="submit" value="EDITAR">
-                        <input class="red-color" onclick="hideModalAddCourse()" type="button" value="ELIMINAR">
+                        <a href="HandlerDeleteCourse.php?id=<?php echo $course->id ?>">
+                            <input class="red-color" onclick="hideModalAddCourse()" type="button" value="ELIMINAR">
+                        </a>
                     </div>
                 </div>
             </form>
