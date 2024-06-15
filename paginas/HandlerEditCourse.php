@@ -45,7 +45,7 @@ if (empty($name)) {
     $errors[] = "O nome do curso é um campo obrigatorio.";
 }
 
-if (empty($category) || $category < 0) {
+if (empty($category) || $category <= 0) {
     $errors[] = "Informe a categoria.";
 }
 

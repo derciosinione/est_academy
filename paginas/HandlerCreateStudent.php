@@ -7,6 +7,9 @@ include 'ShowErrorDetails.php';
 
 include 'UserService.php';
 
+unset($_SESSION['form_data']);
+unset($_SESSION['warning_message']);
+
 $_SESSION['success_message'] = null;
 $_SESSION['warning_message'] = null;
 $message = [];
@@ -17,30 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $errors[] = "Erro no envio do formulário.";
 }
 
-unset($_SESSION['form_data']);
-unset($_SESSION['warning_message']);
-
 $name = htmlspecialchars($_POST['name']);
 $email = htmlspecialchars($_POST['email']);
 $birthDay = htmlspecialchars($_POST['birthDay']);
 $password = htmlspecialchars($_POST['password']);
 $phoneNumber = htmlspecialchars($_POST['phoneNumber']);
 $nif = htmlspecialchars($_POST['nif']);
+
+$errors = userValidator($name, $email, $phoneNumber, $nif);
+
 $password = htmlspecialchars($_POST['password']);
 $confirmPassword = htmlspecialchars($_POST['confirmPassword']);
-
-
-if (empty($name)) {
-    $errors[] = "O nome é um campo obrigatorio";
-}
-
-if (empty($email)) {
-    $errors[] = "O email é um campo obrigatorio";
-}
-
-if (empty($phoneNumber)) {
-    $errors[] = "O telefone é um campo obrigatorio";
-}
 
 if (empty($password)) {
     $errors[] = "Informe uma senha";

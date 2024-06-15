@@ -29,3 +29,27 @@ function makeLoginHelper(UserService $userService, string $email, string $passwo
     header("Location: dashboard.php");
     exit();
 }
+
+
+function userValidator($name, $email, $phoneNumber, $nif): array
+{
+    $errors = [];
+
+    if (empty($name)) {
+        $errors[] = "O nome é um campo obrigatorio";
+    }
+
+    if (empty($email)) {
+        $errors[] = "O email é um campo obrigatorio";
+    }
+
+    if (empty($phoneNumber)) {
+        $errors[] = "O telefone é um campo obrigatorio";
+    }
+
+    if (empty($nif)) {
+        $errors[] = "O NIF é um campo obrigatorio";
+    }
+
+    return $errors;
+}

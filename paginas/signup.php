@@ -18,7 +18,7 @@ if (isset($_SESSION['form_data'])) {
     $email = $formData['email'];
     $birthDay = $formData['birthDay'];
     $phoneNumber = $formData['phoneNumber'];
-    $phoneNumber = $formData['nif'];
+    $nif = $formData['nif'];
     $password = $formData['password'];
     unset($_SESSION['form_data']);
 }
@@ -50,7 +50,6 @@ if (isset($_SESSION['form_data'])) {
         </nav>
 
         <section>
-
             <form action="HandlerCreateStudent.php" method="post">
                 <h1 class="fz27">Get Started With My Academy </h1>
                 <p class="fz18 blackOpacity">Getting started is easy</p>

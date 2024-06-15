@@ -239,8 +239,7 @@ class UserService implements UserInterface
     public function createStudent($name, $email, $nif, $birthDay, $phoneNumber, $password, $avatarUrl): GenericResponse
     {
         $managerProfile = Constants::$student;
-//        $avatarUrl = 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $managerProfile, $password, $avatarUrl);
+        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $managerProfile, $password, false, $avatarUrl);
     }
 
     /**
@@ -251,32 +250,14 @@ class UserService implements UserInterface
      * @param $birthDay
      * @param string $phoneNumber
      * @param string $password
+     * @param int $profileId
      * @param string $avatarUrl
      * @return GenericResponse
      */
-    public function createInstructor($name, $email, $nif, $birthDay, $phoneNumber = "", $password="", $avatarUrl = ""): GenericResponse
+    public function createUser($name, $email, $nif, $birthDay, $phoneNumber = "", $password="", $profileId=2, $avatarUrl = ""): GenericResponse
     {
-        $managerProfile = Constants::$instructor;
         $avatarUrl = 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $managerProfile, $avatarUrl);
-    }
-
-    /**
-     * if the user was created it returns the userId, otherwise it returns the error message
-     * @param $name
-     * @param $email
-     * @param $nif
-     * @param $birthDay
-     * @param string $phoneNumber
-     * @param string $password
-     * @param string $avatarUrl
-     * @return GenericResponse
-     */
-    public function createAdmin($name, $email, $nif, $birthDay, $phoneNumber, $password, $avatarUrl = ""): GenericResponse
-    {
-        $managerProfile = Constants::$adminId;
-        $avatarUrl = 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $managerProfile,  $password,$avatarUrl);
+        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $profileId, $password, true, $avatarUrl);
     }
 
     /**
@@ -288,17 +269,18 @@ class UserService implements UserInterface
      * @param string $phoneNumber
      * @param int $profileId
      * @param string $password
+     * @param $isApproved
      * @param string $avatarUrl
      * @return GenericResponse
      */
-    private function createGenericUser($name, $email, $nif, $birthDay, string $phoneNumber, int $profileId, string $password, string $avatarUrl = ""): GenericResponse
+    private function createGenericUser($name, $email, $nif, $birthDay, string $phoneNumber, int $profileId, string $password, $isApproved, string $avatarUrl = ""): GenericResponse
     {
         $query = sprintf("INSERT INTO Users (
             Name, Email, UserName, Nif, BirthDay, PhoneNumber, 
-            ProfileId, AvatarUrl, PasswordHash, IsActive) VALUES 
-            ('%s', '%s', '%s', '%s', '%s', '%s', %d,'%s', '%s', true)",
+            ProfileId, AvatarUrl, PasswordHash, IsApproved, IsActive) VALUES 
+            ('%s', '%s', '%s', '%s', '%s', '%s', %d,'%s', '%s', %d, true)",
             $name, $email, $email, $nif, $birthDay, $phoneNumber,
-            $profileId, $avatarUrl, md5($password));
+            $profileId, $avatarUrl, md5($password), $isApproved);
 
         $userId = $this->db->executeInsertQuery($query);
 
