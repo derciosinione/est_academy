@@ -1,6 +1,5 @@
 <?php
 
-
 class Constants
 {
     public static $student = 1;
@@ -12,3 +11,10 @@ class Constants
     }
 }
 
+
+class EnrollmentsStatus
+{
+    public static $pending = 1;
+    public static $approved = 2;
+    public static $Refused = 3;
+}
