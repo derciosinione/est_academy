@@ -12,4 +12,7 @@ interface CourseInterface
 
     public function update($id, $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl);
     public function delete($id, $loggedUser);
+    public function approveRegistration($id);
+    public function refuseRegistration($id);
+    public function deleteRegistration($id);
 }

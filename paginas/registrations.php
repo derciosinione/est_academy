@@ -74,6 +74,9 @@ require_once 'CourseService.php';
                 </div>
             </div>
 
+            <!-- DISPLAY SERVER MESSAGES -->
+            <?php include 'displayMessageIfExists.php' ?>
+
             <div class="table-container">
                 <table>
                     <thead>
@@ -91,43 +94,49 @@ require_once 'CourseService.php';
 
                     /** @var RegistrationModel $data */
 
+                    $loggedUser = getLoggedUser();
+
                     $courseService = new CourseService();
                     $registrations = $courseService->getAllStudentRegistrations();
 
-                    $courses = $courseService->getAll();
+                    if ($registrations!=null){
+                        foreach ($registrations as $data) {
 
-                    foreach ($registrations as $data) {
+                            $formatedCreatedAt = $data->getCreatedAt();
+                    ?>
 
-                        $formatedCreatedAt = $data->getCreatedAt();
-
-                        echo <<<HTML
                         <tr>
                         <td class="td-line">
                             <div class="avatar">
-                                <img src="$data->avatarUrl">
+                                <img src="<?php echo $data->avatarUrl ?>">
                             </div>
                             <div>
-                                $data->studentName
-                                <p class="blackOpacity mt5 smallText">$data->email</p>
+                                <?php echo $data->studentName ?>
+                                <p class="blackOpacity mt5 smallText"><?php echo $data->email ?></p>
                             </div>
                         </td>
-                        <td>$data->course</td>
-                        <td>$formatedCreatedAt</td>
-                        <td><span data-status="$data->enrollmentsStatusId">$data->status</span></td>
+                        <td><?php echo $data->course ?></td>
+                        <td><?php echo $formatedCreatedAt ?></td>
+                        <td><span data-status="<?php echo $data->enrollmentsStatusId ?>"><?php echo $data->status ?></span></td>
                         <td>
+                            <?php
+                                if ($loggedUser->profileId!=Constants::$student){
+                            ?>
                             <div class="table-actions">
-                                <a href="registrationApproveHandler.php?id=$data->id">
+                                <a href="HandlerRegistrationApprove.php?id=<?php echo $data->id ?>">
                                     <div class="tooltip">
                                         <i class="fas fa-check-double green-text"></i>
                                         <span class="tooltipText">Aceitar inscrição do aluno</span>
                                     </div>
                                 </a>
-                                <a href="registrationApproveHandler.php?id=$data->id">
+                             <?php } ?>
+                                <a href="HandlerRegistrationRefuse.php?id=<?php echo $data->id ?>">
                                     <div class="tooltip">
                                         <i class="fas fa-times red-text" style="font-size: 22px"></i>
                                         <span class="tooltipText">Recusar inscrição do aluno</span>
                                     </div>
                                 </a>
+
                                 <a href="#">
                                     <div class="tooltip">
                                         <i class="fa fa-info-circle"></i>
@@ -137,7 +146,8 @@ require_once 'CourseService.php';
                             </div>
                         </td>
                     </tr>
-HTML;
+                    <?php
+                        }
                     }
                     ?>
                     </tbody>

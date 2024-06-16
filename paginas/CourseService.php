@@ -10,6 +10,9 @@ require_once __DIR__ . '/RegistrationModel.php';
 require_once __DIR__ . '/CourseModel.php';
 require_once __DIR__ . '/GenericResponse.php';
 require_once __DIR__ . '/../basedados/basedados.h';
+require_once __DIR__ . '/Constants.php';
+
+include_once 'Utils.php';
 
 
 class CourseService implements CourseInterface
@@ -21,7 +24,7 @@ class CourseService implements CourseInterface
         $this->db = new DbContext();
     }
 
-    public function getDefaultSqlQuery()
+    public function getDefaultSqlQuery(): string
     {
         return /** @lang text */ "
             SELECT 
@@ -139,9 +142,17 @@ class CourseService implements CourseInterface
     }
 
     /**
+     * @param $id
+     * @param $creatorId
+     * @param $name
+     * @param $categoryId
+     * @param $price
+     * @param $description
+     * @param $maxStudent
+     * @param $imageUrl
      * @return GenericResponse
      */
-    public function update($id, $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl)
+    public function update($id, $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl): GenericResponse
     {
         $query = sprintf("UPDATE Courses SET
                      CreatorId = %d,
@@ -251,7 +262,11 @@ class CourseService implements CourseInterface
      */
     public function getAllStudentRegistrations()
     {
-        $query = /** @lang text */ "
+        $loggedUser = getLoggedUser();
+
+        if ($loggedUser == null) return null;
+
+        $defaultQuery = /** @lang text */ "
             SELECT SE.Id,
                U.Name StudentName,
                U.Email,
@@ -265,8 +280,20 @@ class CourseService implements CourseInterface
                 JOIN Courses C ON SE.CourseId = C.Id
                 JOIN EnrollmentsStatus ES ON SE.EnrollmentsStatusId = ES.Id
             WHERE 1=1
-                AND !SE.IsDeleted"
-            . $this->db->getOrderBy("SE") . $this->db->getQueryLimit(10);
+                AND !SE.IsDeleted ";
+
+        $endQuery = $this->db->getOrderBy("SE") . $this->db->getQueryLimit(10);
+
+        switch ($loggedUser->profileId){
+            case Constants::$student:
+                $query = $defaultQuery . " AND SE.StudentId=$loggedUser->id " . $endQuery;
+                break;
+            case Constants::$instructor:
+                $query = $defaultQuery . " AND C.CreatorId=$loggedUser->id " . $endQuery;
+                break;
+            default:
+                $query = $defaultQuery . $endQuery;
+        }
 
         $result = $this->db->executeSqlQuery($query);
 
@@ -299,5 +326,71 @@ class CourseService implements CourseInterface
         $data->setCreatedAt($row["CreatedAt"]);
 
         return $data;
+    }
+
+    /**
+     * @param $id
+     * @return GenericResponse
+     */
+    public function approveRegistration($id): GenericResponse
+    {
+        return $this->updateRegistrationStatus($id, EnrollmentsStatus::$approved);
+    }
+
+    /**
+     * @param $id
+     * @return GenericResponse
+     */
+    public function refuseRegistration($id): GenericResponse
+    {
+        return $this->updateRegistrationStatus($id, EnrollmentsStatus::$Refused);
+    }
+
+    /**
+     * @param $id
+     * @param $enrollmentsStatusId
+     * @return GenericResponse
+     */
+    private function updateRegistrationStatus($id, $enrollmentsStatusId): GenericResponse
+    {
+        $loggedUser = getLoggedUser();
+
+        if ($loggedUser == null)
+            return new GenericResponse(0, false, "Inicia sessão para continuar com a operação!");
+
+        $query = sprintf("UPDATE StudentEnrollments SET 
+                              EnrollmentsStatusId = %d 
+                          WHERE Id = %d", $enrollmentsStatusId, $id);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel aprovar a inscrição, tente novamente!");
+        }
+
+        return new GenericResponse($id, true);
+    }
+
+    /**
+     * @param $id
+     * @return GenericResponse
+     */
+    public function deleteRegistration($id): GenericResponse
+    {
+        $loggedUser = getLoggedUser();
+
+        if ($loggedUser == null)
+            return new GenericResponse(0, false, "Inicia sessão para continuar com a operação!");
+
+        $query = sprintf("UPDATE StudentEnrollments SET IsDeleted = %d 
+                          WHERE Id = %d", 1, $id);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel aprovar a inscrição, tente novamente!");
+        }
+
+        return new GenericResponse($id, true);
     }
 }
