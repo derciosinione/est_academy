@@ -14,12 +14,12 @@ $_SESSION['success_message'] = [];
 
 if (!isset($_GET["id"])) {
     header("Location: 404.php");
-    $_SESSION['404_message'] = "Informe o identificado do curso";
+    $_SESSION['404_message'] = "Informe o identificado da inscrição";
     exit();
 }
 
-$courseId = htmlspecialchars($_GET['id']);
-$redirectUrl = "Location: course-detail.php?id=$courseId";
+$registrationId = htmlspecialchars($_GET['id']);
+$redirectUrl = "Location: registrations.php";
 
 if ($loggedUser->profileId==Constants::$student){
     $errors[] = "Esta funcionalidade só é permitido para Administradores e Docentes";
@@ -31,7 +31,7 @@ if ($loggedUser->profileId==Constants::$student){
 
 $courseService = new CourseService();
 
-$response = $courseService->delete($courseId, $loggedUser);
+$response = $courseService->approveRegistration($registrationId);
 
 if (!$response->success){
     $_SESSION['error_message'][] = $response->errorMessage;
@@ -39,6 +39,6 @@ if (!$response->success){
     exit();
 }
 
-$_SESSION['success_message'][] = "Curso $courseId eliminado com sucesso";
-header("Location: courses.php");
+$_SESSION['success_message'][] = "Inscrição $registrationId aprovada com sucesso";
+header("Location: registrations.php");
 exit();

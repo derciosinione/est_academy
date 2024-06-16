@@ -1,3 +1,9 @@
+<?php
+include_once 'Utils.php';
+include 'ShowErrorDetails.php';
+require_once 'CourseService.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,9 +74,8 @@
                 </div>
             </div>
 
-
-
-
+            <!-- DISPLAY SERVER MESSAGES -->
+            <?php include 'displayMessageIfExists.php' ?>
 
             <div class="table-container">
                 <table>
@@ -84,33 +89,54 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <?php
+                    include_once 'RegistrationModel.php';
+
+                    /** @var RegistrationModel $data */
+
+                    $loggedUser = getLoggedUser();
+
+                    $courseService = new CourseService();
+                    $registrations = $courseService->getAllStudentRegistrations();
+
+                    if ($registrations!=null){
+                        foreach ($registrations as $data) {
+
+                            $formatedCreatedAt = $data->getCreatedAt();
+                    ?>
+
+                        <tr>
                         <td class="td-line">
                             <div class="avatar">
-                                <img src="studentavatar.jpg">
+                                <img src="<?php echo $data->avatarUrl ?>">
                             </div>
                             <div>
-                                Dércio Sinione Derone
-                                <p class="blackOpacity mt5 smallText">derciosinione@email.com</p>
+                                <?php echo $data->studentName ?>
+                                <p class="blackOpacity mt5 smallText"><?php echo $data->email ?></p>
                             </div>
                         </td>
-                        <td>Informatica Movel</td>
-                        <td>May 26, 2019</td>
-                        <td><span data-status="pendente">Pendente</span></td>
+                        <td><?php echo $data->course ?></td>
+                        <td><?php echo $formatedCreatedAt ?></td>
+                        <td><span data-status="<?php echo $data->enrollmentsStatusId ?>"><?php echo $data->status ?></span></td>
                         <td>
+                            <?php
+                                if ($loggedUser->profileId!=Constants::$student){
+                            ?>
                             <div class="table-actions">
-                                <a href="#">
+                                <a href="HandlerRegistrationApprove.php?id=<?php echo $data->id ?>">
                                     <div class="tooltip">
                                         <i class="fas fa-check-double green-text"></i>
                                         <span class="tooltipText">Aceitar inscrição do aluno</span>
                                     </div>
                                 </a>
-                                <a href="#">
+                             <?php } ?>
+                                <a href="HandlerRegistrationRefuse.php?id=<?php echo $data->id ?>">
                                     <div class="tooltip">
                                         <i class="fas fa-times red-text" style="font-size: 22px"></i>
                                         <span class="tooltipText">Recusar inscrição do aluno</span>
                                     </div>
                                 </a>
+
                                 <a href="#">
                                     <div class="tooltip">
                                         <i class="fa fa-info-circle"></i>
@@ -120,118 +146,10 @@
                             </div>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td class="td-line">
-                            <div class="avatar">
-                                <img src="studentavatar.jpg">
-                            </div>
-                            <div>
-                                Dércio Sinione Derone
-                                <p class="blackOpacity mt5 smallText">derciosinione@email.com</p>
-                            </div>
-                        </td>
-                        <td>Informatica Movel</td>
-                        <td>May 26, 2019</td>
-                        <td><span data-status="aprovado">Aprovado</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-check-double green-text"></i>
-                                        <span class="tooltipText">Aceitar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-times red-text" style="font-size: 22px"></i>
-                                        <span class="tooltipText">Recusar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fa fa-info-circle"></i>
-                                        <span class="tooltipText">Informações da inscrição.</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-line">
-                            <div class="avatar">
-                                <img src="studentavatar.jpg">
-                            </div>
-                            <div>
-                                Dércio Sinione Derone
-                                <p class="blackOpacity mt5 smallText">derciosinione@email.com</p>
-                            </div>
-                        </td>
-                        <td>Informatica Movel</td>
-                        <td>May 26, 2019</td>
-                        <td><span data-status="reprovado">Reprovado</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-check-double green-text"></i>
-                                        <span class="tooltipText">Aceitar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-times red-text" style="font-size: 22px"></i>
-                                        <span class="tooltipText">Recusar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fa fa-info-circle"></i>
-                                        <span class="tooltipText">Informações da inscrição.</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-line">
-                            <div class="avatar">
-                                <img src="studentavatar.jpg">
-                            </div>
-                            <div>
-                                Dércio Sinione Derone
-                                <p class="blackOpacity mt5 smallText">derciosinione@email.com</p>
-                            </div>
-                        </td>
-                        <td>Informatica Movel</td>
-                        <td>May 26, 2019</td>
-                        <td><span data-status="pendente">Pendente</span></td>
-                        <td>
-                            <div class="table-actions">
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-check-double green-text"></i>
-                                        <span class="tooltipText">Aceitar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fas fa-times red-text" style="font-size: 22px"></i>
-                                        <span class="tooltipText">Recusar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fa fa-info-circle"></i>
-                                        <span class="tooltipText">Informações da inscrição.</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
+                    <?php
+                        }
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
