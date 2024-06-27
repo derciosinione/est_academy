@@ -50,9 +50,15 @@ class CourseService implements CourseInterface
     /**
      * @return CourseModel[]
      */
-    public function getAll()
+    public function getAll($search='')
     {
-        $query = $this->getDefaultSqlQuery() . $this->db->getOrderBy("c") . $this->db->getQueryLimit(8);
+        $query = $this->getDefaultSqlQuery();
+
+        if (!empty($search)) {
+            $query .= " AND c.Name LIKE '%$search%' OR u.Name LIKE '%$search%' OR ct.Name LIKE '%$search%' ";
+        }
+
+        $query .= $this->db->getOrderBy("c") . $this->db->getQueryLimit(8);
 
         $result = $this->db->executeSqlQuery($query);
 

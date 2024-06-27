@@ -31,7 +31,7 @@
                     <a class="nav-link" href="sobre.html">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cursos.html">Cursos</a>
+                    <a class="nav-link" href="cursos.php">Cursos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contactos.html">Contactos</a>
@@ -64,7 +64,7 @@
 
     <section class="about-card">
         <div class="about-img keep-show">
-            <img src="Img/about.jpg" alt="">
+            <img src="about.jpg" alt="">
         </div>
 
         <div class="home-content-description">
@@ -158,7 +158,7 @@
             </div>
 
         <div class="about-img">
-            <img src="Img/feature.jpg" alt="">
+            <img src="feature.jpg" alt="">
         </div>
     </section>
 
@@ -244,7 +244,7 @@
             <ul>
                 <li><a href="autores.html"><i class="fas fa-chevron-right"></i> Autores</a></li>
                 <li><a href="sobre.html"><i class="fas fa-chevron-right"></i> Sobre</a></li>
-                <li><a href="cursos.html"><i class="fas fa-chevron-right"></i> Cursos</a></li>
+                <li><a href="cursos.php"><i class="fas fa-chevron-right"></i> Cursos</a></li>
                 <li><a href="contactos.html"><i class="fas fa-chevron-right"></i> Contacto</a></li>
                 <li><a href="signup.php"><i class="fas fa-chevron-right"></i> Criar Conta</a></li>
             </ul>

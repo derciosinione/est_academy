@@ -1,3 +1,9 @@
+<?php
+include_once 'Utils.php';
+include 'ShowErrorDetails.php';
+require_once 'CourseService.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,8 +56,9 @@
             <h1>Cursos</h1>
             <h5>Vem aprender connosco</h5>
             <p>Pesquisa o curso desejado, ele está a um clique de ti</p>
-            <form>
-                <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Search">
+            <?php $search = $_GET['search'] ?? ""; ?>
+            <form action="cursos.php" method="get">
+                <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Search" name="search" value="<?php echo $search ?>">
                 <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
@@ -67,101 +74,31 @@
 
         <div class="course-cards">
 
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-1.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Desenvolvimento Web</h6>
-                        <span class="bg-yellow">Programação</span>
-                    </div>
-                </a>
-            </div>
 
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-4.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Introdução a Html5 e Css</h6>
-                        <span class="bg-yellow">Programação</span>
-                    </div>
-                </a>
-            </div>
+            <?php
+            $courseService = new CourseService();
 
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-3.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Big Data</h6>
-                        <span class="bg-blue">Ciência de Dados</span>
-                    </div>
-                </a>
-            </div>
+            $courses = $courseService->getAll($search);
 
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-2.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Logaritmo</h6>
-                        <span class="bg-dark-blue">Matemática</span>
-                    </div>
-                </a>
-            </div>
+            foreach ($courses as $course) {
+                $teacher = $course->getCreator()->name;
+                $category = $course->getCategory()->name;
 
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-1.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Desenvolvimento Web</h6>
-                        <span class="bg-yellow">Programação</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-4.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Introdução a Html5 e Css</h6>
-                        <span class="bg-yellow">Programação</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-3.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Big Data</h6>
-                        <span class="bg-blue">Ciência de Dados</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-2.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Logaritmo</h6>
-                        <span class="bg-dark-blue">Matemática</span>
-                    </div>
-                </a>
-            </div>
+                echo <<<HTML
+                <div class="transition-scale">
+                    <a href="cursos-detalhes.html?id=$course->id">
+                        <div class="course-img">
+                            <img src="$course->imageUrl" alt="">
+                        </div>
+                        <div class="course-body">
+                            <h6>$course->name</h6>
+                            <span class="bg-dark-blue">$category</span>
+                        </div>
+                    </a>
+                </div>
+HTML;
+            }
+            ?>
 
         </div>
 
@@ -226,9 +163,9 @@
                 <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/derciosimione" target="_blank"><i
-                        class="fab fa-linkedin-in"></i></a></li>
+                                class="fab fa-linkedin-in"></i></a></li>
                 <li><a href="https://www.youtube.com/channel/UCquw3zsKMJH0IvS6zqyQJZw" target="_blank"><i
-                        class="fab fa-youtube"></i></a></li>
+                                class="fab fa-youtube"></i></a></li>
             </ul>
         </div>
     </div>
