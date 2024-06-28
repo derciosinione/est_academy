@@ -90,6 +90,8 @@ if (!$response->success){
         'maxStudent' => $maxStudent,
         'description' => $description
     ];
+    header($redirectUrl);
+    exit();
 }
 
 $_SESSION['success_message'][] = "Curso $name atualizado com sucesso";

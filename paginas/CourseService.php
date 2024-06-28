@@ -49,10 +49,16 @@ class CourseService implements CourseInterface
      */
     public function getAll($search='')
     {
+        $loggedUser = getLoggedUser();
+
         $query = $this->getDefaultSqlQuery();
 
         if (!empty($search)) {
             $query .= " AND c.Name LIKE '%$search%' OR u.Name LIKE '%$search%' OR ct.Name LIKE '%$search%' ";
+        }
+
+        if ($loggedUser->profileId==Constants::$instructor){
+            $query .= " AND c.CreatorId = ".$loggedUser->id ." ";
         }
 
         $query .= $this->db->getOrderBy("c") . $this->db->getQueryLimit(8);
@@ -157,6 +163,18 @@ class CourseService implements CourseInterface
      */
     public function update($id, $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl): GenericResponse
     {
+        $loggedUser = getLoggedUser();
+
+        $course = $this->getById($id);
+
+        if ($course == null) {
+            return new GenericResponse(0, false, "Curso não foi encontrado!");
+        }
+
+        if ($loggedUser->profileName != Constants::$adminId && $loggedUser->id != $course->creatorId) {
+            return new GenericResponse(0, false, "Não tens permisao para editar o curso!");
+        }
+
         $query = sprintf("UPDATE Courses SET
                      CreatorId = %d,
                      Name = '%s',
@@ -206,9 +224,9 @@ class CourseService implements CourseInterface
     /**
      * @param $id
      * @param UserModel $loggedUser
-     * @return mixed
+     * @return GenericResponse
      */
-    public function delete($id, $loggedUser)
+    public function delete($id, $loggedUser): GenericResponse
     {
         $course = $this->getById($id);
         if ($course == null) {

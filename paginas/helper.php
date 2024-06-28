@@ -11,7 +11,13 @@ function makeLoginHelper(UserService $userService, string $email, string $passwo
     $login = $userService->login($email, $password);
 
     if ($login == null) {
-        $_SESSION['warning_message'][] = "Invalid Credential";
+        $_SESSION['warning_message'][] = "Credencial inválida";
+        header("Location: login.php");
+        exit();
+    }
+
+    if (!$login->getIsApproved() && $login->profileId==Constants::$student){
+        $_SESSION['warning_message'][] = "Sua conta ainda não foi aprovada pelo administrador";
         header("Location: login.php");
         exit();
     }

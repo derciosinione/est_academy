@@ -7,7 +7,6 @@ include_once 'Constants.php';
 
 $loggedUser = getLoggedUser();
 
-unset($_SESSION['form_data']);
 unset($_SESSION['error_message']);
 
 $_SESSION['success_message'] = [];
