@@ -75,7 +75,7 @@ require_once 'CourseService.php';
 
                 <?php
 
-                $courseDetailRedirectUrl = getLoggedUser()->profileId==Constants::$student ? "cursos-detalhes.php" : "course-detail.php";
+                $courseDetailRedirectUrl = getLoggedUser()->profileId == Constants::$student ? "cursos-detalhes.php" : "course-detail.php";
                 $courseService = new CourseService();
 
                 $courses = $courseService->getAll($search);

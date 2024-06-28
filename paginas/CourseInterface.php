@@ -2,7 +2,7 @@
 
 interface CourseInterface
 {
-    public function getAll($search = '', $isPublic=false);
+    public function getAll($search = '', $isPublic = false);
 
     public function getAllStudentRegistrations();
 
