@@ -8,6 +8,10 @@ require_once "Constants.php";
 
 $activeSettingsPages = array("settings", "account-profile", "settings-change-password", "settings-about");
 
+$restrictStudentPages = array("create-user", "user-detail", "students", "admin", "course-detail", "instructors", "students-detail");
+
+$restrictInstructorPages = array("create-user", "user-detail", "admin");
+
 $loggedUser = new UserModel();
 
 if (isset($_SESSION['loggedUser'])) {
@@ -18,6 +22,18 @@ if (isset($_SESSION['loggedUser'])) {
         unset($_SESSION['loggedUser']);
         $_SESSION['warning_message'][] = "Sua conta ainda não foi aprovada pelo administrador";
         header("Location: login.php");
+        exit();
+    }
+
+    if (in_array($currentFileName, $restrictStudentPages) && $loggedUser->profileId == Constants::$student) {
+        $_SESSION['error_message'][] = "Pagina restrita, não tens permissões para acessar o recurso desejado.";
+        header("Location: dashboard.php");
+        exit();
+    }
+
+    if (in_array($currentFileName, $restrictInstructorPages) && $loggedUser->profileId == Constants::$instructor) {
+        $_SESSION['error_message'][] = "Pagina restrita, não tens permissões para acessar o recurso desejado.";
+        header("Location: dashboard.php");
         exit();
     }
 }
