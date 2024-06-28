@@ -27,7 +27,7 @@ interface UserInterface
 
     public function createStudent($name, $email, $nif, $birthDay, $phoneNumber, $password, $avatarUrl);
 
-    public function updateUserInfo($id, $name, $email, $nif, $phoneNumber, $profileId, $birthDay);
+    public function updateUserInfo($id, $name, $userName, $email, $nif, $phoneNumber, $profileId, $birthDay);
 
     public function deleteUser($id);
 

@@ -37,6 +37,10 @@ if (empty($email)) {
     $errors[] = "O email é um campo obrigatorio.";
 }
 
+if (empty($nif)) {
+    $errors[] = "O Nif é um campo obrigatorio.";
+}
+
 if (!Constants::isValidDateFormat($birthday)) {
     $errors[] = "A data de nascimento deve estar no formato yyyy/mm/dd.";
 }
@@ -54,12 +58,12 @@ if (count($errors) > 0) {
     ];
 
     header($redirectUrl);
-    exit();
+    return;
 }
 
 $service = new UserService();
 
-$response = $service->updateUserInfo($loggedUserId, $name, $username, $email, $nif, $phoneNumber, $birthday);
+$response = $service->updateUserInfo($loggedUserId, $name, $username, $email, $nif, $phoneNumber, $user->profileId, $birthday);
 
 if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
@@ -73,7 +77,7 @@ if (!$response->success) {
     ];
 
     header($redirectUrl);
-    exit();
+    return;
 }
 
 $user = $service->getUserById($loggedUserId);

@@ -4,6 +4,10 @@ include 'ShowErrorDetails.php';
 require_once 'CourseService.php';
 ?>
 
+<?php
+$currentUser = getLoggedUser();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +21,13 @@ require_once 'CourseService.php';
 </head>
 <body>
 
-<?php include 'course-modal-add.php' ?>
+<?php
+if ($currentUser->profileId != Constants::$student) {
+    ?>
+    <?php include 'course-modal-add.php' ?>
+    <?php
+}
+?>
 
 <div class="board">
     <!-- SIDE BAR -->
@@ -56,15 +66,23 @@ require_once 'CourseService.php';
             <div class="main-description">
                 <h2>Cursos</h2>
 
-                <!-- OPTIONS -->
-                <div>
-                    <button onclick="toggleModalAddCourse()"><i class="fas fa-plus"></i> ADICIONAR</button>
-                    <button class="more-option-btn" onclick="toggleMoreOption()">MAIS OPÇÕES</button>
-                    <div class="more-option" id="more-option">
-                        <p>Mais opções</p>
-                        <hr>
+                <?php
+                if ($currentUser->profileId != Constants::$student) {
+                    ?>
+                    <!-- OPTIONS -->
+                    <div>
+                        <button onclick="toggleModalAddCourse()"><i class="fas fa-plus"></i> ADICIONAR</button>
+                        <button class="more-option-btn" onclick="toggleMoreOption()">MAIS OPÇÕES</button>
+                        <div class="more-option" id="more-option">
+                            <p>Mais opções</p>
+                            <hr>
+                        </div>
                     </div>
-                </div>
+
+                    <?php
+                }
+                ?>
+
             </div>
 
             <!-- DISPLAY SERVER MESSAGES -->

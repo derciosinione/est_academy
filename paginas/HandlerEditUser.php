@@ -14,7 +14,6 @@ unset($_SESSION['error_message']);
 $userId = htmlspecialchars($_GET['id']);
 $redirectUrl = "Location: user-detail.php?id=$userId";
 
-//TODO: Buscar o perfil Admin na base de dados e fazer a comparação
 if ($user->profileId != Constants::$adminId) {
     $errors[] = "Esta funcionalidade só é permitido para Administradores.";
     $_SESSION['error_message'] = $errors;
@@ -67,6 +66,7 @@ $userService = new UserService();
 $response = $userService->updateUserInfo(
     $userId,
     $name,
+    $email,
     $email,
     $nif,
     $phoneNumber,

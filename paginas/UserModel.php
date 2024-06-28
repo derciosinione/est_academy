@@ -47,7 +47,7 @@ class UserModel
 
     public function setNif($nif)
     {
-        $this->nif = empty($nif) ? "Não Informado" : $nif;
+        $this->nif = empty($nif) ? "" : $nif;
     }
 
 
