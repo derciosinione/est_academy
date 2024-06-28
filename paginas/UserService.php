@@ -89,7 +89,7 @@ class UserService implements UserInterface
      *
      * @return userModel[] Array of userModel objects.
      */
-    public function getAllUserStaff(): array
+    public function getAllUserStaff($search=''): array
     {
         $users = [];
         $query = "SELECT * FROM Users WHERE IsStaff";
@@ -149,34 +149,39 @@ class UserService implements UserInterface
     /**
      * @return UserModel[]
      */
-    public function getAllStudents(): array
+    public function getAllStudents($search=''): array
     {
-        return $this->getAllUserByProfile(Constants::$student);
+        return $this->getAllUserByProfile(Constants::$student, $search);
     }
 
 
     /**
      * @return UserModel[]
      */
-    public function getAllInstructors(): array
+    public function getAllInstructors($search=''): array
     {
-        return $this->getAllUserByProfile(Constants::$instructor);
+        return $this->getAllUserByProfile(Constants::$instructor, $search);
     }
 
     /**
      * @return UserModel[]
      */
-    public function getAllAdmin(): array
+    public function getAllAdmin($search=''): array
     {
-        return $this->getAllUserByProfile(Constants::$adminId);
+        return $this->getAllUserByProfile(Constants::$adminId, $search);
     }
 
     /**
      * @return UserModel[]
      */
-    public function getAllUserByProfile($profileId): array
+    public function getAllUserByProfile($profileId, $search=''): array
     {
-        $query = $this->getDefaultSqlQuery() . " and u.ProfileId=$profileId ". $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
+        $query = $this->getDefaultSqlQuery() . " AND u.ProfileId=$profileId ";
+
+        if ($search != null)
+            $query .= " AND (u.Name like '%$search%' OR u.Email like '%$search%') ";
+
+        $query .= $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
 
         $result = $this->db->executeSqlQuery($query);
 
