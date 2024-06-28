@@ -63,7 +63,6 @@ require_once 'CourseService.php';
                     <div class="more-option" id="more-option">
                         <p>Mais opções</p>
                         <hr>
-
                     </div>
                 </div>
             </div>
@@ -75,6 +74,8 @@ require_once 'CourseService.php';
             <div class="cards-container">
 
                 <?php
+
+                $courseDetailRedirectUrl = getLoggedUser()->profileId==Constants::$student ? "cursos-detalhes.php" : "course-detail.php";
                 $courseService = new CourseService();
 
                 $courses = $courseService->getAll($search);
@@ -85,7 +86,7 @@ require_once 'CourseService.php';
 
                     echo <<<HTML
                         <div class="course-card transition-scale">
-                            <a href="course-detail.php?id=$course->id">
+                            <a href="$courseDetailRedirectUrl?id=$course->id">
                                 <div class="course-avatar">
                                     <img alt="" class="img-cover" src="$course->imageUrl">
                                 </div>
