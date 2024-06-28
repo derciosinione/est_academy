@@ -170,9 +170,9 @@ VALUES (1, 'Pendente', TRUE, FALSE, 3, NOW(), NOW()),
        (4, 'Cancelado', TRUE, FALSE, 3, NOW(), NOW());
 
 INSERT INTO StudentEnrollments (StudentId, CourseId, EnrollmentsStatusId, IsDeleted, CreatedAt, UpdatedAt)
-VALUES (7, 3, 1, FALSE, NOW(), NOW()),
-       (7, 5, 2, FALSE, NOW(), NOW()),
-       (7, 7, 1, FALSE, NOW(), NOW());
+VALUES (1, 3, 1, FALSE, NOW(), NOW()),
+       (1, 5, 2, FALSE, NOW(), NOW()),
+       (1, 7, 1, FALSE, NOW(), NOW());
 
 UPDATE Users
 SET PasswordHash='123456'
