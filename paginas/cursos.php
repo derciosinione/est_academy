@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'ShowErrorDetails.php';
 require_once 'CourseService.php';
 ?>
@@ -78,7 +79,7 @@ require_once 'CourseService.php';
             <?php
             $courseService = new CourseService();
 
-            $courses = $courseService->getAll($search);
+            $courses = $courseService->getAll($search, true);
 
             foreach ($courses as $course) {
                 $teacher = $course->getCreator()->name;

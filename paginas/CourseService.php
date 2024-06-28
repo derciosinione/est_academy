@@ -24,9 +24,8 @@ class CourseService implements CourseInterface
     /**
      * @return CourseModel[]
      */
-    public function getAll($search = '')
+    public function getAll($search = '', $isPublic=false)
     {
-        $loggedUser = getLoggedUser();
 
         $query = $this->getDefaultSqlQuery();
 
@@ -34,8 +33,11 @@ class CourseService implements CourseInterface
             $query .= " AND c.Name LIKE '%$search%' OR u.Name LIKE '%$search%' OR ct.Name LIKE '%$search%' ";
         }
 
-        if ($loggedUser->profileId == Constants::$instructor) {
-            $query .= " AND c.CreatorId = " . $loggedUser->id . " ";
+        if (!$isPublic){
+            $loggedUser = getLoggedUser();
+            if ($loggedUser!=null && $loggedUser->profileId == Constants::$instructor) {
+                $query .= " AND c.CreatorId = " . $loggedUser->id . " ";
+            }
         }
 
         $query .= $this->db->getOrderBy("c") . $this->db->getQueryLimit(8);

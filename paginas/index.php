@@ -173,7 +173,7 @@
             <div class="transition-scale">
                 <a href="cursos-detalhes.html">
                     <div class="course-img">
-                        <img src="Img/courses-1.jpg" alt="">
+                        <img src="coursebg.png" alt="">
                     </div>
                     <div class="course-body">
                         <h6>Desenvolvimento Web</h6>
@@ -185,7 +185,7 @@
             <div class="transition-scale">
                 <a href="cursos-detalhes.html">
                     <div class="course-img">
-                        <img src="Img/courses-4.jpg" alt="">
+                        <img src="coursebg.png" alt="">
                     </div>
                     <div class="course-body">
                         <h6>Introdução a Html5 e Css</h6>
@@ -197,7 +197,7 @@
             <div class="transition-scale">
                 <a href="cursos-detalhes.html">
                     <div class="course-img">
-                        <img src="Img/courses-3.jpg" alt="">
+                        <img src="coursebg.png" alt="">
                     </div>
                     <div class="course-body">
                         <h6>Big Data</h6>
@@ -209,7 +209,7 @@
             <div class="transition-scale">
                 <a href="cursos-detalhes.html">
                     <div class="course-img">
-                        <img src="Img/courses-2.jpg" alt="">
+                        <img src="coursebg.png" alt="">
                     </div>
                     <div class="course-body">
                         <h6>Logaritmo</h6>
