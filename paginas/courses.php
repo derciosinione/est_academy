@@ -34,10 +34,14 @@ require_once 'CourseService.php';
             </div>
 
             <div class="main-header-right">
-                <div class="search-container">
-                    <input placeholder="Search..." type="text">
-                    <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
-                </div>
+                <?php $search = $_GET['search'] ?? ""; ?>
+
+                <form action="courses.php" method="get">
+                    <div class="search-container">
+                        <input placeholder="Search..." type="text" name="search" value="<?php echo $search; ?>">
+                        <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
 
                 <!-- CIRCULAR AVATAR -->
                 <?php include_once 'circularAvatar.php' ?>
@@ -73,7 +77,7 @@ require_once 'CourseService.php';
                 <?php
                 $courseService = new CourseService();
 
-                $courses = $courseService->getAll();
+                $courses = $courseService->getAll($search);
 
                 foreach ($courses as $course) {
                     $teacher = $course->getCreator()->name;

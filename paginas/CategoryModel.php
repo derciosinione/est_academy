@@ -2,8 +2,8 @@
 
 class CategoryModel
 {
-    private $id;
     public $name;
+    private $id;
     private $isActive;
     private $isDeleted;
     private $createdAt;
@@ -14,7 +14,7 @@ class CategoryModel
      * @param $id
      * @param $name
      */
-    public function __construct($id=null, $name=null)
+    public function __construct($id = null, $name = null)
     {
         $this->id = $id;
         $this->name = $name;

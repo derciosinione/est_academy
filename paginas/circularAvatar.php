@@ -1,6 +1,6 @@
 <?php
 
-$loggedUser =  "";
+$loggedUser = "";
 if (isset($_SESSION['loggedUser'])) {
     $loggedUser = unserialize($_SESSION['loggedUser']);
 

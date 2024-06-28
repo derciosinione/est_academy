@@ -60,23 +60,23 @@
             <div>
                 <?php include "displayMessageIfExists.php" ?>
 
-<!--                --><?php
-//                require_once "UserModel.php";
-//
-//                if(isset($_SESSION['loggedUser'])){
-//                    $loggedUser = unserialize($_SESSION['loggedUser']);
-//
-//                    echo "<h1>Logged User</h1>";
-//                    echo "<h3>Id: $loggedUser->id</h3>";
-//                    echo "<h3>Profile: $loggedUser->profileName</h3>";
-//                    echo "<h3>Name: $loggedUser->name</h3>";
-//                    echo "<h3>Email: $loggedUser->email</h3>";
-//                    echo "<h3>birthDay: $loggedUser->birthDay</h3>";
-//                    echo "<h3>phoneNumber: $loggedUser->phoneNumber</h3>";
-//                    echo "<hr>";
-//                }
-//
-//                ?>
+                <!--                --><?php
+                //                require_once "UserModel.php";
+                //
+                //                if(isset($_SESSION['loggedUser'])){
+                //                    $loggedUser = unserialize($_SESSION['loggedUser']);
+                //
+                //                    echo "<h1>Logged User</h1>";
+                //                    echo "<h3>Id: $loggedUser->id</h3>";
+                //                    echo "<h3>Profile: $loggedUser->profileName</h3>";
+                //                    echo "<h3>Name: $loggedUser->name</h3>";
+                //                    echo "<h3>Email: $loggedUser->email</h3>";
+                //                    echo "<h3>birthDay: $loggedUser->birthDay</h3>";
+                //                    echo "<h3>phoneNumber: $loggedUser->phoneNumber</h3>";
+                //                    echo "<hr>";
+                //                }
+                //
+                //                ?>
 
             </div>
         </div>

@@ -61,7 +61,7 @@ $service = new UserService();
 
 $response = $service->updateUserInfo($loggedUserId, $name, $username, $email, $nif, $phoneNumber, $birthday);
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
     $_SESSION['form_data'] = [
         'name' => $name,
@@ -78,7 +78,7 @@ if (!$response->success){
 
 $user = $service->getUserById($loggedUserId);
 
-if ($user!=null) $_SESSION['loggedUser'] = serialize($user);
+if ($user != null) $_SESSION['loggedUser'] = serialize($user);
 
 $_SESSION['success_message'][] = "Informações atualizadas com sucesso.";
 

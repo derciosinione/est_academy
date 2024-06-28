@@ -1,14 +1,40 @@
+<?php
+
+include 'ShowErrorDetails.php';
+require_once 'CourseService.php';
+
+$courseService = new CourseService();
+
+if (!isset($_GET["id"])) {
+    $_SESSION['404_message'] = "Informe o identificado do curso";
+    header("Location: 404.php");
+    exit();
+}
+
+$courseId = $_GET["id"];
+
+$course = $courseService->getById($courseId);
+
+if (empty($course)) {
+    $_SESSION['404_message'] = "Curso com identificador $courseId não encontrado.";
+    header("Location: 404.php");
+    return;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-    <link href="contact-web.css" rel="stylesheet">
-    <title>My Academy > Contactos</title>
+    <link rel="stylesheet" href="course-detail-web.css">
+
+    <title>My Academy > Cursos</title>
 </head>
 <body>
 
@@ -16,8 +42,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
         <a class="navbar-brand" href="#">MyAcademy</a>
-        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-                data-target="#navbarNav" data-toggle="collapse" type="button">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -29,10 +55,10 @@
                     <a class="nav-link" href="sobre.html">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cursos.php">Cursos</a>
+                    <a class="nav-link active" href="cursos.php">Cursos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="contactos.html">Contactos</a>
+                    <a class="nav-link" href="contactos.html">Contactos</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto ">
@@ -44,77 +70,59 @@
     </nav>
 
     <!-- Hero -->
-    <div class="hero">
-        <div class="search-container">
-            <h1>Contato</h1>
-            <h5>Estamos proximo de ti</h5>
-            <p>Não exita em nos contacta, estamos 100% disponível para ajudar</p>
+    <section class="course-intro">
+        <div>
+            <h2><?php echo $course->name ?></h2>
+            <p><strong>Aprenda a construir programas de computador de maneira fácil e rápida</strong></p>
+            <p class="text-gray">Instrutor <i
+                        class="fas fa-angle-double-right"></i> <?php echo $course->getCreator()->name ?></p>
 
+            <p class="star">
+                <strong><em class="text-yellow">4.3</em></strong>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt">
+                </i> 1234 estudantes
+            </p>
+
+            <div class="options display-flex">
+                <span class="bg-green"><?php echo $course->getCategory()->name ?></span>
+                <span class="bg-blue"><a href="HandlerCreateStudentRegistration.php?courseId=<?php echo $course->id ?>">Inscrever-se</a></span>
+            </div>
+
+            <div class="display-flex mt-3 text-gray">
+                <p><i class="fas fa-clock"></i> Ultima atualização <?php echo $course->getCreatedAt() ?></p>
+                <p><i class="fas fa-globe-americas"></i> Português</p>
+            </div>
         </div>
-    </div>
+
+        <aside>
+            <img src="<?php echo $course->imageUrl ?>">
+        </aside>
+    </section>
 </header>
 
 <!-- Main Content -->
 <main>
-    <section>
-
-        <div class="address-info">
-
-            <div class="">
-                <i class="fa fa-map-marker-alt bg-green"></i>
-                <div>
-                    <h5>Endereço</h5>
-                    <p> Rua Doutor Jaimes Lopes Dias, 22 1E</p>
-                </div>
-            </div>
-
+    <section class="course-overview">
+        <div>
             <div>
-                <i class="fa fa-phone-alt bg-primary"></i>
-                <div>
-                    <h5>Telefone</h5>
-                    <p> +351 923 342 982</p>
-                </div>
+                <h5>Descrição do Curso</h5>
+                <?php echo $course->description ?>
             </div>
-
-            <div>
-                <i class="far fa-envelope bg-yellow"></i>
-                <div>
-                    <h5>Email</h5>
-                    <p>info@myacademy.com</p>
-                </div>
-            </div>
-
-
         </div>
 
-        <div class="contact-us-message">
-            <h4>Contate-nos</h4>
-
-            <form action="" method="post">
-                <div class="mb-3">
-                    <label class="form-label" for="email">Name</label>
-                    <input class="form-control" id="name" name="name" placeholder="Nome Completo" type="text">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="email">Email</label>
-                    <input class="form-control" id="email" name="email" placeholder="email" type="email">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="subject">Assunto</label>
-                    <input class="form-control" id="subject" name="subject" placeholder="Assunto" type="text">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="message">Mensagem</label>
-                    <textarea class="form-control" id="message" name="message" rows="6"></textarea>
-                </div>
-                <button class="btn btn-primary">Enviar Mensagem</button>
-            </form>
-
-        </div>
-
+        <aside>
+            <ul>
+                <li><h5>Preço do Curso</h5></li>
+                <li><i class="fas fa-chevron-right"></i><strong><?php echo $course->price ?>€</strong></li>
+                <li><a href="HandlerCreateStudentRegistration.php?courseId=<?php echo $course->id ?>"
+                       class="btn btn-primary btn-lg">Inscrever-se</a></li>
+            </ul>
+        </aside>
     </section>
+
 </main>
 
 <!-- Footer Content -->
@@ -159,9 +167,9 @@
                 <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/derciosimione" target="_blank"><i
-                        class="fab fa-linkedin-in"></i></a></li>
+                                class="fab fa-linkedin-in"></i></a></li>
                 <li><a href="https://www.youtube.com/channel/UCquw3zsKMJH0IvS6zqyQJZw" target="_blank"><i
-                        class="fab fa-youtube"></i></a></li>
+                                class="fab fa-youtube"></i></a></li>
             </ul>
         </div>
     </div>

@@ -9,13 +9,13 @@ class CourseModel
     public $maxStudent;
     public $categoryId;
     public $creatorId;
+    public $imageUrl;
     private $isActive;
     private $isDeleted;
     private $createdAt;
     private $updatedAt;
     private $creator;
     private $category;
-    public $imageUrl;
 
     public function __construct(
         $id = null,
@@ -99,6 +99,13 @@ class CourseModel
         $this->updatedAt = $updatedAt;
     }
 
+    /**
+     * @return UserModel
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
 
     /**
      * @param UserModel $creator
@@ -109,27 +116,19 @@ class CourseModel
     }
 
     /**
-     * @param CategoryModel $category
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-    }
-
-    /**
-     * @return UserModel
-     */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
-
-    /**
      * @return CategoryModel
      */
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @param CategoryModel $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 
 }

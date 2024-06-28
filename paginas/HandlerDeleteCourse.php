@@ -7,7 +7,6 @@ include_once 'Constants.php';
 
 $loggedUser = getLoggedUser();
 
-unset($_SESSION['form_data']);
 unset($_SESSION['error_message']);
 
 $_SESSION['success_message'] = [];
@@ -21,7 +20,7 @@ if (!isset($_GET["id"])) {
 $courseId = htmlspecialchars($_GET['id']);
 $redirectUrl = "Location: course-detail.php?id=$courseId";
 
-if ($loggedUser->profileId==Constants::$student){
+if ($loggedUser->profileId == Constants::$student) {
     $errors[] = "Esta funcionalidade só é permitido para Administradores e Docentes";
     $_SESSION['error_message'] = $errors;
 
@@ -33,7 +32,7 @@ $courseService = new CourseService();
 
 $response = $courseService->delete($courseId, $loggedUser);
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
     header($redirectUrl);
     exit();

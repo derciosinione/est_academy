@@ -20,7 +20,7 @@ if (!isset($_GET["id"])) {
 $userId = htmlspecialchars($_GET['id']);
 $redirectUrl = "Location: user-detail.php?id=$userId";
 
-if ($user->profileId!=Constants::$adminId){
+if ($user->profileId != Constants::$adminId) {
     $errors[] = "Esta funcionalidade só é permitido para Administradores.";
     $_SESSION['error_message'] = $errors;
 
@@ -53,7 +53,7 @@ switch ($user->profileId) {
 
 $response = $userService->deleteUser($userId);
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
     $redirectUrl = "Location: user-detail.php?id=$userId";
     header($redirectUrl);

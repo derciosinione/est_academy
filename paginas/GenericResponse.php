@@ -11,7 +11,7 @@ class GenericResponse
      * @param $success
      * @param $errorMessage
      */
-    public function __construct($result, $success, $errorMessage=null)
+    public function __construct($result, $success, $errorMessage = null)
     {
         $this->result = $result;
         $this->success = $success;

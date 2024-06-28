@@ -10,7 +10,7 @@ unset($_SESSION['form_data']);
 unset($_SESSION['error_message']);
 
 //TODO: Buscar o perfil Aluno na base de dados e fazer a comparação
-if ($user->profileId===Constants::$student){
+if ($user->profileId === Constants::$student) {
     $errors[] = "Esta funcionalidade só é permitido para Administradores e Docentes.";
     $_SESSION['error_message'] = $errors;
 
@@ -72,7 +72,7 @@ $response = $courseService->create(
     $imageUrl
 );
 
-if (!$response->success){
+if (!$response->success) {
 
     $_SESSION['error_message'][] = $response->errorMessage;
 
