@@ -45,10 +45,10 @@
 
                 <?php
                 /** @var userModel $loggedUser */
-                
+
                 require_once "UserModel.php";
 
-                if(isset($_SESSION['loggedUser'])){
+                if (isset($_SESSION['loggedUser'])) {
                     $loggedUser = unserialize($_SESSION['loggedUser']);
 
                     echo "<h1>Logged User</h1>";

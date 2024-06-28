@@ -35,7 +35,7 @@ if (isset($_SESSION['form_data'])) {
     $email = $formData['email'];
     $birthDay = $formData['birthDay'];
     $phoneNumber = $formData['phoneNumber'];
-    $nif= $formData['nif'];
+    $nif = $formData['nif'];
     $profileId = $formData['profileId'];
     unset($_SESSION['form_data']);
 }
@@ -80,7 +80,9 @@ if (isset($_SESSION['form_data'])) {
                 <h2>Detalhes de Usuário</h2>
 
                 <div>
-                    <a href="HandlerDeleteUser.php?id=<?php echo $user->id ?>"><button onclick="" class="red-color">ELIMINAR</button></a>
+                    <a href="HandlerDeleteUser.php?id=<?php echo $user->id ?>">
+                        <button onclick="" class="red-color">ELIMINAR</button>
+                    </a>
                 </div>
             </div>
 
@@ -92,22 +94,26 @@ if (isset($_SESSION['form_data'])) {
                     <div class="input-box">
                         <label>
                             Nome
-                            <input placeholder="myacademy" type="text" name="name" value="<?php echo htmlspecialchars($name); ?>">
+                            <input placeholder="myacademy" type="text" name="name"
+                                   value="<?php echo htmlspecialchars($name); ?>">
                         </label>
 
                         <label>
                             Email
-                            <input placeholder="myacademy@gmail.com" type="text" name="email" value="<?php echo htmlspecialchars($email); ?>">
+                            <input placeholder="myacademy@gmail.com" type="text" name="email"
+                                   value="<?php echo htmlspecialchars($email); ?>">
                         </label>
 
                         <label>
                             NIF
-                            <input placeholder="000 000 000" type="text" name="nif" value="<?php echo htmlspecialchars($nif); ?>">
+                            <input placeholder="000 000 000" type="text" name="nif"
+                                   value="<?php echo htmlspecialchars($nif); ?>">
                         </label>
 
                         <label>
                             Contacto
-                            <input placeholder="+351 925 365 214" type="text" name="phoneNumber" value="<?php echo htmlspecialchars($phoneNumber); ?>">
+                            <input placeholder="+351 925 365 214" type="text" name="phoneNumber"
+                                   value="<?php echo htmlspecialchars($phoneNumber); ?>">
                         </label>
 
                         <label for="profileId">
@@ -122,7 +128,8 @@ if (isset($_SESSION['form_data'])) {
 
                         <label>
                             Data de Nascimento
-                            <input placeholder="YYYY-MM-DD" type="text" name="birthDay" value="<?php echo htmlspecialchars($birthDay); ?>">
+                            <input placeholder="YYYY-MM-DD" type="text" name="birthDay"
+                                   value="<?php echo htmlspecialchars($birthDay); ?>">
                         </label>
                     </div>
                     <input onclick="" onsubmit="" class="mt30 large-btn" type="submit" value="SALVAR">

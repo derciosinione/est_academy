@@ -46,7 +46,8 @@ if (isset($_SESSION["warning_message"])) {
                     <input type="text" placeholder="Email ou username" id="email" name="email">
                     <div class="password-div">
                         <input id="password" name="password" placeholder="Password" type="password">
-                        <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fas fa-eye blackOpacity"></i></span>
+                        <span class="toggle-password" onclick="togglePasswordVisibility()"><i
+                                    class="fas fa-eye blackOpacity"></i></span>
                     </div>
 
                     <input type="submit" value="Login">

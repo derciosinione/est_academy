@@ -36,7 +36,7 @@ if (empty($password)) {
     $errors[] = "Informe uma senha";
 }
 
-if ($password!==$confirmPassword) {
+if ($password !== $confirmPassword) {
     $errors[] = "As senhas introduzidas não conferem";
 }
 
@@ -69,7 +69,7 @@ $response = $userService->createStudent(
     $password,
     $avatarUrl);
 
-if (!$response->success){
+if (!$response->success) {
 
     $_SESSION['error_message'][] = $response->errorMessage;
 

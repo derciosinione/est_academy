@@ -30,11 +30,11 @@ if (empty($newPassword)) {
     $errors[] = "Informe a nova senha.";
 }
 
-if (strlen($newPassword) < 6){
+if (strlen($newPassword) < 6) {
     $errors[] = "A nova senha deve ter pelo menos 6 caracteres.";
 }
 
-if ($newPassword!=$confirmPassword) {
+if ($newPassword != $confirmPassword) {
     $errors[] = "A senha de confirmação é diferente da nova senha.";
 }
 
@@ -49,7 +49,7 @@ $service = new UserService();
 
 $response = $service->changePassword($email, $currentPassword, $newPassword, $confirmPassword);
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
     header($redirectUrl);
     exit();

@@ -99,54 +99,56 @@ require_once 'CourseService.php';
                     $courseService = new CourseService();
                     $registrations = $courseService->getAllStudentRegistrations();
 
-                    if ($registrations!=null){
+                    if ($registrations != null) {
                         foreach ($registrations as $data) {
 
                             $formatedCreatedAt = $data->getCreatedAt();
-                    ?>
-
-                        <tr>
-                        <td class="td-line">
-                            <div class="avatar">
-                                <img src="<?php echo $data->avatarUrl ?>">
-                            </div>
-                            <div>
-                                <?php echo $data->studentName ?>
-                                <p class="blackOpacity mt5 smallText"><?php echo $data->email ?></p>
-                            </div>
-                        </td>
-                        <td><?php echo $data->course ?></td>
-                        <td><?php echo $formatedCreatedAt ?></td>
-                        <td><span data-status="<?php echo $data->enrollmentsStatusId ?>"><?php echo $data->status ?></span></td>
-                        <td>
-                            <?php
-                                if ($loggedUser->profileId!=Constants::$student){
                             ?>
-                            <div class="table-actions">
-                                <a href="HandlerRegistrationApprove.php?id=<?php echo $data->id ?>">
-                                    <div class="tooltip">
-                                        <i class="fas fa-check-double green-text"></i>
-                                        <span class="tooltipText">Aceitar inscrição do aluno</span>
-                                    </div>
-                                </a>
-                             <?php } ?>
-                                <a href="HandlerRegistrationRefuse.php?id=<?php echo $data->id ?>">
-                                    <div class="tooltip">
-                                        <i class="fas fa-times red-text" style="font-size: 22px"></i>
-                                        <span class="tooltipText">Recusar inscrição do aluno</span>
-                                    </div>
-                                </a>
 
-                                <a href="#">
-                                    <div class="tooltip">
-                                        <i class="fa fa-info-circle"></i>
-                                        <span class="tooltipText">Informações da inscrição.</span>
+                            <tr>
+                                <td class="td-line">
+                                    <div class="avatar">
+                                        <img src="<?php echo $data->avatarUrl ?>">
                                     </div>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php
+                                    <div>
+                                        <?php echo $data->studentName ?>
+                                        <p class="blackOpacity mt5 smallText"><?php echo $data->email ?></p>
+                                    </div>
+                                </td>
+                                <td><?php echo $data->course ?></td>
+                                <td><?php echo $formatedCreatedAt ?></td>
+                                <td>
+                                    <span data-status="<?php echo $data->enrollmentsStatusId ?>"><?php echo $data->status ?></span>
+                                </td>
+                                <td>
+                                    <?php
+                                    if ($loggedUser->profileId != Constants::$student){
+                                    ?>
+                                    <div class="table-actions">
+                                        <a href="HandlerRegistrationApprove.php?id=<?php echo $data->id ?>">
+                                            <div class="tooltip">
+                                                <i class="fas fa-check-double green-text"></i>
+                                                <span class="tooltipText">Aceitar inscrição do aluno</span>
+                                            </div>
+                                        </a>
+                                        <?php } ?>
+                                        <a href="HandlerRegistrationRefuse.php?id=<?php echo $data->id ?>">
+                                            <div class="tooltip">
+                                                <i class="fas fa-times red-text" style="font-size: 22px"></i>
+                                                <span class="tooltipText">Recusar inscrição do aluno</span>
+                                            </div>
+                                        </a>
+
+                                        <a href="#">
+                                            <div class="tooltip">
+                                                <i class="fa fa-info-circle"></i>
+                                                <span class="tooltipText">Informações da inscrição.</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php
                         }
                     }
                     ?>

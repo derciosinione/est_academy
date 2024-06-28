@@ -31,10 +31,14 @@ $service = new UserService();
             </div>
 
             <div class="main-header-right">
-                <div class="search-container">
-                    <input placeholder="Search..." type="text">
-                    <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
-                </div>
+                <?php $search = $_GET['search'] ?? ""; ?>
+
+                <form action="students.php" method="get">
+                    <div class="search-container">
+                        <input placeholder="Search..." type="text" name="search" value="<?php echo $search; ?>">
+                        <button class="btn-icon" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
 
                 <!-- Circular avatar -->
                 <?php include_once 'circularAvatar.php' ?>
@@ -48,23 +52,22 @@ $service = new UserService();
             <div class="main-description">
                 <h2>Alunos</h2>
                 <div>
-                    <!--                    <button onclick=""><i class="fas fa-plus"></i> ADICIONAR</button>-->
                     <button class="more-option-btn" onclick="toggleMoreOption()">MAIS OPÇÕES</button>
                     <div class="more-option" id="more-option">
                         <p>Mais opções</p>
                         <hr>
                         <div>
                             <input id="situation1" name="situation" type="checkbox"> <label
-                                for="situation1">Inativos</label>
+                                    for="situation1">Inativos</label>
                         </div>
                         <div>
                             <input id="situation2" name="situation" type="checkbox"> <label
-                                for="situation2">Aprovados</label>
+                                    for="situation2">Aprovados</label>
                         </div>
 
                         <div>
                             <input id="situation3" name="situation" type="checkbox"> <label for="situation3">Aguardando
-                            aprovação</label>
+                                aprovação</label>
                         </div>
 
                         <div class="mt10 more-option-buttons">
@@ -82,7 +85,7 @@ $service = new UserService();
 
                 <?php
 
-                $students = $service->getAllStudents();
+                $students = $service->getAllStudents($search);
 
                 foreach ($students as $student) {
                     $approvedStatus = $student->getApprovedStatus();

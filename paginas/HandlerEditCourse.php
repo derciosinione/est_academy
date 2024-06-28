@@ -13,7 +13,7 @@ $courseId = htmlspecialchars($_GET['id']);
 $redirectUrl = "Location: course-detail.php?id=$courseId";
 
 //TODO: Buscar o perfil Aluno na base de dados e fazer a comparação
-if ($user->profileId===Constants::$student){
+if ($user->profileId === Constants::$student) {
     $errors[] = "Esta funcionalidade só é permitido para Administradores e Docentes.";
     $_SESSION['error_message'] = $errors;
 
@@ -81,7 +81,7 @@ $response = $courseService->update(
     $imageUrl
 );
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
     $_SESSION['form_data'] = [
         'name' => $name,
@@ -90,6 +90,8 @@ if (!$response->success){
         'maxStudent' => $maxStudent,
         'description' => $description
     ];
+    header($redirectUrl);
+    exit();
 }
 
 $_SESSION['success_message'][] = "Curso $name atualizado com sucesso";

@@ -31,7 +31,7 @@
                     <a class="nav-link" href="sobre.html">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cursos.html">Cursos</a>
+                    <a class="nav-link" href="cursos.php">Cursos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contactos.html">Contactos</a>
@@ -64,7 +64,7 @@
 
     <section class="about-card">
         <div class="about-img keep-show">
-            <img src="Img/about.jpg" alt="">
+            <img src="about.jpg" alt="">
         </div>
 
         <div class="home-content-description">
@@ -106,59 +106,59 @@
 
     <section class="about-card">
         <div class="home-content-description">
-                <h5 class="text-red">Porquê MyAcademy?</h5>
-                <h2>Porquê escolher estudar connosco?</h2>
-                <h5>Transforme Seu Futuro com Educação de Qualidade</h5>
-                <p>
-                    Na MyAcademy, acreditamos que a educação é a chave para desbloquear o seu potencial e
-                    transformar seu futuro. Nosso compromisso é fornecer cursos online de alta qualidade, acessíveis
-                    e relevantes para as necessidades do mercado atual. Aqui estão algumas razões pelas quais você
-                    deve escolher aprender conosco:
-                </p>
+            <h5 class="text-red">Porquê MyAcademy?</h5>
+            <h2>Porquê escolher estudar connosco?</h2>
+            <h5>Transforme Seu Futuro com Educação de Qualidade</h5>
+            <p>
+                Na MyAcademy, acreditamos que a educação é a chave para desbloquear o seu potencial e
+                transformar seu futuro. Nosso compromisso é fornecer cursos online de alta qualidade, acessíveis
+                e relevantes para as necessidades do mercado atual. Aqui estão algumas razões pelas quais você
+                deve escolher aprender conosco:
+            </p>
 
-                <ul class="ul-skills">
-                    <li>
-                        <span class="bg-blue"><i class="fa fa-graduation-cap text-white"></i></span>
-                        <div>
-                            <h5>Cursos Desenvolvidos por Especialistas</h5>
-                            <p>Nossos cursos são criados e ministrados por profissionais experientes e reconhecidos
-                                em suas áreas. Isso garante que você receba uma educação atualizada e prática,
-                                baseada nas últimas tendências e melhores práticas do mercado.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-yellow"><i class="fa fa-certificate"></i></span>
-                        <div>
-                            <h5>Certificação Reconhecida</h5>
-                            <p>Ao concluir nossos cursos, você receberá certificados que são reconhecidos e
-                                valorizados no mercado de trabalho. Esses certificados podem ajudar a impulsionar
-                                sua carreira e abrir novas oportunidades profissionais.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-green"><i class="fa fa-book-reader text-white"></i></span>
-                        <div>
-                            <h5>Flexibilidade de Aprendizagem</h5>
-                            <p>Entendemos que cada estudante tem uma rotina diferente. Por isso, nossos cursos são
-                                projetados para serem acessíveis a qualquer hora e em qualquer lugar. Aprenda no seu
-                                próprio ritmo, de acordo com sua agenda, sem comprometer a qualidade da
-                                educação.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="bg-red"><i class="fa fa-certificate"></i></span>
-                        <div>
-                            <h5>Atualização Constante</h5>
-                            <p>Estamos sempre atualizando e expandindo nosso catálogo de cursos para garantir que
-                                você tenha acesso ao conteúdo mais relevante e inovador. Nunca pare de aprender e
-                                evoluir com nossa vasta seleção de cursos.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <ul class="ul-skills">
+                <li>
+                    <span class="bg-blue"><i class="fa fa-graduation-cap text-white"></i></span>
+                    <div>
+                        <h5>Cursos Desenvolvidos por Especialistas</h5>
+                        <p>Nossos cursos são criados e ministrados por profissionais experientes e reconhecidos
+                            em suas áreas. Isso garante que você receba uma educação atualizada e prática,
+                            baseada nas últimas tendências e melhores práticas do mercado.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="bg-yellow"><i class="fa fa-certificate"></i></span>
+                    <div>
+                        <h5>Certificação Reconhecida</h5>
+                        <p>Ao concluir nossos cursos, você receberá certificados que são reconhecidos e
+                            valorizados no mercado de trabalho. Esses certificados podem ajudar a impulsionar
+                            sua carreira e abrir novas oportunidades profissionais.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="bg-green"><i class="fa fa-book-reader text-white"></i></span>
+                    <div>
+                        <h5>Flexibilidade de Aprendizagem</h5>
+                        <p>Entendemos que cada estudante tem uma rotina diferente. Por isso, nossos cursos são
+                            projetados para serem acessíveis a qualquer hora e em qualquer lugar. Aprenda no seu
+                            próprio ritmo, de acordo com sua agenda, sem comprometer a qualidade da
+                            educação.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="bg-red"><i class="fa fa-certificate"></i></span>
+                    <div>
+                        <h5>Atualização Constante</h5>
+                        <p>Estamos sempre atualizando e expandindo nosso catálogo de cursos para garantir que
+                            você tenha acesso ao conteúdo mais relevante e inovador. Nunca pare de aprender e
+                            evoluir com nossa vasta seleção de cursos.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
         <div class="about-img">
-            <img src="Img/feature.jpg" alt="">
+            <img src="feature.jpg" alt="">
         </div>
     </section>
 
@@ -244,7 +244,7 @@
             <ul>
                 <li><a href="autores.html"><i class="fas fa-chevron-right"></i> Autores</a></li>
                 <li><a href="sobre.html"><i class="fas fa-chevron-right"></i> Sobre</a></li>
-                <li><a href="cursos.html"><i class="fas fa-chevron-right"></i> Cursos</a></li>
+                <li><a href="cursos.php"><i class="fas fa-chevron-right"></i> Cursos</a></li>
                 <li><a href="contactos.html"><i class="fas fa-chevron-right"></i> Contacto</a></li>
                 <li><a href="signup.php"><i class="fas fa-chevron-right"></i> Criar Conta</a></li>
             </ul>
@@ -263,9 +263,9 @@
                 <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/derciosimione" target="_blank"><i
-                        class="fab fa-linkedin-in"></i></a></li>
+                                class="fab fa-linkedin-in"></i></a></li>
                 <li><a href="https://www.youtube.com/channel/UCquw3zsKMJH0IvS6zqyQJZw" target="_blank"><i
-                        class="fab fa-youtube"></i></a></li>
+                                class="fab fa-youtube"></i></a></li>
             </ul>
         </div>
     </div>
