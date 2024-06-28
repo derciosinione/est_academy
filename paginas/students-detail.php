@@ -20,6 +20,8 @@ if (empty($student)) {
     header("Location: 404.php");
     return;
 }
+
+$user = getLoggedUser();
 ?>
 
 <!DOCTYPE html>
@@ -50,15 +52,14 @@ if (empty($student)) {
             </div>
         </div>
 
-        <?php
-//            $student = $service->getUserById()
-        ?>
-
         <section class="student-detail-section">
             <div>
                 <h3><?php echo $student->name ?></h3>
                 <p class="blackOpacity mt5"><i class="fas fa-book-reader"></i> <?php echo $student->profileName ?></p>
             </div>
+
+            <!-- DISPLAY SERVER MESSAGES -->
+            <?php include 'displayMessageIfExists.php' ?>
 
             <div class="student-detail-tab">
                 <ul>
@@ -116,8 +117,18 @@ if (empty($student)) {
                 </div>
             </div>
 
-            <button class="mt30">ADMITIR</button>
-
+            <?php
+                $displayActionName = !$student->getIsApproved() ? "ADMITIR" : "REMOVER ACESSO";
+                if (Constants::$adminId==$user->profileId){
+            ?>
+                    <form action="HandlerApproveStudent.php" method="get">
+                        <input type="hidden" name="studentId" value="<?php echo htmlspecialchars($studentId); ?>">
+                        <input type="hidden" name="status" value="<?php echo htmlspecialchars($student->getIsApproved()); ?>">
+                        <button class="mt30" type="submit"><?php echo htmlspecialchars($displayActionName); ?></button>
+                    </form>
+            <?php
+                }
+            ?>
         </section>
     </main>
 </div>

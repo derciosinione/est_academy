@@ -337,4 +337,26 @@ class UserService implements UserInterface
 
         return new GenericResponse(0, true);
     }
+
+    /**
+     * @param $studentId
+     * @param bool $isApproved
+     * @return GenericResponse
+     */
+    public function handlerAdmitUser($studentId, $isApproved=true): GenericResponse
+    {
+        $query = sprintf("UPDATE Users SET
+                     IsActive= true,
+                     IsDeleted=false,
+                     IsApproved=%d
+                  WHERE Id=%d", $isApproved, $studentId);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel concluir a operação, tente novamente!");
+        }
+
+        return new GenericResponse(0, true);
+    }
 }
