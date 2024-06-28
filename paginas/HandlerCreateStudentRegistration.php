@@ -1,7 +1,8 @@
 <?php
+session_start();
 include 'ShowErrorDetails.php';
 require_once 'CourseService.php';
-include_once 'Utils.php';
+include_once 'getCurrentUser.php';
 include_once 'Constants.php';
 
 $user = getLoggedUser();
@@ -9,13 +10,13 @@ $user = getLoggedUser();
 if (!isset($_GET["courseId"])) {
     $_SESSION['404_message'] = "Informe o identificado do curso";
     header("Location: 404.php");
-    exit();
+    return;
 }
 
 if ($user==null){
-    $_SESSION['warning_message'] = "Efetue login para inscrever-se no curso pretendido";
+    $_SESSION['warning_message'][] = "Efetue login para inscrever-se no curso pretendido";
     header("Location: login.php");
-    exit();
+    return;
 }
 
 $courseId = $_GET["courseId"];

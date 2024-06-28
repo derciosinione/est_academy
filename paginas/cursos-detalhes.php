@@ -86,7 +86,7 @@ if (empty($course)) {
             </p>
 
             <div class="options display-flex">
-                <span class="bg-green"><?php echo $course->getCreator()->name ?></span>
+                <span class="bg-green"><?php echo $course->getCategory()->name ?></span>
                 <span class="bg-blue"><a href="HandlerCreateStudentRegistration.php?courseId=<?php echo $course->id ?>">Inscrever-se</a></span>
             </div>
 

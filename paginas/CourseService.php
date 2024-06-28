@@ -12,9 +12,6 @@ require_once __DIR__ . '/GenericResponse.php';
 require_once __DIR__ . '/../basedados/basedados.h';
 require_once __DIR__ . '/Constants.php';
 
-include_once 'Utils.php';
-
-
 class CourseService implements CourseInterface
 {
     private $db;

@@ -1,5 +1,4 @@
 <?php
-include_once 'Utils.php';
 include 'ShowErrorDetails.php';
 require_once 'CourseService.php';
 ?>
