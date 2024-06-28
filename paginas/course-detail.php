@@ -110,7 +110,7 @@ if (isset($_SESSION['form_data'])) {
 
                         <label for="category">
                             Categoria
-                            <select id="category" class="custom-select"  name="category">
+                            <select id="category" class="custom-select" name="category">
                                 <option value="0" selected>Escolha a categoria</option>
                                 <option value="8" <?php if ($categoryId == 8) echo 'selected' ?>>Banco de Dados
                                 </option>

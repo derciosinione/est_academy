@@ -7,7 +7,7 @@ require_once "UserModel.php";
  */
 function getLoggedUser()
 {
-    if(!isset($_SESSION['loggedUser'])){
+    if (!isset($_SESSION['loggedUser'])) {
         return null;
     }
     return unserialize($_SESSION['loggedUser']);

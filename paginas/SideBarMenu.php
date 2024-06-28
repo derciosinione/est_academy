@@ -14,7 +14,7 @@ if (isset($_SESSION['loggedUser'])) {
     /** @var userModel $loggedUser */
     $loggedUser = unserialize($_SESSION['loggedUser']);
 
-    if (!$loggedUser->getIsApproved() && $loggedUser->profileId==Constants::$student){
+    if (!$loggedUser->getIsApproved() && $loggedUser->profileId == Constants::$student) {
         unset($_SESSION['loggedUser']);
         $_SESSION['warning_message'][] = "Sua conta ainda não foi aprovada pelo administrador";
         header("Location: login.php");
@@ -103,7 +103,7 @@ if (isset($_SESSION['loggedUser'])) {
                     </li>
                 </ul>
 
-        <?php
+                <?php
             }
         }
         ?>

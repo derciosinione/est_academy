@@ -6,7 +6,6 @@ class UserModel
     public $name;
     public $username;
     public $email;
-    private $nif;
     public $phoneNumber;
     public $avatarUrl;
     public $birthDay;
@@ -14,11 +13,12 @@ class UserModel
     public $profileName;
     public $isStaff;
     public $isActive;
-    private $approvedStatus;
-    private $isApproved;
     public $isDeleted;
     public $createdAt;
     public $updatedAt;
+    private $nif;
+    private $approvedStatus;
+    private $isApproved;
     private $passwordHash;
 
     /**
@@ -29,7 +29,7 @@ class UserModel
      * @param $birthDay
      * @param $profileId
      */
-    public function __construct($id = null, $name = null, $username = null,$email = null, $phoneNumber = null, $birthDay = null, $profileId = null)
+    public function __construct($id = null, $name = null, $username = null, $email = null, $phoneNumber = null, $birthDay = null, $profileId = null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -99,17 +99,16 @@ class UserModel
         return $this->approvedStatus;
     }
 
-    public function getIsApproved()
-    {
-        return $this->isApproved;
-    }
-
     public function setApprovedStatus($isApproved)
     {
         $this->isApproved = $isApproved;
         $this->approvedStatus = $isApproved ? 'Aprovado' : 'Aguardando aprovação';
     }
 
+    public function getIsApproved()
+    {
+        return $this->isApproved;
+    }
 
 
 }

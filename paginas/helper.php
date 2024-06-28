@@ -16,7 +16,7 @@ function makeLoginHelper(UserService $userService, string $email, string $passwo
         exit();
     }
 
-    if (!$login->getIsApproved() && $login->profileId==Constants::$student){
+    if (!$login->getIsApproved() && $login->profileId == Constants::$student) {
         $_SESSION['warning_message'][] = "Sua conta ainda não foi aprovada pelo administrador";
         header("Location: login.php");
         exit();

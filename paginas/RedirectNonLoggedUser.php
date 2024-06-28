@@ -8,7 +8,7 @@ $currentFileName = strtolower(trim(str_replace('.php', '', basename($_SERVER['SC
 $currentFileName = str_replace('.html', '', $currentFileName);
 
 
-if(!isset($_SESSION['loggedUser'])) {
+if (!isset($_SESSION['loggedUser'])) {
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
     $_SESSION['warning_message'][] = "Você precisa fazer login para acessar o painel";
     header("Location: login.php");

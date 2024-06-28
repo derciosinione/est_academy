@@ -22,7 +22,7 @@ $status = htmlspecialchars($_GET['status']);
 
 $redirectUrl = "Location: students-detail.php?id=$studentId";
 
-if ($loggedUser->profileId!=Constants::$adminId){
+if ($loggedUser->profileId != Constants::$adminId) {
     $errors[] = "Esta funcionalidade só é permitido para Administradores";
     $_SESSION['error_message'] = $errors;
 
@@ -34,7 +34,7 @@ $userService = new UserService();
 
 $response = $userService->handlerAdmitUser($studentId, !$status);
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
     header($redirectUrl);
     exit();

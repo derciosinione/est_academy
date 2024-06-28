@@ -1,6 +1,6 @@
 <?php
 include_once 'RedirectNonLoggedUser.php';
-include_once  'getCurrentUser.php';
+include_once 'getCurrentUser.php';
 
 function app_session_start()
 {

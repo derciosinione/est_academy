@@ -13,7 +13,7 @@ if (!isset($_GET["courseId"])) {
     return;
 }
 
-if ($user==null){
+if ($user == null) {
     $_SESSION['warning_message'][] = "Efetue login para inscrever-se no curso pretendido";
     header("Location: login.php");
     return;
@@ -28,7 +28,7 @@ $response = $courseService->createStudentRegistration(
     $courseId
 );
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['404_message'] = "Não foi possivel inscrever o aluno no curso, tente novamente!";
     header("Location: 404.php");
     exit();

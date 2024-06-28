@@ -19,6 +19,48 @@ class UserService implements UserInterface
         $this->connection = $this->db->getConnection();
     }
 
+    public function logOut()
+    {
+        // TODO: Implement logOut() method.
+    }
+
+    public function changePassword($email, $currentPassword, $password, $confirmPassword): GenericResponse
+    {
+        $user = $this->login($email, $currentPassword);
+
+        if ($user == null) {
+            return new GenericResponse(0, false, "Senha atual incorreta!");
+        }
+
+        $query = sprintf("UPDATE Users SET 
+                 PasswordHash = md5('%s') WHERE Id=%d", $password, $user->id);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) {
+            return new GenericResponse(0, false, "Não foi possivel atualizar a senha, tente novamente!");
+        }
+
+        return new GenericResponse($user->id, true);
+    }
+
+    public function login($email, $password)
+    {
+        $password = md5($password);
+
+        $query = $this->getDefaultSqlQuery() . " AND (u.Email='$email' OR u.Username='$email') AND u.PasswordHash='$password'";
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) return null;
+
+        $row = $result->fetch_assoc();
+
+        if ($row == null) return null;
+
+        return $this->userInstance($row);
+    }
+
     public function getDefaultSqlQuery(): string
     {
         return /** @lang text */ "
@@ -40,160 +82,6 @@ class UserService implements UserInterface
             WHERE 1=1
             AND !u.IsDeleted
             AND u.IsActive";
-    }
-
-    public function login($email, $password)
-    {
-        $password = md5($password);
-
-        $query = $this->getDefaultSqlQuery() . " AND (u.Email='$email' OR u.Username='$email') AND u.PasswordHash='$password'";
-
-        $result = $this->db->executeSqlQuery($query);
-
-        if ($result == null) return null;
-
-        $row = $result->fetch_assoc();
-
-        if ($row==null) return null;
-
-        return $this->userInstance($row);
-    }
-
-    public function logOut()
-    {
-        // TODO: Implement logOut() method.
-    }
-
-    public function changePassword($email, $currentPassword, $password, $confirmPassword): GenericResponse
-    {
-        $user = $this->login($email, $currentPassword);
-
-        if ($user==null){
-            return new GenericResponse(0, false, "Senha atual incorreta!");
-        }
-
-        $query = sprintf("UPDATE Users SET 
-                 PasswordHash = md5('%s') WHERE Id=%d", $password, $user->id);
-
-        $result = $this->db->executeSqlQuery($query);
-
-        if ($result == null) {
-            return new GenericResponse(0, false, "Não foi possivel atualizar a senha, tente novamente!");
-        }
-
-        return new GenericResponse($user->id, true);
-    }
-
-    /**
-     * Get all users from the database.
-     *
-     * @return userModel[] Array of userModel objects.
-     */
-    public function getAllUserStaff($search=''): array
-    {
-        $users = [];
-        $query = "SELECT * FROM Users WHERE IsStaff";
-
-        $data = $this->db->executeSqlQuery($query);
-
-        if ($data == null) return $users;
-
-        while ($row = $data) {
-            $users[] = new UserModel($row["Id"], $row["Name"], $row["Email"], $row["PhoneNumber"], $row["BirthDay"], $row["ProfileId"]);
-        }
-
-        return $users;
-    }
-
-
-    /**
-     * Get the user with provided id from the database.
-     *
-     * @return userModel userModel objects.
-     */
-    public function getUserById($userId)
-    {
-        $query = $this->getDefaultSqlQuery() . " AND u.Id = $userId";
-
-        $result = $this->db->executeSqlQuery($query);
-
-        if ($result == null) return null;
-
-        $row = $result->fetch_assoc();
-
-        if ($row==null) return null;
-
-        return $this->userInstance($row);
-    }
-
-    /**
-     * @param $email
-     * @return userModel|null
-     */
-    public function getUserByEmail($email)
-    {
-        $query = "SELECT * FROM Users WHERE Email = ?";
-        $statement = $this->connection->prepare($query);
-        $statement->bind_param("i", $email);
-
-        $row = $this->db->executeSqlCommand($statement);
-
-        if ($row == null) return null;
-
-        $user = new UserModel($row["Id"], $row["Name"], $row["Email"]);
-        $user->setPasswordHash($row["PasswordHash"]);
-        return $user;
-    }
-
-
-    /**
-     * @return UserModel[]
-     */
-    public function getAllStudents($search=''): array
-    {
-        return $this->getAllUserByProfile(Constants::$student, $search);
-    }
-
-
-    /**
-     * @return UserModel[]
-     */
-    public function getAllInstructors($search=''): array
-    {
-        return $this->getAllUserByProfile(Constants::$instructor, $search);
-    }
-
-    /**
-     * @return UserModel[]
-     */
-    public function getAllAdmin($search=''): array
-    {
-        return $this->getAllUserByProfile(Constants::$adminId, $search);
-    }
-
-    /**
-     * @return UserModel[]
-     */
-    public function getAllUserByProfile($profileId, $search=''): array
-    {
-        $query = $this->getDefaultSqlQuery() . " AND u.ProfileId=$profileId ";
-
-        if ($search != null)
-            $query .= " AND (u.Name like '%$search%' OR u.Email like '%$search%') ";
-
-        $query .= $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
-
-        $result = $this->db->executeSqlQuery($query);
-
-        $data = [];
-
-        if ($result == null) return $data;
-
-        while ($row = $result->fetch_assoc()) {
-            $data [] = $this->userInstance($row);
-        }
-
-        return $data;
     }
 
     /**
@@ -221,6 +109,115 @@ class UserService implements UserInterface
     }
 
     /**
+     * Get all users from the database.
+     *
+     * @return userModel[] Array of userModel objects.
+     */
+    public function getAllUserStaff($search = ''): array
+    {
+        $users = [];
+        $query = "SELECT * FROM Users WHERE IsStaff";
+
+        $data = $this->db->executeSqlQuery($query);
+
+        if ($data == null) return $users;
+
+        while ($row = $data) {
+            $users[] = new UserModel($row["Id"], $row["Name"], $row["Email"], $row["PhoneNumber"], $row["BirthDay"], $row["ProfileId"]);
+        }
+
+        return $users;
+    }
+
+    /**
+     * Get the user with provided id from the database.
+     *
+     * @return userModel userModel objects.
+     */
+    public function getUserById($userId)
+    {
+        $query = $this->getDefaultSqlQuery() . " AND u.Id = $userId";
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) return null;
+
+        $row = $result->fetch_assoc();
+
+        if ($row == null) return null;
+
+        return $this->userInstance($row);
+    }
+
+    /**
+     * @param $email
+     * @return userModel|null
+     */
+    public function getUserByEmail($email)
+    {
+        $query = "SELECT * FROM Users WHERE Email = ?";
+        $statement = $this->connection->prepare($query);
+        $statement->bind_param("i", $email);
+
+        $row = $this->db->executeSqlCommand($statement);
+
+        if ($row == null) return null;
+
+        $user = new UserModel($row["Id"], $row["Name"], $row["Email"]);
+        $user->setPasswordHash($row["PasswordHash"]);
+        return $user;
+    }
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllStudents($search = ''): array
+    {
+        return $this->getAllUserByProfile(Constants::$student, $search);
+    }
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllUserByProfile($profileId, $search = ''): array
+    {
+        $query = $this->getDefaultSqlQuery() . " AND u.ProfileId=$profileId ";
+
+        if ($search != null)
+            $query .= " AND (u.Name like '%$search%' OR u.Email like '%$search%') ";
+
+        $query .= $this->db->getOrderBy("u") . $this->db->getQueryLimit(9);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        $data = [];
+
+        if ($result == null) return $data;
+
+        while ($row = $result->fetch_assoc()) {
+            $data [] = $this->userInstance($row);
+        }
+
+        return $data;
+    }
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllInstructors($search = ''): array
+    {
+        return $this->getAllUserByProfile(Constants::$instructor, $search);
+    }
+
+    /**
+     * @return UserModel[]
+     */
+    public function getAllAdmin($search = ''): array
+    {
+        return $this->getAllUserByProfile(Constants::$adminId, $search);
+    }
+
+    /**
      * @param $id
      * @param $name
      * @param $email
@@ -236,7 +233,7 @@ class UserService implements UserInterface
             return new GenericResponse(0, false, "A data de nascimento deve estar no formato yyyy/mm/dd.");
         }
 
-        if ($nif=='Não Informado') $nif = null;
+        if ($nif == 'Não Informado') $nif = null;
 
         $query = sprintf("UPDATE Users SET
                      Name= '%s',
@@ -246,7 +243,7 @@ class UserService implements UserInterface
                      BirthDay='%s',
                      ProfileId=%d
                   WHERE Id=%d",
-             $name, $email, $nif, $phoneNumber, $birthDay, $profileId, $id);
+            $name, $email, $nif, $phoneNumber, $birthDay, $profileId, $id);
 
         $result = $this->db->executeSqlQuery($query);
 
@@ -281,24 +278,6 @@ class UserService implements UserInterface
      * @param $nif
      * @param $birthDay
      * @param string $phoneNumber
-     * @param string $password
-     * @param int $profileId
-     * @param string $avatarUrl
-     * @return GenericResponse
-     */
-    public function createUser($name, $email, $nif, $birthDay, $phoneNumber = "", $password="", $profileId=2, $avatarUrl = ""): GenericResponse
-    {
-        $avatarUrl = 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $profileId, $password, true, $avatarUrl);
-    }
-
-    /**
-     * if the user was created it returns the userId, otherwise it returns the error message
-     * @param $name
-     * @param $email
-     * @param $nif
-     * @param $birthDay
-     * @param string $phoneNumber
      * @param int $profileId
      * @param string $password
      * @param $isApproved
@@ -316,7 +295,7 @@ class UserService implements UserInterface
 
         $userId = $this->db->executeInsertQuery($query);
 
-        if ($userId == null || $userId == 0){
+        if ($userId == null || $userId == 0) {
             return new GenericResponse(0, false, "Não foi possivel criar o usuario, tente novamente!");
         }
 
@@ -324,10 +303,28 @@ class UserService implements UserInterface
     }
 
     /**
+     * if the user was created it returns the userId, otherwise it returns the error message
+     * @param $name
+     * @param $email
+     * @param $nif
+     * @param $birthDay
+     * @param string $phoneNumber
+     * @param string $password
+     * @param int $profileId
+     * @param string $avatarUrl
+     * @return GenericResponse
+     */
+    public function createUser($name, $email, $nif, $birthDay, $phoneNumber = "", $password = "", $profileId = 2, $avatarUrl = ""): GenericResponse
+    {
+        $avatarUrl = 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+        return $this->createGenericUser($name, $email, $nif, $birthDay, $phoneNumber, $profileId, $password, true, $avatarUrl);
+    }
+
+    /**
      * @param $id
      * @return GenericResponse
      */
-    public function deleteUser($id) : GenericResponse
+    public function deleteUser($id): GenericResponse
     {
         $query = sprintf("UPDATE Users SET
                      IsActive= false,
@@ -348,7 +345,7 @@ class UserService implements UserInterface
      * @param bool $isApproved
      * @return GenericResponse
      */
-    public function handlerAdmitUser($studentId, $isApproved=true): GenericResponse
+    public function handlerAdmitUser($studentId, $isApproved = true): GenericResponse
     {
         $query = sprintf("UPDATE Users SET
                      IsActive= true,

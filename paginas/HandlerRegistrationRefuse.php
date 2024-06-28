@@ -24,14 +24,13 @@ $courseService = new CourseService();
 
 $response = null;
 
-if ($loggedUser->profileId==Constants::$student){
+if ($loggedUser->profileId == Constants::$student) {
     $response = $courseService->deleteRegistration($registrationId);
-}
-else {
+} else {
     $response = $courseService->refuseRegistration($registrationId);
 }
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
     header($redirectUrl);
     exit();

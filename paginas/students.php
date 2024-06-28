@@ -58,16 +58,16 @@ $service = new UserService();
                         <hr>
                         <div>
                             <input id="situation1" name="situation" type="checkbox"> <label
-                                for="situation1">Inativos</label>
+                                    for="situation1">Inativos</label>
                         </div>
                         <div>
                             <input id="situation2" name="situation" type="checkbox"> <label
-                                for="situation2">Aprovados</label>
+                                    for="situation2">Aprovados</label>
                         </div>
 
                         <div>
                             <input id="situation3" name="situation" type="checkbox"> <label for="situation3">Aguardando
-                            aprovação</label>
+                                aprovação</label>
                         </div>
 
                         <div class="mt10 more-option-buttons">

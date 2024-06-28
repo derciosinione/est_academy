@@ -74,7 +74,8 @@ if (empty($course)) {
         <div>
             <h2><?php echo $course->name ?></h2>
             <p><strong>Aprenda a construir programas de computador de maneira fácil e rápida</strong></p>
-            <p class="text-gray">Instrutor <i class="fas fa-angle-double-right"></i> <?php echo $course->getCreator()->name ?></p>
+            <p class="text-gray">Instrutor <i
+                        class="fas fa-angle-double-right"></i> <?php echo $course->getCreator()->name ?></p>
 
             <p class="star">
                 <strong><em class="text-yellow">4.3</em></strong>
@@ -116,7 +117,8 @@ if (empty($course)) {
             <ul>
                 <li><h5>Preço do Curso</h5></li>
                 <li><i class="fas fa-chevron-right"></i><strong><?php echo $course->price ?>€</strong></li>
-                <li><a href="HandlerCreateStudentRegistration.php?courseId=<?php echo $course->id ?>" class="btn btn-primary btn-lg">Inscrever-se</a></li>
+                <li><a href="HandlerCreateStudentRegistration.php?courseId=<?php echo $course->id ?>"
+                       class="btn btn-primary btn-lg">Inscrever-se</a></li>
             </ul>
         </aside>
     </section>
@@ -165,9 +167,9 @@ if (empty($course)) {
                 <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/derciosimione" target="_blank"><i
-                        class="fab fa-linkedin-in"></i></a></li>
+                                class="fab fa-linkedin-in"></i></a></li>
                 <li><a href="https://www.youtube.com/channel/UCquw3zsKMJH0IvS6zqyQJZw" target="_blank"><i
-                        class="fab fa-youtube"></i></a></li>
+                                class="fab fa-youtube"></i></a></li>
             </ul>
         </div>
     </div>

@@ -47,14 +47,14 @@
                 <h3 class="mt15 ml15 mb15">Sobre Mim</h3>
                 <div class="horizontal-line"></div>
 
-                    <section id="descriptionEditorBox" class="setting-container">
-                        <input type="hidden" id="descriptionContent" name="description">
-                        <label>Descrição</label>
-                        <div class="mt10">
-                            <div id="descriptionEditor"></div>
-                        </div>
-                        <input onclick="" onsubmit="" class="mt30 save-info-btn center" type="submit" value="SALVAR">
-                    </section>
+                <section id="descriptionEditorBox" class="setting-container">
+                    <input type="hidden" id="descriptionContent" name="description">
+                    <label>Descrição</label>
+                    <div class="mt10">
+                        <div id="descriptionEditor"></div>
+                    </div>
+                    <input onclick="" onsubmit="" class="mt30 save-info-btn center" type="submit" value="SALVAR">
+                </section>
             </section>
         </div>
     </main>

@@ -21,6 +21,38 @@ class CourseService implements CourseInterface
         $this->db = new DbContext();
     }
 
+    /**
+     * @return CourseModel[]
+     */
+    public function getAll($search = '')
+    {
+        $loggedUser = getLoggedUser();
+
+        $query = $this->getDefaultSqlQuery();
+
+        if (!empty($search)) {
+            $query .= " AND c.Name LIKE '%$search%' OR u.Name LIKE '%$search%' OR ct.Name LIKE '%$search%' ";
+        }
+
+        if ($loggedUser->profileId == Constants::$instructor) {
+            $query .= " AND c.CreatorId = " . $loggedUser->id . " ";
+        }
+
+        $query .= $this->db->getOrderBy("c") . $this->db->getQueryLimit(8);
+
+        $result = $this->db->executeSqlQuery($query);
+
+        if ($result == null) return null;
+
+        $courses = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $courses [] = $this->courseInstance($row);
+        }
+
+        return $courses;
+    }
+
     public function getDefaultSqlQuery(): string
     {
         return /** @lang text */ "
@@ -45,35 +77,29 @@ class CourseService implements CourseInterface
     }
 
     /**
-     * @return CourseModel[]
+     * @param array $row
+     * @return CourseModel
      */
-    public function getAll($search='')
+    private function courseInstance(array $row): CourseModel
     {
-        $loggedUser = getLoggedUser();
+        $course = new CourseModel();
+        $course->setId($row["Id"]);
+        $course->setIsActive($row["IsActive"]);
+        $course->setCreatedAt($row["CreatedAt"]);
+        $course->name = $row["Name"];
+        $course->price = $row["Price"];
+        $course->description = $row["Description"];
+        $course->maxStudent = $row["MaxStudent"];
+        $course->categoryId = $row["CategoryId"];
+        $course->creatorId = $row["CreatorId"];
+        $course->imageUrl = $row["ImageUrl"];
 
-        $query = $this->getDefaultSqlQuery();
+        $creator = new UserModel($row["Id"], $row["CreatorName"]);
+        $course->setCreator($creator);
 
-        if (!empty($search)) {
-            $query .= " AND c.Name LIKE '%$search%' OR u.Name LIKE '%$search%' OR ct.Name LIKE '%$search%' ";
-        }
-
-        if ($loggedUser->profileId==Constants::$instructor){
-            $query .= " AND c.CreatorId = ".$loggedUser->id ." ";
-        }
-
-        $query .= $this->db->getOrderBy("c") . $this->db->getQueryLimit(8);
-
-        $result = $this->db->executeSqlQuery($query);
-
-        if ($result == null) return null;
-
-        $courses = [];
-
-        while ($row = $result->fetch_assoc()) {
-            $courses [] = $this->courseInstance($row);
-        }
-
-        return $courses;
+        $category = new CategoryModel($row["Id"], $row["Category"]);
+        $course->setCategory($category);
+        return $course;
     }
 
     /**
@@ -95,25 +121,6 @@ class CourseService implements CourseInterface
         }
 
         return $courses;
-    }
-
-    /**
-     * @param $id
-     * @return CourseModel
-     */
-    public function getById($id)
-    {
-        $query = $this->getDefaultSqlQuery() . " AND c.Id=$id ";
-
-        $result = $this->db->executeSqlQuery($query);
-
-        if ($result == null) return null;
-
-        $row = $result->fetch_assoc();
-
-        if ($row==null) return null;
-
-        return $this->courseInstance($row);
     }
 
     /**
@@ -196,29 +203,22 @@ class CourseService implements CourseInterface
     }
 
     /**
-     * @param array $row
+     * @param $id
      * @return CourseModel
      */
-    private function courseInstance(array $row): CourseModel
+    public function getById($id)
     {
-        $course = new CourseModel();
-        $course->setId($row["Id"]);
-        $course->setIsActive($row["IsActive"]);
-        $course->setCreatedAt($row["CreatedAt"]);
-        $course->name = $row["Name"];
-        $course->price = $row["Price"];
-        $course->description = $row["Description"];
-        $course->maxStudent = $row["MaxStudent"];
-        $course->categoryId = $row["CategoryId"];
-        $course->creatorId = $row["CreatorId"];
-        $course->imageUrl = $row["ImageUrl"];
+        $query = $this->getDefaultSqlQuery() . " AND c.Id=$id ";
 
-        $creator = new UserModel($row["Id"], $row["CreatorName"]);
-        $course->setCreator($creator);
+        $result = $this->db->executeSqlQuery($query);
 
-        $category = new CategoryModel($row["Id"], $row["Category"]);
-        $course->setCategory($category);
-        return $course;
+        if ($result == null) return null;
+
+        $row = $result->fetch_assoc();
+
+        if ($row == null) return null;
+
+        return $this->courseInstance($row);
     }
 
     /**
@@ -239,7 +239,7 @@ class CourseService implements CourseInterface
 
         $totalStudents = $this->getTotalStudent($id);
 
-        if ($totalStudents > 0){
+        if ($totalStudents > 0) {
             return new GenericResponse(0, false, "Este curso não pode ser eliminado porque tem $totalStudents alunos inscritos!");
         }
 
@@ -261,7 +261,8 @@ class CourseService implements CourseInterface
      */
     public function getTotalStudent($courseId)
     {
-        $query = /** @lang text */ "
+        $query = /** @lang text */
+            "
             SELECT 
                   COUNT(Id) TotalStudent
               FROM StudentEnrollments
@@ -273,7 +274,7 @@ class CourseService implements CourseInterface
 
         $row = $result->fetch_assoc();
 
-        if ($row==null) return null;
+        if ($row == null) return null;
 
         return $row["TotalStudent"];
     }
@@ -287,7 +288,8 @@ class CourseService implements CourseInterface
 
         if ($loggedUser == null) return null;
 
-        $defaultQuery = /** @lang text */ "
+        $defaultQuery = /** @lang text */
+            "
             SELECT SE.Id,
                U.Name StudentName,
                U.Email,
@@ -305,7 +307,7 @@ class CourseService implements CourseInterface
 
         $endQuery = $this->db->getOrderBy("SE") . $this->db->getQueryLimit(10);
 
-        switch ($loggedUser->profileId){
+        switch ($loggedUser->profileId) {
             case Constants::$student:
                 $query = $defaultQuery . " AND SE.StudentId=$loggedUser->id " . $endQuery;
                 break;
@@ -360,15 +362,6 @@ class CourseService implements CourseInterface
 
     /**
      * @param $id
-     * @return GenericResponse
-     */
-    public function refuseRegistration($id): GenericResponse
-    {
-        return $this->updateRegistrationStatus($id, EnrollmentsStatus::$Refused);
-    }
-
-    /**
-     * @param $id
      * @param $enrollmentsStatusId
      * @return GenericResponse
      */
@@ -390,6 +383,15 @@ class CourseService implements CourseInterface
         }
 
         return new GenericResponse($id, true);
+    }
+
+    /**
+     * @param $id
+     * @return GenericResponse
+     */
+    public function refuseRegistration($id): GenericResponse
+    {
+        return $this->updateRegistrationStatus($id, EnrollmentsStatus::$Refused);
     }
 
     /**

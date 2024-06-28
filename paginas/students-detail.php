@@ -118,16 +118,17 @@ $user = getLoggedUser();
             </div>
 
             <?php
-                $displayActionName = !$student->getIsApproved() ? "ADMITIR" : "REMOVER ACESSO";
-                if (Constants::$adminId==$user->profileId){
-            ?>
-                    <form action="HandlerApproveStudent.php" method="get">
-                        <input type="hidden" name="studentId" value="<?php echo htmlspecialchars($studentId); ?>">
-                        <input type="hidden" name="status" value="<?php echo htmlspecialchars($student->getIsApproved()); ?>">
-                        <button class="mt30" type="submit"><?php echo htmlspecialchars($displayActionName); ?></button>
-                    </form>
-            <?php
-                }
+            $displayActionName = !$student->getIsApproved() ? "ADMITIR" : "REMOVER ACESSO";
+            if (Constants::$adminId == $user->profileId) {
+                ?>
+                <form action="HandlerApproveStudent.php" method="get">
+                    <input type="hidden" name="studentId" value="<?php echo htmlspecialchars($studentId); ?>">
+                    <input type="hidden" name="status"
+                           value="<?php echo htmlspecialchars($student->getIsApproved()); ?>">
+                    <button class="mt30" type="submit"><?php echo htmlspecialchars($displayActionName); ?></button>
+                </form>
+                <?php
+            }
             ?>
         </section>
     </main>

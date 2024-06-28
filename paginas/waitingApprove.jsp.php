@@ -4,7 +4,7 @@ session_destroy();
 ?>
 
 <div
-    style='margin: 0 auto; background-color: #1C344F; padding: 30px; border-radius: 10px; text-align: center; color: white;'>
+        style='margin: 0 auto; background-color: #1C344F; padding: 30px; border-radius: 10px; text-align: center; color: white;'>
     <h1>
         Aguardando aprovação do administrador
         <h1>

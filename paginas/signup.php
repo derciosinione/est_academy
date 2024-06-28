@@ -64,13 +64,18 @@ if (isset($_SESSION['form_data'])) {
                 <?php } ?>
 
                 <div class="inputs">
-                    <input id="name" name="name" placeholder="Nome Completo" type="text" value="<?php echo htmlspecialchars($name); ?>">
-                    <input id="email" name="email" placeholder="Email" type="email" value="<?php echo htmlspecialchars($email); ?>">
-                    <input id="phoneNumber" name="phoneNumber" placeholder="Contacto" type="text" value="<?php echo htmlspecialchars($phoneNumber); ?>">
-                    <input id="nif" name="nif" placeholder="NIF" type="text" value="<?php echo htmlspecialchars($nif); ?>">
+                    <input id="name" name="name" placeholder="Nome Completo" type="text"
+                           value="<?php echo htmlspecialchars($name); ?>">
+                    <input id="email" name="email" placeholder="Email" type="email"
+                           value="<?php echo htmlspecialchars($email); ?>">
+                    <input id="phoneNumber" name="phoneNumber" placeholder="Contacto" type="text"
+                           value="<?php echo htmlspecialchars($phoneNumber); ?>">
+                    <input id="nif" name="nif" placeholder="NIF" type="text"
+                           value="<?php echo htmlspecialchars($nif); ?>">
                     <input id="birthDay" name="birthDay" type="date" value="<?php echo htmlspecialchars($birthDay); ?>">
                     <div class="password-div">
-                        <input id="password" name="password" placeholder="Password" type="password" value="<?php echo htmlspecialchars($password); ?>">
+                        <input id="password" name="password" placeholder="Password" type="password"
+                               value="<?php echo htmlspecialchars($password); ?>">
                         <span class="toggle-password" onclick="togglePasswordVisibility()"><i
                                     class="fas fa-eye blackOpacity"></i></span>
                     </div>

@@ -35,7 +35,9 @@
                     <option value="8" <?php if ($category == 8) echo 'selected' ?>>Banco de Dados</option>
                     <option value="10" <?php if ($category == 10) echo 'selected' ?>>Ciência de Dados</option>
                     <option value="11" <?php if ($category == 11) echo 'selected' ?>>Cloud Computing</option>
-                    <option value="13" <?php if ($category == 13) echo 'selected' ?>>Desenvolvimento de Aplicativos Móveis</option>
+                    <option value="13" <?php if ($category == 13) echo 'selected' ?>>Desenvolvimento de Aplicativos
+                        Móveis
+                    </option>
                     <option value="7" <?php if ($category == 7) echo 'selected' ?>>Desenvolvimento Web</option>
                     <option value="1" <?php if ($category == 1) echo 'selected' ?>>Diversos</option>
                     <option value="5" <?php if ($category == 5) echo 'selected' ?>>Gestão</option>

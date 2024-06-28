@@ -55,7 +55,9 @@ $service = new UserService();
                 <h2>Administradores</h2>
 
                 <div>
-                    <a href="create-user.php"><button onclick=""><i class="fas fa-plus"></i> ADICIONAR</button></a>
+                    <a href="create-user.php">
+                        <button onclick=""><i class="fas fa-plus"></i> ADICIONAR</button>
+                    </a>
                     <button class="more-option-btn" onclick="toggleMoreOption()">MAIS OPÇÕES</button>
                     <div class="more-option" id="more-option">
                         <p>Mais opções</p>

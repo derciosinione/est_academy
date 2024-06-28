@@ -57,7 +57,8 @@ require_once 'CourseService.php';
             <p>Pesquisa o curso desejado, ele está a um clique de ti</p>
             <?php $search = $_GET['search'] ?? ""; ?>
             <form action="cursos.php" method="get">
-                <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Search" name="search" value="<?php echo $search ?>">
+                <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Search" name="search"
+                       value="<?php echo $search ?>">
                 <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>

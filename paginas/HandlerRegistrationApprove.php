@@ -21,7 +21,7 @@ if (!isset($_GET["id"])) {
 $registrationId = htmlspecialchars($_GET['id']);
 $redirectUrl = "Location: registrations.php";
 
-if ($loggedUser->profileId==Constants::$student){
+if ($loggedUser->profileId == Constants::$student) {
     $errors[] = "Esta funcionalidade só é permitido para Administradores e Docentes";
     $_SESSION['error_message'] = $errors;
 
@@ -33,7 +33,7 @@ $courseService = new CourseService();
 
 $response = $courseService->approveRegistration($registrationId);
 
-if (!$response->success){
+if (!$response->success) {
     $_SESSION['error_message'][] = $response->errorMessage;
     header($redirectUrl);
     exit();
