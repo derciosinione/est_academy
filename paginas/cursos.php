@@ -86,7 +86,7 @@ require_once 'CourseService.php';
 
                 echo <<<HTML
                 <div class="transition-scale">
-                    <a href="cursos-detalhes.html?id=$course->id">
+                    <a href="cursos-detalhes.php?id=$course->id">
                         <div class="course-img">
                             <img src="$course->imageUrl" alt="">
                         </div>
@@ -142,9 +142,8 @@ HTML;
         <div>
             <h5 class="text-uppercase">Links Uteis</h5>
             <ul>
-                <li><a href="autores.html"><i class="fas fa-chevron-right"></i> Autores</a></li>
                 <li><a href="sobre.html"><i class="fas fa-chevron-right"></i> Sobre</a></li>
-                <li><a href="cursos.html"><i class="fas fa-chevron-right"></i> Cursos</a></li>
+                <li><a href="cursos.php"><i class="fas fa-chevron-right"></i> Cursos</a></li>
                 <li><a href="contactos.html"><i class="fas fa-chevron-right"></i> Contacto</a></li>
                 <li><a href="signup.php"><i class="fas fa-chevron-right"></i> Criar Conta</a></li>
             </ul>

@@ -399,4 +399,31 @@ class CourseService implements CourseInterface
 
         return new GenericResponse($id, true);
     }
+
+    /**
+     * @param $studentId
+     * @param $courseId
+     * @return GenericResponse
+     */
+    public function createStudentRegistration($studentId, $courseId): GenericResponse
+    {
+        $query = sprintf("INSERT INTO StudentEnrollments (
+                     StudentId,
+                     CourseId, 
+                     EnrollmentsStatusId,
+                     IsDeleted, 
+                     CreatedAt, 
+                     UpdatedAt
+                     ) VALUES
+            ('%d', '%d', '%d', FALSE, NOW(), NOW())",
+            $studentId, $courseId, EnrollmentsStatus::$pending);
+
+        $registrationId = $this->db->executeInsertQuery($query);
+
+        if ($registrationId == null || $registrationId == 0) {
+            return new GenericResponse(0, false, "Não foi possivel registar o aluno no curso pretendido, tente novamente!");
+        }
+
+        return new GenericResponse($registrationId, true);
+    }
 }

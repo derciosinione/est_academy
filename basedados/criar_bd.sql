@@ -221,3 +221,13 @@ UPDATE Users SET AvatarUrl='studentavatar.jpg' WHERE ProfileId=1;
 UPDATE Users SET AvatarUrl='docent-avatar.jpg' WHERE ProfileId in (2,3);
 
 UPDATE Users SET Username=trim(Username), Email=trim(Email), PasswordHash=md5(PasswordHash) WHERE Id!=0;
+
+update Courses set Description='Metodologia
+O curso combina aulas teóricas com atividades práticas e projetos. Os alunos terão a oportunidade de trabalhar em exercícios e projetos de programação para consolidar o aprendizado. A participação ativa e a prática constante são incentivadas para garantir a compreensão dos conceitos e o desenvolvimento de habilidades.
+
+Público-Alvo
+Este curso é destinado a estudantes, profissionais de diversas áreas e qualquer pessoa interessada em aprender os fundamentos da programação. Não é necessário ter conhecimento prévio em programação.
+
+Duração do Curso
+O curso tem uma duração de 12 semanas, com 5 horas de aula por semana.' where Id!=0;
+

@@ -1,3 +1,28 @@
+<?php
+
+include 'ShowErrorDetails.php';
+require_once 'CourseService.php';
+
+$courseService = new CourseService();
+
+if (!isset($_GET["id"])) {
+    $_SESSION['404_message'] = "Informe o identificado do curso";
+    header("Location: 404.php");
+    exit();
+}
+
+$courseId = $_GET["id"];
+
+$course = $courseService->getById($courseId);
+
+if (empty($course)) {
+    $_SESSION['404_message'] = "Curso com identificador $courseId não encontrado.";
+    header("Location: 404.php");
+    return;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,9 +72,9 @@
     <!-- Hero -->
     <section class="course-intro">
         <div>
-            <h2>Introdução à programação de computadores</h2>
+            <h2><?php echo $course->name ?></h2>
             <p><strong>Aprenda a construir programas de computador de maneira fácil e rápida</strong></p>
-            <p class="text-gray">Instrutor <i class="fas fa-angle-double-right"></i> Dercio Sinione Derone</p>
+            <p class="text-gray">Instrutor <i class="fas fa-angle-double-right"></i> <?php echo $course->getCreator()->name ?></p>
 
             <p class="star">
                 <strong><em class="text-yellow">4.3</em></strong>
@@ -61,18 +86,18 @@
             </p>
 
             <div class="options display-flex">
-                <span class="bg-green">Programação</span>
-                <span class="bg-blue"><a href="signup.php">Inscrever-se</a></span>
+                <span class="bg-green"><?php echo $course->getCreator()->name ?></span>
+                <span class="bg-blue"><a href="HandlerCreateStudentRegistration.php?courseId=<?php echo $course->id ?>">Inscrever-se</a></span>
             </div>
 
             <div class="display-flex mt-3 text-gray">
-                <p><i class="fas fa-clock"></i> Ultima atualização 12/05/2024</p>
+                <p><i class="fas fa-clock"></i> Ultima atualização <?php echo $course->getCreatedAt() ?></p>
                 <p><i class="fas fa-globe-americas"></i> Português</p>
             </div>
         </div>
 
         <aside>
-            <img src="Img/courses-3.jpg">
+            <img src="<?php echo $course->imageUrl ?>">
         </aside>
     </section>
 </header>
@@ -83,121 +108,17 @@
         <div>
             <div>
                 <h5>Descrição do Curso</h5>
-                <p>O curso <b>"Introdução à Programação de Computadores"</b> é projetado para fornecer aos alunos uma
-                    base sólida nos conceitos fundamentais da programação. Este curso é ideal para aqueles que têm pouca
-                    ou nenhuma experiência prévia em programação e desejam desenvolver habilidades essenciais para criar
-                    programas de computador eficazes.</p>
-            </div>
-
-            <div>
-                <h5>Metodologia</h5>
-                <p>O curso combina aulas teóricas com atividades práticas e projetos. Os alunos terão a oportunidade de
-                    trabalhar em exercícios e projetos de programação para consolidar o aprendizado. A participação
-                    ativa e a prática constante são incentivadas para garantir a compreensão dos conceitos e o
-                    desenvolvimento de habilidades.</p>
-            </div>
-
-            <div>
-                <h5>Público-Alvo</h5>
-                <p>Este curso é destinado a estudantes, profissionais de diversas áreas e qualquer pessoa interessada em
-                    aprender os fundamentos da programação. Não é necessário ter conhecimento prévio em programação.</p>
-            </div>
-
-            <div>
-                <h5>Duração do Curso</h5>
-                <p>O curso tem uma duração de 12 semanas, com 5 horas de aula por semana.</p>
-            </div>
-
-            <audio src="audio.m4a" controls>Audio de Introdução</audio>
-
-            <div class="video-frame">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/leBJc3VyZ5s?si=vfpEeA0F_1-EPAjN"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <?php echo $course->description ?>
             </div>
         </div>
 
         <aside>
             <ul>
-                <li><h5>Objetivos do Curso</h5></li>
-                <li><i class="fas fa-chevron-right"></i>Compreender os princípios básicos da programação e como os
-                    computadores processam informações.
-                </li>
-                <li><i class="fas fa-chevron-right"></i>Aprender a utilizar uma linguagem de programação popular, como
-                    Python, para resolver problemas e automatizar tarefas.
-                </li>
-                <li><i class="fas fa-chevron-right"></i>Desenvolver habilidades de pensamento lógico e analítico para
-                    escrever algoritmos eficientes.
-                </li>
-                <li><i class="fas fa-chevron-right"></i>Adquirir experiência prática na escrita, teste e depuração de
-                    código.
-                </li>
-                <li><i class="fas fa-chevron-right"></i>Familiarizar-se com estruturas de dados básicas e conceitos de
-                    controle de fluxo, como loops e condicionais.
-                </li>
-                <li><a href="signup.php" class="btn btn-primary btn-lg">Inscrever-se</a></li>
+                <li><h5>Preço do Curso</h5></li>
+                <li><i class="fas fa-chevron-right"></i><strong><?php echo $course->price ?>€</strong></li>
+                <li><a href="HandlerCreateStudentRegistration.php?courseId=<?php echo $course->id ?>" class="btn btn-primary btn-lg">Inscrever-se</a></li>
             </ul>
         </aside>
-    </section>
-
-
-    <!-- Course Content -->
-    <section class="our-courses mt-15">
-        <h4>
-            Cursos semelhantes
-        </h4>
-
-        <div class="course-cards">
-
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-1.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Desenvolvimento Web</h6>
-                        <span class="bg-yellow">Programação</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-4.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Introdução a Html5 e Css</h6>
-                        <span class="bg-yellow">Programação</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-3.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Big Data</h6>
-                        <span class="bg-blue">Ciência de Dados</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="transition-scale">
-                <a href="cursos-detalhes.html">
-                    <div class="course-img">
-                        <img src="Img/courses-2.jpg" alt="">
-                    </div>
-                    <div class="course-body">
-                        <h6>Logaritmo</h6>
-                        <span class="bg-dark-blue">Matemática</span>
-                    </div>
-                </a>
-            </div>
-        </div>
     </section>
 
 </main>

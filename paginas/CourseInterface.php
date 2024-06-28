@@ -8,6 +8,8 @@ interface CourseInterface
 
     public function getAllByCategory($categoryId);
     public function getTotalStudent($courseId);
+
+    public function createStudentRegistration($studentId, $courseId);
     public function create($creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl);
 
     public function update($id, $creatorId, $name, $categoryId, $price, $description, $maxStudent, $imageUrl);
