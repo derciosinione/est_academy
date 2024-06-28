@@ -47,12 +47,14 @@
 
     <!-- Hero -->
     <div class="hero">
+        <?php $search = $_GET['search'] ?? ""; ?>
+
         <div class="search-container">
             <h1>My Academy</h1>
             <h5>Vem aprender connosco</h5>
             <p>A melhor escola de cursos online de Portugal</p>
-            <form>
-                <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Search">
+            <form action="cursos.php" method="get">
+                <input class="form-control" type="search" placeholder="Pesquisar..." aria-label="Search" name="search" value="<?php echo $search; ?>">
                 <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
@@ -171,7 +173,7 @@
         <div class="course-cards">
 
             <div class="transition-scale">
-                <a href="cursos-detalhes.html">
+                <a href="#">
                     <div class="course-img">
                         <img src="coursebg.png" alt="">
                     </div>
@@ -183,7 +185,7 @@
             </div>
 
             <div class="transition-scale">
-                <a href="cursos-detalhes.html">
+                <a href="#">
                     <div class="course-img">
                         <img src="coursebg.png" alt="">
                     </div>
@@ -195,7 +197,7 @@
             </div>
 
             <div class="transition-scale">
-                <a href="cursos-detalhes.html">
+                <a href="#">
                     <div class="course-img">
                         <img src="coursebg.png" alt="">
                     </div>
@@ -207,7 +209,7 @@
             </div>
 
             <div class="transition-scale">
-                <a href="cursos-detalhes.html">
+                <a href="#">
                     <div class="course-img">
                         <img src="coursebg.png" alt="">
                     </div>
@@ -242,7 +244,6 @@
         <div>
             <h5 class="text-uppercase">Links Uteis</h5>
             <ul>
-                <li><a href="autores.html"><i class="fas fa-chevron-right"></i> Autores</a></li>
                 <li><a href="sobre.html"><i class="fas fa-chevron-right"></i> Sobre</a></li>
                 <li><a href="cursos.php"><i class="fas fa-chevron-right"></i> Cursos</a></li>
                 <li><a href="contactos.html"><i class="fas fa-chevron-right"></i> Contacto</a></li>
